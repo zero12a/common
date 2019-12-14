@@ -873,7 +873,9 @@ function make_grid_read_json($stmt,$keycolidx){
 		$variables[] = &$data[$field->name];
 	}
 	call_user_func_array(array($stmt, 'bind_result'), $variables);
-	$i=0;
+    $i=0;
+    
+    $RtnVal = new stdClass();//warning 막기
 	while($stmt->fetch())
 	{
 			$array[$i] = array();
@@ -885,7 +887,10 @@ function make_grid_read_json($stmt,$keycolidx){
 				array_push($one_row, $v );
 				if($j == $keycolidx)$id_col_value = $v;
 				$j++;
-			}
+            }
+            
+            $RtnVal->RTN_DATA = new stdClass();//warning 막기
+            $RtnVal->RTN_DATA->rows[$i] = array();//warning 막기
 			$RtnVal->RTN_DATA->rows[$i]['id']=$id_col_value;
 			$RtnVal->RTN_DATA->rows[$i]['data']=$one_row;
 
@@ -2297,9 +2302,8 @@ end
                     $mapLoop = $map["SQL"]["D"];
                     break;    
                 default:
-                    alog("         userdata no match : " . $row["userdata"]);
-                    continue;                
-                break;
+                    alog("         userdata no match : " . $row["userdata"]);           
+                    break;
             }
 
             for($k=0;$k<sizeof($mapLoop);$k++){
