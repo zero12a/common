@@ -147,8 +147,8 @@ function getDbSvrInfo($tSvrId){
             //alog("  DBHOST : " . $arr[0]["DBHOST"]);
             //alog("  DBNAME : " . $arr[0]["DBNAME"]);
             //alog("  DBUSRID : " . $arr[0]["DBUSRID"]);
-            alog("CFG_SEC_KEY = " . $CFG["CFG_SEC_KEY"]);
-            alog("  DBUSRPW : " . aes_decrypt($arr[0]["DBUSRPW"],$CFG["CFG_SEC_KEY"]));
+            //alog("CFG_SEC_KEY = " . $CFG["CFG_SEC_KEY"]);
+            //alog("  DBUSRPW : " . aes_decrypt($arr[0]["DBUSRPW"],$CFG["CFG_SEC_KEY"]));
         
             $RtnVal->MYSQL_HOST =  $arr[0]["DBHOST"];
             $RtnVal->MYSQL_DB =  $arr[0]["DBNAME"];
@@ -875,7 +875,7 @@ function make_grid_read_json($stmt,$keycolidx){
 	call_user_func_array(array($stmt, 'bind_result'), $variables);
     $i=0;
     
-    $RtnVal = new stdClass();//warning 막기
+    //$RtnVal = new stdClass();//warning 막기
 	while($stmt->fetch())
 	{
 			$array[$i] = array();
@@ -889,8 +889,8 @@ function make_grid_read_json($stmt,$keycolidx){
 				$j++;
             }
             
-            $RtnVal->RTN_DATA = new stdClass();//warning 막기
-            $RtnVal->RTN_DATA->rows[$i] = array();//warning 막기
+            //$RtnVal->RTN_DATA = new stdClass();//warning 막기
+            //$RtnVal->RTN_DATA->rows[$i] = array();//warning 막기
 			$RtnVal->RTN_DATA->rows[$i]['id']=$id_col_value;
 			$RtnVal->RTN_DATA->rows[$i]['data']=$one_row;
 
