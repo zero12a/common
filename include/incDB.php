@@ -1921,7 +1921,7 @@ end
             $tArr = array_merge($REQ,$to_row);
 
 			if($row["userdata"] == "inserted"  ){
-                //alog("        inserted : " );
+                alog("        inserted : " );
 
                 //require 필드 갯수 만큼 루프 돌면서 검사
                 for($k=0;$k<sizeof($sql["C"]);$k++){
@@ -1939,7 +1939,7 @@ end
                 }
 
 			}else if($row["userdata"] == "updated"){
-                //alog("        updated : " );
+                alog("        updated : " );
 
                 //require 필드 갯수 만큼 루프 돌면서 검사
                 for($k=0;$k<sizeof($sql["U"]);$k++){
@@ -1957,7 +1957,7 @@ end
                 }
 
 			}else if($row["userdata"] == "deleted" ){
-                //alog("        deleted : " );
+                alog("        deleted : " );
 
                 for($k=0;$k<sizeof($sql["D"]);$k++){
                     $tmpSql = $sql["D"][$k];
@@ -2239,10 +2239,10 @@ end
         alog("makeGridSaveJsonArray count : " . count($map["XML"]["row"]) );
         alog("makeGridSaveJsonArray sizeof : " . sizeof($map["XML"]["row"]) );
 		if(is_assoc($map["XML"]["row"]) == 1) {
-			alog(" Y " );
+			alog(" is_assoc = Y " );
 			$xml_array_last[0] = $map["XML"]["row"];
 		}else{
-			alog(" N " );
+			alog(" is_assoc = N " );
 
 			$xml_array_last = $map["XML"]["row"];
 		}
@@ -2305,6 +2305,9 @@ end
                     alog("         userdata no match : " . $row["userdata"]);           
                     break;
             }
+            alog("        mapLoop size : " . sizeof($mapLoop));   
+
+            if(sizeof($mapLoop)==0)JsonMsg("500","899","(makeGridSaveJsonArray) 명령어를 처리할 SQL이 없습니다.");
 
             for($k=0;$k<sizeof($mapLoop);$k++){
                 $tmpSql = $mapLoop[$k];
