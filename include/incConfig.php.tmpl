@@ -2,6 +2,7 @@
 //redis에 모두 넣기
 if(!require_once("{{ var "LIB_PATH_REDIS" | default "/data/www/lib/php/vendor/predis/autoload.php" }}"))die("require predis load fail.");
 
+
 //레디스 config
 $miniConfig = array(
 	"REDIS_HOST" => "{{ var "REDIS_HOST" | default "127.0.0.1" }}"
