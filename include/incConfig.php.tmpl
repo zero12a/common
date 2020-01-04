@@ -1,6 +1,6 @@
 <?php
 //redis에 모두 넣기
-if(!require_once("/data/www/lib/php/vendor/predis/predis/autoload.php"))die("require predis load fail.");
+if(!require_once("{{ var "LIB_PATH_REDIS" | default "/data/www/lib/php/vendor/predis/predis/autoload.php"}}"))die("require predis load fail.");
 
 //리던 캑체
 $rtnArray = null;
@@ -9,7 +9,7 @@ $cfgNm = "{{ var "REDIS_CONFIG_ID" | default "CONFIG_PJTID" }}";
 //로컬 캐쉬에 config 가져왔는지 검사합니다.
 $localCache = trim(apcu_fetch($cfgNm));
 
-if($localCache == ""){
+if($localCache == "" || $_GET["reload"] != "YES"){
 	//레디스 config
 	$miniConfig = array(
 		"REDIS_HOST" => "{{ var "REDIS_HOST" | default "127.0.0.1" }}"
@@ -30,10 +30,10 @@ if($localCache == ""){
 	if($jsonString == null || $jsonString == "" || !is_array(json_decode($jsonString,true)) ){
 		$rtnArray = json_encode($miniConfig);
 	}else{
-		//처음 로딩시 로컬캐시에 보관
-		apcu_store($cfgNm, $jsonString);		
-	
 		$rtnArray = array_merge(json_decode($jsonString,true),$miniConfig);
+
+		//처음 로딩시 로컬캐시에 보관
+		apcu_store($cfgNm, json_encode($rtnArray));	
 	}
 
 
