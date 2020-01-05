@@ -238,6 +238,7 @@ function alog($tStr){
 
     if(strlen($CFG["CFG_LOG_PATH"]) < 1)return;
     $logFile = $CFG["CFG_LOG_PATH"] . "cg_" . date("Ymd") . ".log";
+
     //echo $logFile;
     error_log(PHP_EOL .date("y.m.d H:i:s") . " [" . $s . "]" . sprintf(" %-20s : %s", substr($t,0,strlen($t)-4) , $tStr) , 3, $logFile) || die("alog fail : " . $logFile);
 }
