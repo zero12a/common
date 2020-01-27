@@ -44,6 +44,28 @@ function setUserId($tId){
     $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_USR_ID"] = $tId;
 }
 
+//Oauth 2
+function getAccessToken(){
+	global $_SESSION, $CFG;
+	return $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_ACCESS_TOKEN"];
+}
+
+function setAccessToken($tNm){
+	global $_SESSION, $CFG;
+    $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_ACCESS_TOKEN"] = $tNm;
+}
+
+//Oauth 2
+function getRefreshToken(){
+	global $_SESSION, $CFG;
+	return $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_REFRESH_TOKEN"];
+}
+
+function setRefreshToken($tNm){
+	global $_SESSION, $CFG;
+    $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_REFRESH_TOKEN"] = $tNm;
+}
+
 
 function getUserNm(){
 	global $_SESSION, $CFG;
