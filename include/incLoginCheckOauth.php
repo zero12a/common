@@ -32,9 +32,9 @@ if(!isLogin()){
     alog("REQ.refresh_token = ". $REQ["refresh_token"]);
 
     if($REQ["access_token"] == ""){
-        ServerMsg("500","100","로그인 후 이용해 주세요.");
+        JsonMsg("500","100","로그인 후 이용해 주세요.");
     }else if($CFG["CFG_OAUTH_HOST"] =="" || $CFG["CFG_OAUTH_PORT"] == ""){
-        ServerMsg("500","110","인증서버 정보가 없습니다.(CFG_OAUTH_HOST,CFG_OAUTH_PORT)");
+        JsonMsg("500","110","인증서버 정보가 없습니다.(CFG_OAUTH_HOST,CFG_OAUTH_PORT)");
     }else{
         //30 인증서버에서 인증정보 받기
 
@@ -62,7 +62,7 @@ if(!isLogin()){
 
             //상태 코드 확인하기
             if(trim($res->getStatusCode()) != "200"){
-                ServerMsg("500","120","인증 정보를 요청 결과 오류가 발생했습니다.(rescode : " . $res->getStatusCode() . ")");                
+                JsonMsg("500","120","인증 정보를 요청 결과 오류가 발생했습니다.(rescode : " . $res->getStatusCode() . ")");                
             }
 
             $resJsonStr = $res->getBody();
@@ -85,7 +85,7 @@ if(!isLogin()){
         $REQ["USR_NM"] = $resArr["RTN_DATA"]["USER_INFO"]["USR_NM"];
 
         if(!is_numeric($REQ["USR_SEQ"])){
-            ServerMsg("500","130","인증서버로 부터 인증을 실패했습니다.");
+            JsonMsg("500","130","인증서버로 부터 인증을 실패했습니다.");
         }else{
             //정상 리턴받은 경우 인증세션 삽입
 
