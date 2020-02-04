@@ -20,11 +20,8 @@ if(!isLogin()){
     alog("REQ.access_token = ". $REQ["access_token"]);
     alog("REQ.refresh_token = ". $REQ["refresh_token"]);
 
-    if($REQ["access_token"] == ""){
-        JsonMsg("500","100","로그인 후 이용해 주세요.(check oauth)");
-    }else if($CFG["CFG_OAUTH_HOST"] =="" || $CFG["CFG_OAUTH_PORT"] == ""){
-        JsonMsg("500","110","인증서버 정보가 없습니다.(CFG_OAUTH_HOST,CFG_OAUTH_PORT)");
-    }else{
+    if($REQ["access_token"] != ""){
+
         //30 인증서버에서 인증정보 받기
 
         // Create a client with a base URI
