@@ -278,7 +278,7 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 	//불러오기
 	$.ajax({
 		type : "GET",
-		url : "/c.g/cg_code_json.php",
+		url : "/common/cg_code_json.php",
 		data : {PJTSEQ : 3,PCD : tPcd},
 		dataType: "json",
 		async: false,
@@ -367,7 +367,7 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 	//불러오기
 	$.ajax({
 		type : "GET",
-		url : "/c.g/cg_code_json.php",
+		url : "/common/cg_code_json.php",
 		data : {PJTSEQ : 3,PCD : tPcd},
 		dataType: "json",
 		async: false,
@@ -446,7 +446,7 @@ function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
 	//불러오기
 	$.ajax({
 		type : "GET",
-		url : "/c.g/cg_code_json.php",
+		url : "/common/cg_code_json.php",
 		data : {PJTSEQ : 3,PCD : tPcd},
 		dataType: "json",
 		async: false,
