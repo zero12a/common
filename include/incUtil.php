@@ -1,15 +1,11 @@
 <?php
 libxml_use_internal_errors(true);
 
-function getLogger($arrLog){
-    alog("getLogger()...........................start");
+
+function getLoggerSwoole($arrLog){
+    alog("getLoggerSwoole()...........................start");
     global $CFG;
 
-    
-    //로거 사용 (부가 LIBS)
-    if(!require_once($CFG["CFG_LIBS_MONO_LOG"]))die("getLogger() CFG_LIBS_MONO_LOG load fail");
-    if(!require_once($CFG["CFG_LIBS_PATH_REDIS"]))die("getLogger() CFG_LIBS_PATH_REDIS load fail");
-    
     //로그 관련 객체 생성.(채널 : log_svc, log_make, log_cg, log_batch)
     $redisClient = null;
     alog("RedisClient connection make");
@@ -21,7 +17,60 @@ function getLogger($arrLog){
     }
     $log = null;
 
+    if($redisClient->isConnected()){
+        alog("RedisClient connection new : true ");
 
+        /////////////////////////
+        // REDIS_LOG
+        /////////////////////////
+        $redisHandler = new Monolog\Handler\RedisHandler($redisClient, $arrLog["LIST_NM"], Monolog\Logger::INFO); // plog is list name
+        $redisHandler->setFormatter(new Monolog\Formatter\JsonFormatter());
+         //JsonFormatter(int $batchMode = self::BATCH_MODE_JSON, bool $appendNewline = true)
+        $log = new Monolog\Logger($arrLog["PGM_ID"], array($redisHandler)); // 채널
+        //$log->addInfo('info', array("session_id"=>$s, "url_path"=>$t));
+
+    }else{
+        alog("RedisClient connection new : false ");
+
+        /////////////////////////
+        // FILE_LOG
+        /////////////////////////
+        $s = session_id();
+        $t = $_SERVER["PHP_SELF"];
+
+        $dateFormat = "y.m.d H:i:s";
+        $output = "\n%datetime% [" . $s . "] %level_name% " . sprintf("%-20s", substr($t,0,strlen($t)-4)) . " : %message% %context% %extra%";
+        $formatter = new Monolog\Formatter\LineFormatter($output, $dateFormat);
+
+        // Create the logger
+        $log = new Monolog\Logger($arrLog["PGM_ID"]);
+        // Now add some handlers
+        $stream = new Monolog\Handler\StreamHandler($CFG["CFG_LOG_PATH"], Monolog\Logger::INFO);
+        $stream->setFormatter($formatter);
+        $log->pushHandler($stream);        
+    }
+    return $log;
+}
+
+function getLogger($arrLog){
+    alog("getLogger()...........................start");
+    global $CFG;
+
+    
+    //로거 사용 (부가 LIBS)
+    //if(!require_once($CFG["CFG_LIBS_MONO_LOG"]))die("getLogger() CFG_LIBS_MONO_LOG load fail");
+    //if(!require_once($CFG["CFG_LIBS_PATH_REDIS"]))die("getLogger() CFG_LIBS_PATH_REDIS load fail");
+    
+    //로그 관련 객체 생성.(채널 : log_svc, log_make, log_cg, log_batch)
+    $redisClient = null;
+    alog("RedisClient connection make");
+    try{
+        $redisClient = new Predis\Client($CFG["CFG_AUTH_REDIS"]);
+        $redisClient->connect();//연결하기
+    }catch(Exception $e) {
+        alog("RedisClient connection error : " . $e->getMessage());
+    }
+    $log = null;
 
     if($redisClient->isConnected()){
         alog("RedisClient connection new : true ");
