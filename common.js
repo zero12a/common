@@ -17,7 +17,7 @@ var dateFormatJson = {
 	changeYear: true,
 	yearSuffix: '년',
 	showOn: "button",
-	buttonImage: "../img/calendar4-200.png",
+	buttonImage: CFG_URL_LIBS_ROOT + "img/calendar4-200.png",
 	buttonImageOnly: true,
 	buttonText: "Select date"
 	};
@@ -54,7 +54,7 @@ function eXcell_button(cell){ //the eXcell name is defined here
 			alog("cell.cellIndex = " + colIndex);
 			//alog("this.grid.getUserData(GRPID) = " + this.grid.getUserData("","GRPID"));	
 			tStr += "<span  id=\"" + tValue + "\" >" + tText + "</span>";
-			tStr += "<input type=\"image\" src=\"/c.g/img/search.png\" height=20 style=\"vertical-align:middle;\" onclick=\"goGridPopOpen('" + tGrpId + "','" + rowId + "','" + colIndex + "','" +  tValue + "','" + tText + "',this)\">";
+			tStr += "<input type=\"image\" src=\"" + CFG_URL_LIBS_ROOT + "img/search.png\" height=20 style=\"vertical-align:middle;\" onclick=\"goGridPopOpen('" + tGrpId + "','" + rowId + "','" + colIndex + "','" +  tValue + "','" + tText + "',this)\">";
 			
 			this.setCValue(tStr,tValue);//NM,CD
 		}else{
