@@ -23,7 +23,16 @@ function getLoggerSwoole($arrLog){
         /////////////////////////
         // REDIS_LOG
         /////////////////////////
-        $redisHandler = new Monolog\Handler\RedisHandler($redisClient, $arrLog["LIST_NM"], Monolog\Logger::INFO); // plog is list name
+        if(!is_numeric($arrLog["LOG_LEVEL"])){
+            if($CFG["CFG_DEBUG_YN"] == "Y"){
+                $arrLog["LOG_LEVEL"] = Monolog\Logger::DEBUG;
+            }else{
+                $arrLog["LOG_LEVEL"] = Monolog\Logger::INFO;
+            }
+        } 
+
+        alog("LOG_LEVEL : " . $arrLog["LOG_LEVEL"]);
+        $redisHandler = new Monolog\Handler\RedisHandler($redisClient, $arrLog["LIST_NM"], $arrLog["LOG_LEVEL"]); // plog is list name
         $redisHandler->setFormatter(new Monolog\Formatter\JsonFormatter());
          //JsonFormatter(int $batchMode = self::BATCH_MODE_JSON, bool $appendNewline = true)
         $log = new Monolog\Logger($arrLog["PGM_ID"], array($redisHandler)); // 채널
@@ -78,7 +87,16 @@ function getLogger($arrLog){
         /////////////////////////
         // REDIS_LOG
         /////////////////////////
-        $redisHandler = new Monolog\Handler\RedisHandler($redisClient, $arrLog["LIST_NM"], Monolog\Logger::INFO); // plog is list name
+        if(!is_numeric($arrLog["LOG_LEVEL"])){
+            if($CFG["CFG_DEBUG_YN"] == "Y"){
+                $arrLog["LOG_LEVEL"] = Monolog\Logger::DEBUG;
+            }else{
+                $arrLog["LOG_LEVEL"] = Monolog\Logger::INFO;
+            }
+        } 
+
+        alog("LOG_LEVEL : " . $arrLog["LOG_LEVEL"]);        
+        $redisHandler = new Monolog\Handler\RedisHandler($redisClient, $arrLog["LIST_NM"], $arrLog["LOG_LEVEL"]); // plog is list name
         $redisHandler->setFormatter(new Monolog\Formatter\JsonFormatter());
          //JsonFormatter(int $batchMode = self::BATCH_MODE_JSON, bool $appendNewline = true)
         $log = new Monolog\Logger($arrLog["PGM_ID"], array($redisHandler)); // 채널
