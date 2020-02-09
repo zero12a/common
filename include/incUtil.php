@@ -957,6 +957,14 @@ function JsonMsg($rtn_cd, $err_cd,  $rtn_msg)
 	exit;
 }
 
+function JsonMsgCallback($rtn_cd, $err_cd,  $rtn_msg, $call_back)
+{
+	$json_array = array( "RTN_CD"=>$rtn_cd, "ERR_CD"=>$err_cd, "RTN_MSG" => $rtn_msg);
+	
+	echo $call_back . "(" . json_encode($json_array) . ")";
+	exit;
+}
+
 function ServerMsg($cd1,$cd2,$msg){
 	echo $cd1 . ":" . $cd2 . ":" . $_SERVER["SCRIPT_NAME"] . ":" . $msg; 
 	exit;
