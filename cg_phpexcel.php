@@ -2,15 +2,14 @@
 
 function column_char($i) { return chr( 65 + $i ); }
  
-$CFG = require_once "../common/include/incConfig.php";
+$CFG = require_once "./include/incConfig.php";
 
 //include_once('./incConfig.php');//CG CONFIG
-include_once("../common/include/incUtil.php");
+require_once("./include/incUtil.php");
 
 //echo $_POST["DATA_HEADERS"];//그리드1
 
 
-alog("DATA_HEADERS: " . $_POST["DATA_HEADERS"]);
 alog("DATA_HEADERS: " . $_POST["DATA_HEADERS"]);
 alog("DATA_ROWS: " . $_POST["DATA_ROWS"]);
 $DATA_HEADERS = explode(",",$_POST["DATA_HEADERS"]);
@@ -50,7 +49,7 @@ if(is_assoc($DATA_ROWS["row"]) == 1) {
 	$xml_array_last = $DATA_ROWS["row"];
 }
 
-
+//echo "count:" . count($xml_array_last);
 for($i=0;$i<count($xml_array_last);$i++){
 
 	$cols = array();
@@ -85,7 +84,7 @@ for($i=0;$i<count($xml_array_last);$i++){
 
 
 
-include_once($CFG["CFG_LIBS_EXCEL"]);
+require_once($CFG["CFG_LIBS_EXCEL"]);
 
 
 
@@ -116,7 +115,9 @@ $writer = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
 
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="web-test.xlsx"');
-header('Cache-Control: max-age=0');
+//header('Cache-Control: max-age=0');
+header("Cache-Control:no-cache");
+header("Pragma:no-cache");
 
 $writer->save('php://output');
 ?>
