@@ -13,7 +13,7 @@
     //alog("cg_clode_json.php...............111");
     //ServerViewTxt("N","N","Y","Y");
 
-    $db=db_m_open();
+    $db=getDbConn($CFG["CFG_DB"]["CG"]);
 
     //alog("cg_clode_json.php...............222");
 

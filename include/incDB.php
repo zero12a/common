@@ -175,6 +175,41 @@ function getDbSvrInfo($tSvrId){
     return $RtnVal;
 }
 
+function getDbConn($tOBJ_SERVER){
+    $db = mysqli_init();
+    if (!$db) {
+        alog("db_obj_open() mysqli_init failed");
+        die('mysqli_init failed');
+    }
+    if (!$db->options(MYSQLI_OPT_CONNECT_TIMEOUT, 1)) {
+        alog("db_obj_open() Setting MYSQLI_OPT_CONNECT_TIMEOUT failed");
+    }
+
+    if($tOBJ_SERVER["PORT"] == "")$tOBJ_SERVER["PORT"] = "3306";
+
+    if(
+        !$db->real_connect(
+            $tOBJ_SERVER["HOST"]
+            , $tOBJ_SERVER["ID"]
+            , $tOBJ_SERVER["PW"]
+            , $tOBJ_SERVER["DBNM"]
+            , $tOBJ_SERVER["PORT"])
+    ){
+        alog("getDbConn() MYSQL_HOST="    . $tOBJ_SERVER["HOST"] );
+        alog("getDbConn() MYSQL_ID="      . $tOBJ_SERVER["ID"] );
+        alog("getDbConn() MYSQL_DBNM="      . $tOBJ_SERVER["DBNM"] );
+        alog("getDbConn() MYSQL_PORT="    . $tOBJ_SERVER["PORT"] );
+        //alog("db_obj_open() MYSQL_PW="    . $tOBJ_SERVER->MYSQL_PW);
+        alog("mysqli error : " . $db->connect_errno . "/" . $db->connect_error);
+        JsonMsg("500","999","db_obj_open() Connect failed : " .  $db->connect_error);
+        //printf("Connect failed: %s\n", mysqli_connect_error());
+        exit();
+    }
+    //echo "<br>db 연결 성공";
+    return $db;
+}
+
+ 
 function db_obj_open($tOBJ_SERVER){
     $db = mysqli_init();
     if (!$db) {
