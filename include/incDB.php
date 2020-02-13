@@ -178,11 +178,11 @@ function getDbSvrInfo($tSvrId){
 function getDbConn($tOBJ_SERVER){
     $db = mysqli_init();
     if (!$db) {
-        alog("db_obj_open() mysqli_init failed");
+        alog("getDbConn() mysqli_init failed");
         die('mysqli_init failed');
     }
     if (!$db->options(MYSQLI_OPT_CONNECT_TIMEOUT, 1)) {
-        alog("db_obj_open() Setting MYSQLI_OPT_CONNECT_TIMEOUT failed");
+        alog("getDbConn() Setting MYSQLI_OPT_CONNECT_TIMEOUT failed");
     }
 
     if($tOBJ_SERVER["PORT"] == "")$tOBJ_SERVER["PORT"] = "3306";
@@ -201,7 +201,7 @@ function getDbConn($tOBJ_SERVER){
         alog("getDbConn() MYSQL_PORT="    . $tOBJ_SERVER["PORT"] );
         //alog("db_obj_open() MYSQL_PW="    . $tOBJ_SERVER->MYSQL_PW);
         alog("mysqli error : " . $db->connect_errno . "/" . $db->connect_error);
-        JsonMsg("500","999","db_obj_open() Connect failed : " .  $db->connect_error);
+        JsonMsg("500","999","getDbConn() Connect failed : " .  $db->connect_error);
         //printf("Connect failed: %s\n", mysqli_connect_error());
         exit();
     }
