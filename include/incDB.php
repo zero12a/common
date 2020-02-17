@@ -201,7 +201,7 @@ function getDbConn($tOBJ_SERVER){
         alog("getDbConn() MYSQL_PORT="    . $tOBJ_SERVER["PORT"] );
         //alog("db_obj_open() MYSQL_PW="    . $tOBJ_SERVER->MYSQL_PW);
         alog("mysqli error : " . $db->connect_errno . "/" . $db->connect_error);
-        JsonMsg("500","999","getDbConn() Connect failed : " .  $db->connect_error);
+        JsonMsg("500","999","getDbConn() host(" . $tOBJ_SERVER["HOST"] . ") Connect failed : " .  $db->connect_error);
         //printf("Connect failed: %s\n", mysqli_connect_error());
         exit();
     }
@@ -333,7 +333,7 @@ function fetch_all($tresult,$resulttype)
 
 function makeStmt($db,$sql,$coltype,$map){
     global $PGM_CFG, $log;
-	//alog("makeStmt-----------------------------------start");
+	alog("makeStmt-----------------------------------start");
 
     $tParamColids = array(); //G3-COLID를 그대로 저장
     //$tDdColids = ""; //G3-COLID일때 G3은 제거
@@ -512,7 +512,7 @@ function makeStmt($db,$sql,$coltype,$map){
     //$stmt->bind_param($to_coltype, $to_map);
 
     if(!$stmt){
-        if($log)$log->info("        stmt error : " . $stmt->errno . " > " . $stmt->error);
+        if($log)$log->info("stmt error : stmt is " . $stmt->errno . " > " . $stmt->error . ", db is " . $db->errno . " > " . $db->error);
         return false;
     }else if($k > 0){
 		//sql문에 bind param이 하나라도 있으면 처리
@@ -543,7 +543,8 @@ function makeStmt($db,$sql,$coltype,$map){
 
 
 function make_stmt($db,$sql,$coltype,$map){
-	//alog("make_stmt-----------------------------------start");
+    global $log;
+	alog("make_stmt-----------------------------------start");
 
     $k = 0;
     $to_map = array();
@@ -610,6 +611,7 @@ function make_stmt($db,$sql,$coltype,$map){
 
     if(!$stmt){
         //alog("        stmt error 2: " . $db->errno . " > " . $db->error);
+        if($log)$log->info("        stmt error : stmt is " . $stmt->errno . " > " . $stmt->error . ", db is " . $db->errno . " > " . $db->error);
         return false;
     }else if($k > 0){
 		//sql문에 bind param이 하나라도 있으면 처리
@@ -2855,8 +2857,9 @@ end
 				return "FNCTYPE 없음(".$map["FNCTYPE"].")";
 		}
 
-        alog("sql ---------------------------\n" . $sqltxt);
-        alog("bindtype ---------------------------\n" . $bindtype);
+        alog("svrid =" . $svrid);
+        alog("sql =" . $sqltxt);
+        alog("bindtype =" . $bindtype);
         
 
         //폼 입력값에 암호화 컬럼 있는지 검사해서 암호화 처리

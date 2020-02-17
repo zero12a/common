@@ -5,6 +5,8 @@
 
     $CFG = include_once("../common/include/incConfig.php");;
 
+    require_once($CFG["CFG_LIBS_VENDOR"]);
+
     require_once("../common/include/incUtil.php");
     require_once("../common/include/incDB.php");
     require_once("../common/include/incUser.php");
@@ -13,7 +15,21 @@
     //alog("cg_clode_json.php...............111");
     //ServerViewTxt("N","N","Y","Y");
 
-    $db=getDbConn($CFG["CFG_DB"]["CGCORE"]);
+    $resToken = uniqid();
+
+
+    $log = getLogger(
+        array(
+        "LIST_NM"=>"log_CG"
+        , "PGM_ID"=>"CODE_JSON"
+        , "REQTOKEN" => $reqToken
+        , "RESTOKEN" => $resToken
+        , "LOG_LEVEL" => Monolog\Logger::DEBUG
+        )
+    );
+
+
+
 
     //alog("cg_clode_json.php...............222");
 
@@ -27,6 +43,37 @@
 
     //로그인 정보 받기
     $userSeq = getUserSeq();
+
+
+    switch($REQ["PCD"]){
+        case "PGMSEQ_POPUP":
+        case "VALIDSEQ":
+        case "PSQLSEQ":
+        case "GETGRPLIST":
+        case "GETSVCSQLLIST";
+
+            //프로젝트의 데이터소스 정보 가져오기 
+            //프로젝트 정보에서 데이터소스 이름 가져오기
+            $db2 = getDbConn($CFG["CFG_DB"]["CGCORE"]);
+            //var_dump($CFG["CFG_DB"]["CGCORE"]);    
+            $sql = "select * from CG_PJTINFO where PJTSEQ = #{PJTSEQ}";
+            //echo $sql;
+            $stmt2 = makeStmt($db2,$sql,$coltype="i",$REQ);
+            $pjtInfo = getStmtArray($stmt2)[0];
+            $stmt2->close();
+            $db2->close();
+            //var_dump($pjtInfo);
+            if($pjtInfo["DSNM"] == "")JsonMsg("500","100","해당 프로젝트의 데이터소스 정보가 없습니다.");
+
+            //프로젝트의 데이터소스 정보 가져오기
+            alog("데이터소스 : " . $pjtInfo["DSNM"]);
+            $db=getDbConn($CFG["CFG_DB"][$pjtInfo["DSNM"]]);
+            break;
+        default:
+            alog("데이터소스 : CGCORE");
+            $db=getDbConn($CFG["CFG_DB"]["CGCORE"]);
+            break;
+    }
 
     //PCD가 SVRSEQ이면 서버 목록 가져오기
     if($REQ["PCD"] =="VALIDSEQ" ){
