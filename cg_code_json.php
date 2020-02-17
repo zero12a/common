@@ -50,7 +50,7 @@
         case "VALIDSEQ":
         case "PSQLSEQ":
         case "GETGRPLIST":
-        case "GETSVCSQLLIST";
+        case "GETSVCSQLLIST":
 
             //프로젝트의 데이터소스 정보 가져오기 
             //프로젝트 정보에서 데이터소스 이름 가져오기
