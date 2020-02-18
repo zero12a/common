@@ -176,6 +176,7 @@ function getDbSvrInfo($tSvrId){
 }
 
 function getDbConn($tOBJ_SERVER){
+    global $CFG;
     $db = mysqli_init();
     if (!$db) {
         alog("getDbConn() mysqli_init failed");
@@ -191,12 +192,15 @@ function getDbConn($tOBJ_SERVER){
         !$db->real_connect(
             $tOBJ_SERVER["HOST"]
             , $tOBJ_SERVER["ID"]
-            , $tOBJ_SERVER["PW"]
+            , aes_decrypt($tOBJ_SERVER["PW"],$CFG["CFG_SEC_KEY"]) //비밀번호 복호화
             , $tOBJ_SERVER["DBNM"]
             , $tOBJ_SERVER["PORT"])
     ){
         alog("getDbConn() MYSQL_HOST="    . $tOBJ_SERVER["HOST"] );
         alog("getDbConn() MYSQL_ID="      . $tOBJ_SERVER["ID"] );
+        alog("getDbConn() MYSQL_PW="      . $tOBJ_SERVER["PW"]  );              
+        alog("getDbConn() KEY="      . $CFG["CFG_SEC_KEY"] );           
+        alog("getDbConn() MYSQL_PW(decrypt)="      . aes_decrypt($tOBJ_SERVER["PW"],$CFG["CFG_SEC_KEY"]) );        
         alog("getDbConn() MYSQL_DBNM="      . $tOBJ_SERVER["DBNM"] );
         alog("getDbConn() MYSQL_PORT="    . $tOBJ_SERVER["PORT"] );
         //alog("db_obj_open() MYSQL_PW="    . $tOBJ_SERVER->MYSQL_PW);

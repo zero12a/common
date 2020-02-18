@@ -1,15 +1,22 @@
 <?php
 //redis에 모두 넣기
-if(!require_once("{{ var "LIB_PATH_REDIS" | default "/data/www/lib/php/vendor/predis/predis/autoload.php"}}"))die("require predis load fail.");
+if(!require_once("{{ var "LIB_PATH_REDIS" | default "/data/www/lib/php/vendor/autoload.php"}}"))die("require default vendor load fail.");
 
 //리던 캑체
 $rtnArray = null;
 $cfgNm = "{{ var "REDIS_CONFIG_ID" | default "CONFIG_PJTID" }}";
+$dataSourceNm = "{{ var "REDIS_DATASOURCE_ID" | default "DATASOURCE_PJTID" }}";
+//echo 111;
 
 //로컬 캐쉬에 config 가져왔는지 검사합니다.
 $localCache = trim(apcu_fetch($cfgNm));
 
-if($localCache == "" || $_GET["reload"] != "YES"){
+if($localCache == "" || $_GET["reload"] == "YES"){
+	//데이터소스이면 cfgnm변경
+	if($_GET["ctl"] == "DATASOURCE")$cfgNm = "{{ var "REDIS_DATASOURCE_ID" | default "DATASOURCE_PJTID" }}"; 
+
+	//echo $cfgNm ;
+
 	//레디스 config
 	$miniConfig = array(
 		"REDIS_HOST" => "{{ var "REDIS_HOST" | default "127.0.0.1" }}"
@@ -25,6 +32,10 @@ if($localCache == "" || $_GET["reload"] != "YES"){
 			'timeout' => 1
 		));
 	$jsonString = $redisClient->get($cfgNm);
+	//echo "<pre><hr>jsonString<BR>" . json_encode(json_decode($jsonString,true),JSON_PRETTY_PRINT);	
+	$jsonStringDs = $redisClient->get($dataSourceNm);
+	//echo "<hr>jsonStringDs<BR>" . json_encode(json_decode($jsonStringDs,true),JSON_PRETTY_PRINT);		
+
 	$redisClient->quit();
 
 	if($jsonString == null || $jsonString == "" || !is_array(json_decode($jsonString,true)) ){
@@ -32,8 +43,12 @@ if($localCache == "" || $_GET["reload"] != "YES"){
 	}else{
 		$rtnArray = array_merge(json_decode($jsonString,true),$miniConfig);
 
+		//컨피그 통합저장소에  데이터소스 저장하기
+		$rtnArray["CFG_DB"] = json_decode($jsonStringDs,true);
+		//echo "<hr>apcu setting json<BR>" . json_encode($rtnArray,JSON_PRETTY_PRINT);
+
 		//처음 로딩시 로컬캐시에 보관
-		apcu_store($cfgNm, json_encode($rtnArray));	
+		if(!apcu_store($cfgNm, json_encode($rtnArray)))die("Don't save local cache.");
 	}
 
 
