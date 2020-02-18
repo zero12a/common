@@ -270,7 +270,7 @@ function setCodeYN(tGrptype, tCombo, tPcd){
 
 
 function setCodeCombo(tGrptype, tCombo, tPcd){
-	//alog("   setGridCombo----------------------start");
+	alog("   setCodeCombo----------------------start");
 	//alog("		tPcd = " + tPcd);
 
 	if(!tCombo)return;
@@ -280,8 +280,9 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 		type : "GET",
 		url : "/common/cg_code_json.php",
 		data : {PJTSEQ : 3,PCD : tPcd},
+		privateCombo : tCombo,
 		dataType: "json",
-		async: false,
+		async: true,
 		success: function(data){
 			//alog("   getCodeJson json return----------------------");
 			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
@@ -295,37 +296,37 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 					if(!data.RTN_DATA)return;
 					//alog("	코드수 : " + data.RTN_DATA.rows.length);
 					
-					tCombo.clear(); //비우기
-					tCombo.put("","");
+					this.privateCombo.clear(); //비우기
+					this.privateCombo.put("","");
 
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
 						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
 
-						tCombo.put(data.RTN_DATA.rows[i].data[0],data.RTN_DATA.rows[i].data[1]);
+						this.privateCombo.put(data.RTN_DATA.rows[i].data[0],data.RTN_DATA.rows[i].data[1]);
 					}
 				}else if(tGrptype == "CONDITION"){
 					if(!data.RTN_DATA)return;
 					//alog("	코드수 : " + data.RTN_DATA.rows.length);
 					
-					tCombo.empty(); //비우기
-					tCombo.append("<option value=''></option>"); //빈라인 추가
+					this.privateCombo.empty(); //비우기
+					this.privateCombo.append("<option value=''></option>"); //빈라인 추가
 
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
 						//alog(data.RTN_DATA.rows[i].data[1] + "=" + data.RTN_DATA.rows[i].data[2]);
 
-						tCombo.append("<option value='" + data.RTN_DATA.rows[i].data[0] + "'>" + data.RTN_DATA.rows[i].data[1] + "</option>");
+						this.privateCombo.append("<option value='" + data.RTN_DATA.rows[i].data[0] + "'>" + data.RTN_DATA.rows[i].data[1] + "</option>");
 					}
 				}else if(tGrptype == "FORMVIEW"){
 					if(!data.RTN_DATA)return;
 					//alog("	코드수 : " + data.RTN_DATA.rows.length);
 					
-					tCombo.empty(); //비우기
-					tCombo.append("<option value=''></option>"); //빈라인 추가
+					this.privateCombo.empty(); //비우기
+					this.privateCombo.append("<option value=''></option>"); //빈라인 추가
 
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
 						//alog(data.RTN_DATA.rows[i].data[1] + "=" + data.RTN_DATA.rows[i].data[2]);
 
-						tCombo.append("<option value='" + data.RTN_DATA.rows[i].data[0] + "'>" + data.RTN_DATA.rows[i].data[1] + "</option>");
+						this.privateCombo.append("<option value='" + data.RTN_DATA.rows[i].data[0] + "'>" + data.RTN_DATA.rows[i].data[1] + "</option>");
 					}
 				}else{
 					alog("	그룹 타입이 없습니다");
@@ -340,7 +341,7 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 		}
 	});
 
-	//alog("   setGridCombo----------------------end");
+	alog("   setCodeCombo----------------------end");
 
 }
 

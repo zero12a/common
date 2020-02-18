@@ -10,7 +10,7 @@
     require_once("../common/include/incUtil.php");
     require_once("../common/include/incDB.php");
     require_once("../common/include/incUser.php");
-
+    require_once("../common/include/incSec.php");
 
     //alog("cg_clode_json.php...............111");
     //ServerViewTxt("N","N","Y","Y");
