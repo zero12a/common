@@ -5,17 +5,12 @@ if(!require_once("{{ var "LIB_PATH_REDIS" | default "/data/www/lib/php/vendor/au
 //리던 캑체
 $rtnArray = null;
 $cfgNm = "{{ var "REDIS_CONFIG_ID" | default "CONFIG_PJTID" }}";
-$dataSourceNm = "{{ var "REDIS_DATASOURCE_ID" | default "DATASOURCE_PJTID" }}";
 //echo 111;
 
 //로컬 캐쉬에 config 가져왔는지 검사합니다.
 $localCache = trim(apcu_fetch($cfgNm));
 
 if($localCache == "" || $_GET["reload"] == "YES"){
-	//데이터소스이면 cfgnm변경
-	if($_GET["ctl"] == "DATASOURCE")$cfgNm = "{{ var "REDIS_DATASOURCE_ID" | default "DATASOURCE_PJTID" }}"; 
-
-	//echo $cfgNm ;
 
 	//레디스 config
 	$miniConfig = array(
@@ -43,12 +38,10 @@ if($localCache == "" || $_GET["reload"] == "YES"){
 	}else{
 		$rtnArray = array_merge(json_decode($jsonString,true),$miniConfig);
 
-		//컨피그 통합저장소에  데이터소스 저장하기
-		$rtnArray["CFG_DB"] = json_decode($jsonStringDs,true);
-		//echo "<hr>apcu setting json<BR>" . json_encode($rtnArray,JSON_PRETTY_PRINT);
-
+		//if($_GET["reload"] == "YES")echo json_encode($rtnArray,JSON_PRETTY_PRINT);
+		
 		//처음 로딩시 로컬캐시에 보관
-		if(!apcu_store($cfgNm, json_encode($rtnArray)))die("Don't save local cache.");
+		apcu_store($cfgNm, json_encode($rtnArray));
 	}
 
 
