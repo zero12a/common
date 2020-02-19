@@ -1181,3 +1181,23 @@ function bt4TableMultiLinkFormatter(value, row) {
 	}
 	return rtnVal;
 }
+
+//2020.02.20
+function sendFileSummernote(file, el) {
+	var form_data = new FormData();
+	form_data.append('file', file);
+	$.ajax({
+	  data: form_data,
+	  type: "POST",
+	  url: '/common/cg_upload.php',
+	  cache: false,
+	  contentType: false,
+	  enctype: 'multipart/form-data',
+	  processData: false,
+	  success: function(url) {
+		$(el).summernote('editor.insertImage', url);
+		$('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+	  }
+	});
+}
+
