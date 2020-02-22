@@ -108,7 +108,7 @@
         $to_coltype = "ii";
         $sql = " select GRPID as CD,GRPID as NM from CG_PGMGRP where PJTSEQ = #PJTSEQ# and PGMSEQ = #PGMSEQ#  ORDER BY GRPORD ASC   ";
     
-    }else if($REQ["SVCSEQ"] !="" ){
+    }else if($REQ["PCD"] =="GETSVCSQLLIST" ){
         //SQLR에서 사용할 SQL목록 가져오기
         $to_coltype = "ii";
         $sql = " select SQLSEQ as CD,SQLID as NM from CG_PGMSQL where PJTSEQ = #PJTSEQ# and PGMSEQ = #PGMSEQ# and (PSQLSEQ is null or PSQLSEQ = 0) ORDER BY SQLORD ASC   ";
@@ -125,7 +125,7 @@
 
     //alog("cg_clode_json.php...............444");
 
-    if(!$stmt)JsonMsg("500","100","stmt 생성 실패" . $stmt->errno . " -> " . $stmt->error);
+    if(!$stmt)JsonMsg("500","101","stmt 생성 실패 stmt " . $stmt->errno . " -> " . $stmt->error . ", db " . $db->errno . " -> " . $db->error);
 
     echo make_grid_read_json($stmt,1);
 
