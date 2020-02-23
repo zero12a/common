@@ -38,8 +38,8 @@ if($localCache == "" || $_GET["reload"] == "YES"){
 	}else{
 		$rtnArray = array_merge(json_decode($jsonString,true),$miniConfig);
 
-		//if($_GET["reload"] == "YES")echo json_encode($rtnArray,JSON_PRETTY_PRINT);
-		
+		if($_GET["reload"] == "YES")echo "RELOAD_OK";
+
 		//처음 로딩시 로컬캐시에 보관
 		apcu_store($cfgNm, json_encode($rtnArray));
 	}
