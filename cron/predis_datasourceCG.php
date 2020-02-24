@@ -10,10 +10,12 @@ if(!require_once(__DIR__ . "/../include/incSec.php"))die("require incSec fail.")
 if(!require_once(__DIR__ . "/../include/incDB.php"))die("require incDB fail.");
 
 alog("predis_datasourceCG.php__________________________go");
-alog("SERVER.HOSTNAME =" . $_SERVER["HOSTNAME"]);
+
+alog("gethostname() =" . gethostname());
+alog("SERVER.HOSTNAME =" . $_SERVER["HOSTNAME"]); //동작 잘 안함.
 alog("SERVER.SCRIPT_NAME =" . $_SERVER["SCRIPT_NAME"]); 
 
-$REQ["HOST_NM"] = $_SERVER["HOSTNAME"];
+$REQ["HOST_NM"] = gethostname();
 
 //로딩 안해도 됨 기본적으로 infConfig에서 로딩함.
 //if(!require_once($CFG_LIBS_PATH_REDIS))die("require redis fail.");
@@ -190,7 +192,7 @@ function dataSourceSaveRedisFromDB(){
     );   
 
     $oldConfigJson = $redisClient->get($cfgNm);
-    $REQ["OLD_CFG"] = $oldConfigJson;
+    $REQ["OLD_CFG"] = aes_encrypt($oldConfigJson,$CFG["CFG_SEC_KEY"]);
 
     $oldConfigArray = json_decode($oldConfigJson,true);
     echo "\nView old json..........\n". json_encode($oldConfigArray,JSON_PRETTY_PRINT);
@@ -204,8 +206,10 @@ function dataSourceSaveRedisFromDB(){
         $newConfigJson = json_encode($newConfigArray);
         echo "\nSave new json..........\n". json_encode($newConfigArray,JSON_PRETTY_PRINT);
         $redisClient->set($cfgNm,$newConfigJson);
-        $REQ["NEW_CFG"] = $newConfigJson;
-    } 
+        $REQ["NEW_CFG"] = aes_encrypt($newConfigJson,$CFG["CFG_SEC_KEY"]);
+    }else{
+        $REQ["NEW_CFG"] = aes_encrypt("",$CFG["CFG_SEC_KEY"]);
+    }
     $redisClient->quit();
 
     //처음 로딩시 로컬캐시에 보관

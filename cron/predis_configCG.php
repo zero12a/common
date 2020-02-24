@@ -11,10 +11,11 @@ if(!require_once(__DIR__ . "/../include/incDB.php"))die("require incDB fail.");
 
 alog("predis_configCG.php__________________________go");
 
+alog("gethostname() =" . gethostname());
 alog("SERVER.HOSTNAME =" . $_SERVER["HOSTNAME"]);
 alog("SERVER.SCRIPT_NAME =" . $_SERVER["SCRIPT_NAME"]); 
 
-$REQ["HOST_NM"] = $_SERVER["HOSTNAME"];
+$REQ["HOST_NM"] = gethostname();
 
 //로딩 안해도 됨 기본적으로 infConfig에서 로딩함.
 //if(!require_once($CFG_LIBS_PATH_REDIS))die("require redis fail.");
@@ -150,8 +151,8 @@ function getConfig($REQ){
 
     $redisClient->quit();
 
-    $REQ["OLD_CFG"] = $jsonStrOld;
-    $REQ["NEW_CFG"] = $jsonStrNew;
+    $REQ["OLD_CFG"] = aes_encrypt($jsonStrOld,$CFG["CFG_SEC_KEY"]);
+    $REQ["NEW_CFG"] = aes_encrypt($jsonStrNew,$CFG["CFG_SEC_KEY"]);
     return $REQ;
 }
 
