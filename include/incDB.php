@@ -1928,10 +1928,10 @@ end
         alog("requireGrid count : " . count($xml["row"]) );
         alog("requireGrid sizeof : " . sizeof($xml["row"]) );
 		if(is_assoc($xml["row"]) == 1) {
-			//alog(" Y " );
+			alog(" Y " );
 			$xml_array_last[0] = $xml["row"];
 		}else{
-			//alog(" N " );
+			alog(" N " );
 
 			$xml_array_last = $xml["row"];
 		}
@@ -1939,13 +1939,13 @@ end
 
 
 		$RtnCnt = 0;
-		//alog("xml sizeof : " . sizeof($xml_array_last));
+		alog("xml sizeof : " . sizeof($xml_array_last));
 		for($i=0;$i<sizeof($xml_array_last) && $isRequireResult;$i++){
 
 			$row = $xml_array_last[$i];
-			//alog("        i : " . $i);
-			//alog("        @attributes : " . $row["@attributes"]["id"]);
-			//alog("        userdata : " . $row["userdata"]);
+			alog("        i : " . $i);
+			alog("        @attributes : " . $row["@attributes"]["id"]);
+			alog("        userdata : " . $row["userdata"]);
 
 			//현재 그리드 line을 bind 배열에 담기
 			$to_row = null;
@@ -2371,9 +2371,9 @@ end
 
                 $stmt = makeStmt($db[$svrid], $sql, $to_coltype, array_merge($REQ,$to_row));
                 
-                if(!$stmt) JsonMsg("500","200","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt 생성 실패 " . $db->errno . " -> " . $db->error);
+                if(!$stmt) JsonMsg("500","211","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt create fail " . $db[$svrid]->errno . " -> " . $db[$svrid]->error);
                 
-                if(!$stmt->execute())JsonMsg("500","210","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt 실행 실패 " . $stmt->error);
+                if(!$stmt->execute())JsonMsg("500","212","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt execute fail " . $stmt->error);
 
                 //SUB 쿼리는 리턴정보에 넣지 않음.
                 alog("  PARENT_FNCTYPE = " . $tmpSql["PARENT_FNCTYPE"]);                    

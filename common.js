@@ -945,6 +945,7 @@ function saveToGrid(tGrid2,data){
 		alog("		ROWS is null");
 		return;
 	}
+	var affectedRows = 0;
 	for(var i=0;i<data.ROWS.length;i++){
 		alog( "   i : " + i);
 		alog( "      OLD_ID : " + data.ROWS[i].OLD_ID);
@@ -952,6 +953,7 @@ function saveToGrid(tGrid2,data){
 		alog( "      USER_DATA : " + data.ROWS[i].USER_DATA);
 		alog( "      AFFECTED_ROWS : " + data.ROWS[i].AFFECTED_ROWS);
 
+		affectedRows = affectedRows + data.ROWS[i].AFFECTED_ROWS;
 
 		if(data.ROWS[i].AFFECTED_ROWS=="-1"){
 	        msgError("["+data.GRPID+"] " + data.ROWS[i].NEW_ID + "는 저장 실패",3);
@@ -989,7 +991,7 @@ function saveToGrid(tGrid2,data){
 
 	//변경 상태 모두 초기화
 	tGrid2.clearChangedState();
-	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[" + data.ROWS.length + "건]");
+	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]");
 
 }
 
