@@ -1652,7 +1652,7 @@ end
 
 				$stmt = makeStmt($db[$svrid],$sql, $to_coltype, array_merge($REQ,$to_row));
 			   
-				if(!$stmt) JsonMsg("500","200","(makeGridChkJson) stmt 생성 실패" . $db[$svrid]->errno . " -> " . [$svrid]->error);
+				if(!$stmt) JsonMsg("500","200","(makeGridChkJson) stmt 생성 실패" . $db[$svrid]->errno . " -> " . $db[$svrid]->error);
 			   
 				if(!$stmt->execute())JsonMsg("500","210","(makeGridChkJson) stmt 실행 실패 " . $stmt->error);
 
@@ -1728,7 +1728,7 @@ end
                 if( getParamCnt($sql) != strlen(str_replace(" ","",$to_coltype)) )JsonMsg("500","190","(makeGridChkJsonArray) " . $tmpSql["SQLID"] . " sql파라미터와 파라미터타입수가 불일치.");
 
                 $stmt = makeStmt($db[$svrid],$sql, $to_coltype, array_merge($REQ,$to_row));
-                if(!$stmt) JsonMsg("500","200","(makeGridChkJsonArray) " . $tmpSql["SQLID"] . "  stmt 생성 실패" . $db[$svrid]->errno . " -> " . [$svrid]->error);
+                if(!$stmt) JsonMsg("500","200","(makeGridChkJsonArray) " . $tmpSql["SQLID"] . "  stmt 생성 실패" . $db[$svrid]->errno . " -> " . $db[$svrid]->error);
                 if(!$stmt->execute())JsonMsg("500","210","(makeGridChkJsonArray) " . $tmpSql["SQLID"] . "  stmt 실행 실패 " . $stmt->error);
 
                 if($tmpSql["PARENT_FNCTYPE"] == ""){
