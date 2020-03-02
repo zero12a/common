@@ -4,7 +4,7 @@
 
 //날짜포멧 정의
 var dateFormatJson = {
-	dateFormat: 'yymmdd',
+	dateFormat: 'yy-mm-dd',
 	prevText: '이전 달',
 	nextText: '다음 달',
 	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
@@ -72,7 +72,7 @@ if(typeof eXcell !== 'undefined'){
 if(typeof dhtmlXCalendarObject !== 'undefined'){
 	dhtmlXCalendarObject.prototype.langData["kr"] = {
 		// date format
-		dateformat: "%Y%m%d",
+		dateformat: "%Y-%m-%d",
 		// full names of months
 		monthesFNames: [
 			"1월","2월","3월","4월","5월","6월","7월",
