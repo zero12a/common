@@ -510,7 +510,7 @@ function makeStmt($db,$sql,$coltype,$map){
         $tArr = array("PREPARE_SQL"=>$to_sql,"FULL_SQL"=>$debug_sql, "COLIDS"=>$tParamColids);
         array_push($PGM_CFG["SQLTXT"],$tArr);
     }
-
+    
     $stmt = $db->prepare($to_sql);
     //echo "\n stmt is_object : " . is_object($stmt);
     //$stmt->bind_param($to_coltype, $to_map);
