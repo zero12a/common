@@ -84,7 +84,7 @@ echo "########### end\n";
 
 function datasourceReload(){
     global $CFG,$REQ,$_SERVER;
-    alog("configReload()...............start");
+    alog("datasourceReload()...............start");
 
     $client = new GuzzleHttp\Client();
     $res = $client->request('GET', 'http://localhost/common/include/incConfig.php?reload=YES', [
@@ -124,12 +124,12 @@ function datasourceReload(){
     $stmt->close();
     $db->close();
     if($db)unset($db);
-
+    alog("datasourceReload()...............end");
 }
 
 function dataSourceSaveRedisFromDB(){
     global $CFG,$REQ,$cfgNm; //cfgNm은 incConfig.php에서 옴
-    alog("configSave()...............start");
+    alog("dataSourceSaveRedisFromDB()...............start");
 
     //Get datasource list
     var_dump($CFG["CFG_DB"]["CGCORE"]);
@@ -140,6 +140,7 @@ function dataSourceSaveRedisFromDB(){
     select 
         SVRSEQ
         , SVRID
+        , DBDRIVER as DRIVER
         , DBHOST as HOST
         , DBPORT as PORT
         , DBNAME as DBNM
@@ -158,6 +159,7 @@ function dataSourceSaveRedisFromDB(){
     아래 구조로 변경하기
     "CFG_DB": {
         "CGCORE": {
+            "DRIVER": "MYSQLI"
             "HOST": "172.17.0.1",
             "PORT": "",
             "DBNM": "",
@@ -165,6 +167,7 @@ function dataSourceSaveRedisFromDB(){
             "PW": ""
         },
         "CGPJT1": {
+            "DRIVER": "PDO_PGSQL"
             "HOST": "172.17.0.1",
             "PORT": "",
             "DBNM": "",
@@ -195,7 +198,7 @@ function dataSourceSaveRedisFromDB(){
     $REQ["OLD_CFG"] = aes_encrypt($oldConfigJson,$CFG["CFG_SEC_KEY"]);
 
     $oldConfigArray = json_decode($oldConfigJson,true);
-    echo "\nView old json..........\n". json_encode($oldConfigArray,JSON_PRETTY_PRINT);
+    alog("View old json..........\n". json_encode($oldConfigArray,JSON_PRETTY_PRINT));
 
     $oldDataSourceArray = $oldConfigArray["CFG_DB"];
     $oldDataSourceJson = json_encode($oldDataSourceArray);
@@ -204,7 +207,7 @@ function dataSourceSaveRedisFromDB(){
         $newConfigArray = $oldConfigArray;
         $newConfigArray["CFG_DB"] = json_decode($newDataSourceJson,true);
         $newConfigJson = json_encode($newConfigArray);
-        echo "\nSave new json..........\n". json_encode($newConfigArray,JSON_PRETTY_PRINT);
+        alog("Save new json..........\n". json_encode($newConfigArray,JSON_PRETTY_PRINT));
         $redisClient->set($cfgNm,$newConfigJson);
         $REQ["NEW_CFG"] = aes_encrypt($newConfigJson,$CFG["CFG_SEC_KEY"]);
     }else{
@@ -212,9 +215,7 @@ function dataSourceSaveRedisFromDB(){
     }
     $redisClient->quit();
 
-    //처음 로딩시 로컬캐시에 보관
-    //echo "CONFIG=========================================\n" . $jsonStr . "\n=========================================\n";
-    echo $cfgNm . " redis datasource 반영완료 ";
+    alog("dataSourceSaveRedisFromDB()...............end");
 }
 
 
