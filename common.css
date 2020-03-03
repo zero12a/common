@@ -21,12 +21,6 @@ dhtmlx 디펄트 : content-box
     box-sizing: border-box;
 }
 
-/*dhtmlx div box*/
-div.gridbox {
-    -webkit-box-sizing: content-box;
-       -moz-box-sizing: content-box;
-            box-sizing: content-box;
-}
 
 
 
@@ -122,19 +116,62 @@ input[type=text]:read-only {
 	vertical-align:top;
     }
     
-/* dhtmlx */
+/*
+******************************************** 
+**  dhtmlx 
+******************************************** 
+*/
+/*dhtmlx div box*/
+div.gridbox {
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+}
+
 div.gridbox_dhx_skyblue.gridbox{
     border: 1px solid rgb(211, 210, 210);
 }
+/* 헤더 좌측여백없애고, 가운데 정렬 */
+td div.hdrcell input{
+    margin-top:4px;
+}
+div.gridbox_dhx_skyblue.gridbox table.hdr td div.hdrcell{
+    text-align: center;
+    height: 23px;
+    line-height: 23px;
+    padding: 0px 0px 1px 0px;
+}
+div.gridbox table.hdr td{
+    padding: 0px 0px 0px 0px;
+}
+div.gridbox_dhx_skyblue.isModern table.obj.row20px tr td{
+    line-height: 23px;
+}
+div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td{
+    height: 23px;
+}
+/* 프로즌 했을때 행 밀림처리 */
+div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td img{
+    margin: 2px 0px 3px 0px
+}
 
-/* Chart.js */
+
+/*
+******************************************** 
+** Chart.js 
+******************************************** 
+*/
 canvas {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
 
-/* CodeMirror */
+/*
+******************************************** 
+** CodeMirror 
+******************************************** 
+*/
 .CodeMirror {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
