@@ -1,6 +1,9 @@
 <?php
 libxml_use_internal_errors(true);
 
+function jsonView($tmp){
+    return json_encode($tmp,JSON_PRETTY_PRINT);
+}
 
 function getLoggerSwoole($arrLog){
     alog("getLoggerSwoole()...........................start");
