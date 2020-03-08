@@ -3289,7 +3289,10 @@ end
             //폼 입력값에 암호화 컬럼 있는지 검사해서 암호화 처리
             $tParamEnc = makeSqlParamEnc($tmpSql["SQLTXT"], $REQ, $colcrypt_array);
 
-            $stmt = makeStmt($db[$tmpSql["SVRID"]],$tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $tParamEnc);
+            //$stmt = makeStmt($db[$tmpSql["SVRID"]],$tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $tParamEnc);
+
+            $sqlMap = getSqlParam($tmpSql["SQLTXT"],$tmpSql["BINDTYPE"],$tParamEnc);
+            $stmt = getStmt($db[$tmpSql["SVRID"]],$sqlMap);
             if(!$stmt)  JsonMsg("500","300","(makeFormviewSearchJsonArray) " . $tmpSql["SQLID"] . " stmt 생성 실패" . $db->errno . " -> " . $db->error);
 
             //alog("make_detail_read_json-------------------------------start");
@@ -3383,21 +3386,34 @@ end
         $colcrypt_array = $map["COLCRYPT"];           
         $tParamEnc = makeSqlParamEnc($sqltxt, $REQ, $colcrypt_array);
 
-		$stmt = makeStmt($db[$svrid], $sqltxt, $bindtype, $tParamEnc);
+        $sqlMap = getSqlParam($sqltxt,$bindtype,$tParamEnc);
+        $stmt = getStmt($db[$svrid],$sqlMap);
+
+		//$stmt = makeStmt($db[$svrid], $sqltxt, $bindtype, $tParamEnc);
 		if(!$stmt)  JsonMsg("500","400","stmt 생성 실패" . $db->errno . " -> " . $db->error);
 		
 		if(!$stmt->execute())JsonMsg("500","410","stmt 실행 실패" . $stmt->errno . " -> " . $stmt->error);
 		
         //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
+        if($stmt instanceof PDOStatement){
+            $to_affected_rows = $stmt->rowCount();
+        }else{
+            $to_affected_rows = $db[$svrid]->affected_rows;
+        }
 
-        $to_affected_rows = $db->affected_rows;
+        //$to_affected_rows = $db->affected_rows;
         alog("  to_affected_rows = ". $to_affected_rows);
 
         $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;
 
         if($map["FNCTYPE"] == "C" && $map["SEQYN"] == "Y"){
-            alog("SEQYN Y : " . $db->insert_id);
-            $RtnVal->COLID = $db->insert_id;//insert문인 경우 insert id받기
+            if($stmt instanceof PDOStatement){
+                alog("SEQYN Y : " . $db->lastInsertId());
+                $RtnVal->COLID = $db->lastInsertId(); //insert문인 경우 insert id받기                            
+            }else{
+                alog("SEQYN Y : " . $db->insert_id);
+                $RtnVal->COLID = $db->insert_id;//insert문인 경우 insert id받기
+            }            
         }
 
 		closeStmt($stmt);;
@@ -3447,16 +3463,28 @@ end
 
                 //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
         
-                $to_affected_rows = $db->affected_rows;
+
+                if($stmt instanceof PDOStatement){
+                    $to_affected_rows = $stmt->rowCount();
+                }else{
+                    $to_affected_rows = $db->affected_rows;
+                }
+        
+                //$to_affected_rows = $db->affected_rows;
                 alog("  to_affected_rows = ". $to_affected_rows);
         
                 $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;
         
                 if($map["FNCTYPE"] == "C" && $map["SEQYN"] == "Y"){
-                    alog("SEQYN Y : " . $db->insert_id);
-                    $RtnVal->COLID = $db->insert_id;//insert문인 경우 insert id받기
+                    if($stmt instanceof PDOStatement){
+                        alog("SEQYN Y : " . $db->lastInsertId());
+                        $RtnVal->COLID = $db->lastInsertId(); //insert문인 경우 insert id받기                            
+                    }else{
+                        alog("SEQYN Y : " . $db->insert_id);
+                        $RtnVal->COLID = $db->insert_id;//insert문인 경우 insert id받기
+                    }            
                 }
-
+        
                 $RtnVal->RTN_DATA = $to_affected_rows;      
                 $RtnVal->GRP_TYPE = "FORMVIEW";
                 $RtnVal->SEQ_COLID = ($map["SEQYN"] == "Y")?$map["KEYCOLID"]:"";
