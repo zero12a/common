@@ -454,7 +454,7 @@ function mysql_fetch_all($r, $db){
 	 return $result;
 }
 
-function fetch_all($tresult,$resulttype)
+function fetchAll($tresult)
 {
     //echo "<br>";
     if($tresult instanceof PDOStatement){
@@ -465,20 +465,38 @@ function fetch_all($tresult,$resulttype)
         if (method_exists('mysqli_result', 'fetch_all')) # Compatibility layer with PHP < 5.3
         {
             //echo "fetch_all method exist";
-            $res = $tresult->fetch_all($resulttype);
+            $res = $tresult->fetch_all(MYSQLI_ASSOC);
         }
         else{
             //echo "fetch_all method not exist";
-            for ($res = array(); $tmp = $tresult->fetch_array($resulttype);) $res[] = $tmp;
+            for ($res = array(); $tmp = $tresult->fetch_array(MYSQLI_ASSOC);) $res[] = $tmp;
         }        
     }
-    //var_dump($tresult);
-    //exit;
-    //echo "fetch_all:";
-
-
     return $res;
 }
+
+
+function fetchAllNum($tresult)
+{
+    //echo "<br>";
+    if($tresult instanceof PDOStatement){
+        //pdo
+        $res = $tresult->fetchAll(PDO::FETCH_NUM);
+    }else{
+        //mysqli
+        if (method_exists('mysqli_result', 'fetch_all')) # Compatibility layer with PHP < 5.3
+        {
+            //echo "fetch_all method exist";
+            $res = $tresult->fetch_all(MYSQLI_NUM);
+        }
+        else{
+            //echo "fetch_all method not exist";
+            for ($res = array(); $tmp = $tresult->fetch_array(MYSQLI_NUM);) $res[] = $tmp;
+        }        
+    }
+    return $res;
+}
+
 
 function getSqlParam($sql,$coltype,$map){
     global $PGM_CFG, $log;
@@ -1233,7 +1251,7 @@ function getStmtArray(&$stmt){
         // . $stmt->errno . " -> " . $stmt->error);        
         if(!$stmt->execute())JsonMsg("500","101","getStmtArray() (PDO) stmt execute fail1 -"
          . $stmt->errno . " -> " . $stmt->error);
-        $RtnVal =  $stmt->fetchAll(PDO::FETCH_ASSOC); //해쉬맵
+        $RtnVal =  fetchAll($stmt); //해쉬맵
         //var_dump($RtnVal);
         $stmt->closeCursor();
     }else{
@@ -1244,7 +1262,7 @@ function getStmtArray(&$stmt){
         $result = $stmt->get_result();
         //$array = $result->mysqli_fetch_all(MYSQLI_ASSOC);
 
-        $RtnVal = fetch_all($result,MYSQLI_ASSOC);
+        $RtnVal = fetchAll($result);
         //echo json_encode($array,JSON_PRETTY_PRINT);
     }
 
@@ -1265,7 +1283,7 @@ function getStmtArrayNum(&$stmt){
         //. $stmt->errno . " -> " . $stmt->error);
         if(!$stmt->execute())JsonMsg("500","101","getStmtArrayNum() (PDO) stmt execute fail1 -"
          . $stmt->errno . " -> " . $stmt->error);
-        $RtnVal =  $stmt->fetchAll(PDO::FETCH_NUM); //해쉬맵
+        $RtnVal =  fetchAllNum($stmt); //해쉬맵
         //var_dump($RtnVal);
         //$stmt->closeCursor();
     }else{
@@ -1276,7 +1294,7 @@ function getStmtArrayNum(&$stmt){
         $result = $stmt->get_result();
         //$array = $result->mysqli_fetch_all(MYSQLI_ASSOC);
 
-        $RtnVal = fetch_all($result,MYSQLI_NUM);
+        $RtnVal = fetchAllNum($result);
         //echo json_encode($array,JSON_PRETTY_PRINT);
     }
 
@@ -2677,14 +2695,21 @@ end
                 $tArr = array_merge($REQ,$to_row);
                 //alog("  array_merge() tArr.URL : " . $tArr["URL"]);
 
-				$stmt = makeStmt($db[$svrid],$sql, $to_coltype, array_merge($REQ,$to_row));
-			   
-				if(!$stmt) JsonMsg("500","200","(makeGridSaveJson) stmt 생성 실패 " . $db->errno . " -> " . $db->error);
-			   
-				if(!$stmt->execute())JsonMsg("500","210","(makeGridSaveJson) stmt 실행 실패 " . $stmt->error);
 
-				//echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
-				$to_affected_rows = $db[$svrid]->affected_rows;
+                $sqlMap = getSqlParam($sql,$to_coltype,array_merge($REQ,$to_row));
+                $stmt = getStmt($db[$svrid],$sqlMap);
+
+				//$stmt = makeStmt($db[$svrid],$sql, $to_coltype, array_merge($REQ,$to_row));
+			   
+				if(!$stmt) JsonMsg("500","200","(makeGridSaveJson) stmt create fail - " . $db->errno . " -> " . $db->error);
+				if(!$stmt->execute())JsonMsg("500","210","(makeGridSaveJson) stmt execute fail " . $stmt->error);
+
+                //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
+                if($stmt instanceof PDOStatement){
+                    $to_affected_rows = $stmt->rowCount();
+                }else{
+                    $to_affected_rows = $db[$svrid]->affected_rows;
+                }
             
                 //[로그 저장용]
                 $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;                
@@ -2692,15 +2717,20 @@ end
 				$to_row["COLID"] = "";
 				if($row["userdata"] == "inserted"){
 					if($map["SEQYN"] == "Y"){
-						alog("SEQYN Y : " . $db[$svrid]->insert_id);
-						$to_row["COLID"]=$db[$svrid]->insert_id; //insert문인 경우 insert id받기
+                        if($stmt instanceof PDOStatement){
+                            alog("SEQYN Y : " . $db[$svrid]->lastInsertId());
+                            $to_row["COLID"]=$db[$svrid]->lastInsertId(); //insert문인 경우 insert id받기                            
+                        }else{
+                            alog("SEQYN Y : " . $db[$svrid]->insert_id);
+                            $to_row["COLID"]=$db[$svrid]->insert_id; //insert문인 경우 insert id받기
+                        }
 					}else{
 						alog("SEQYN N : " . $to_row[$map["KEYCOLID"]]);
 						$to_row["COLID"]=$to_row[$map["KEYCOLID"]]; //사용자 입력 key컬럼을 rowid 로
 					}
 				}
 
-				$stmt->close();
+				closeStmt($stmt);
 
 				$tarr = array("OLD_ID"=>$row["@attributes"]["id"],"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>$row["userdata"],"AFFECTED_ROWS"=>$to_affected_rows);
 
@@ -2829,8 +2859,12 @@ end
                 $tArr = array_merge($REQ,$to_row);
                 //alog("  array_merge() tArr.URL : " . $tArr["URL"]);
 
-                $stmt = makeStmt($db[$svrid], $sql, $to_coltype, array_merge($REQ,$to_row));
+                //$stmt = makeStmt($db[$svrid], $sql, $to_coltype, array_merge($REQ,$to_row));
                 
+                $sqlMap = getSqlParam($sql,$to_coltype,array_merge($REQ,$to_row));
+                //echo "<pre>" . jsonView($sqlMap);
+                $stmt = getStmt($db[$svrid],$sqlMap);
+
                 if(!$stmt) JsonMsg("500","211","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt create fail " . $db[$svrid]->errno . " -> " . $db[$svrid]->error);
                 
                 if(!$stmt->execute())JsonMsg("500","212","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt execute fail " . $stmt->error);
@@ -2839,7 +2873,12 @@ end
                 alog("  PARENT_FNCTYPE = " . $tmpSql["PARENT_FNCTYPE"]);                    
                 if($tmpSql["PARENT_FNCTYPE"] == ""){
                     //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
-                    $to_affected_rows = $db[$svrid]->affected_rows;
+
+                    if($stmt instanceof PDOStatement){
+                        $to_affected_rows = $stmt->rowCount();
+                    }else{
+                        $to_affected_rows = $db[$svrid]->affected_rows;
+                    }
                 
                     //[로그 저장용]
                     $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;                
@@ -2847,8 +2886,14 @@ end
                     $to_row["COLID"] = "";
                     if($row["userdata"] == "inserted"){
                         if($map["SEQYN"] == "Y"){
-                            alog("SEQYN Y : " . $db[$svrid]->insert_id);
-                            $to_row["COLID"]=$db[$svrid]->insert_id; //insert문인 경우 insert id받기
+                            if($stmt instanceof PDOStatement){
+                                alog("SEQYN Y : " . $db[$svrid]->lastInsertId());
+                                $to_row["COLID"]=$db[$svrid]->lastInsertId(); //insert문인 경우 insert id받기                            
+                            }else{
+                                alog("SEQYN Y : " . $db[$svrid]->insert_id);
+                                $to_row["COLID"]=$db[$svrid]->insert_id; //insert문인 경우 insert id받기
+                            }
+
                         }else{
                             alog("SEQYN N : " . $to_row[$map["KEYCOLID"]]);
                             $to_row["COLID"]=$to_row[$map["KEYCOLID"]]; //사용자 입력 key컬럼을 rowid 로
@@ -2860,7 +2905,7 @@ end
                     $RtnVal->ROWS[$RtnCnt] = $tarr;
                     $RtnCnt++;
                 }
-                $stmt->close();
+                closeStmt($stmt);
     
  
             }
