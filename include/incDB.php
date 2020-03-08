@@ -1339,7 +1339,7 @@ function make_grid_read_array($stmt){
 
 			$i++;
 	}
-	$stmt->close();
+	closeStmt($stmt);;
 
 	//$result_array = fetch_all($result,MYSQLI_NUM);//indDB.php
 	//결과 JSON 화면 출력
@@ -1390,7 +1390,7 @@ function make_grid_read_json($stmt,$keycolidx){
 
 			$i++;
 	}
-	$stmt->close();
+	closeStmt($stmt);;
 
 	//$result_array = fetch_all($result,MYSQLI_NUM);//indDB.php
 	//결과 JSON 화면 출력
@@ -1428,7 +1428,7 @@ function make_grid_read_json4($stmt,$keycolidx){
 
 			$i++;
 	}
-	$stmt->close();
+	closeStmt($stmt);;
 
 	//$result_array = fetch_all($result,MYSQLI_NUM);//indDB.php
 	//결과 JSON 화면 출력
@@ -1471,7 +1471,7 @@ function make_grid_read_json3($stmt,$keycolidx){
 
 			$i++;
 	}
-	$stmt->close();
+	closeStmt($stmt);;
 
 	//$result_array = fetch_all($result,MYSQLI_NUM);//indDB.php
 	//결과 JSON 화면 출력
@@ -1542,7 +1542,7 @@ function make_detail_save_json($db,$REQ,$sql,$coltype){
 		
         //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
         $to_affected_rows = $db->affected_rows;
-        $stmt->close();
+        closeStmt($stmt);;
 
         //$tarr = array("OLD_ID"=>$row["@attributes"]["id"],"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>$row["userdata"],"AFFECTED_ROWS"=>$to_affected_rows);
 
@@ -1649,7 +1649,7 @@ function make_grid_save_json_new($db,$REQ,$cols,$rows,$sql_inserted,$sql_inserte
 					$to_row["COLID"]=$to_row[$key_colid]; //사용자 입력 key컬럼을 rowid 로
 				}
 			}
-            $stmt->close();
+            closeStmt($stmt);;
 
             $tarr = array("OLD_ID"=>$row["row id"],"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>$row["!nativeeditor_status"],"AFFECTED_ROWS"=>$to_affected_rows);
 
@@ -1755,7 +1755,7 @@ function make_grid_save_json($db,$REQ,$colord,$xml_array,$sql_inserted,$sql_inse
 					$to_row["COLID"]=$to_row[$key_colid]; //사용자 입력 key컬럼을 rowid 로
 				}
 			}
-            $stmt->close();
+            closeStmt($stmt);;
 
             $tarr = array("OLD_ID"=>$row["@attributes"]["id"],"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>$row["userdata"],"AFFECTED_ROWS"=>$to_affected_rows);
 
@@ -1844,7 +1844,7 @@ end
 			}
 			$i++;
 		} 
-		$stmt->close();
+		closeStmt($stmt);;
 		//var_dump($RtnVal);
 
 		return  $RtnVal;
@@ -1966,33 +1966,39 @@ end
                 $k = $colNms[$m];
                 $v = $cols[$m];
 
-                //암호화 컬럼에 존재 하는지 확인
-                if( $colCrypt[trim($k)] == "CRYPT" ){
-                    //양방향 암호화
-                    alog("  crypt 전 col/key: " . $v . "/" . $CFG["CFG_SEC_KEY"]);
-                    alog("  cyrpt 후 : [" .  aes_decrypt($v,$CFG["CFG_SEC_KEY"]) . "]");                        
-
-                    //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-
-                    array_push($one_row, aes_decrypt($v,$CFG["CFG_SEC_KEY"]) );
-                }else if( $colCrypt[trim($k)] == "HASH" ){
-                    //일방향 암호화
-                    alog("  hash 전 col/key: " . $v . "/" . $CFG["CFG_SEC_SALT"]);
-                    //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-
-                    array_push($one_row, $v );
-                }else if( $colCrypt[trim($k)] == "CDATA" ){
-                    //Tag가 있는 컬럼.(Cdata더하기)
-                    array_push($one_row, xmlCdataAdd($v) );
-                }else{
-                    //평문
-                    array_push($one_row, $v );
-                }
+                $transVal = makeParamDec($k,$v,$colCrypt); //복호화 등 처리
+                array_push($one_row, $transVal );
 
                 if($m == $keyColIdx)$id_col_value = $v;
             }
             $RtnVal[$r]['id']=$id_col_value;
             $RtnVal[$r]['data']=$one_row;
+        }
+
+        return $RtnVal;
+    }
+
+    //배열 데이터를 dhtmlxLoad 데이터 타입으로 변경하기
+    function transBtgridLoad($rows,$colNms,$colCrypt,$keyColIdx){
+        global $CFG;
+
+        $RtnVal = array();
+
+        for($r=0;$r<count($rows);$r++){
+            $one_row = array();
+            $j = 0;
+            $cols = $rows[$r];
+            for($m=0;$m<count($cols);$m++){
+                $k = $colNms[$m];
+                $v = $cols[$m];
+
+                $transVal = makeParamDec($k,$v,$colCrypt); //복호화 등 처리
+                $one_row[$k] = $transVal;
+
+                if($m == $keyColIdx)$id_col_value = $v;
+            }
+
+            $RtnVal[$r] = $one_row;
         }
 
         return $RtnVal;
@@ -2031,43 +2037,34 @@ end
                 $colcrypt_array =$map["COLCRYPT"];  
 
 
-                if($db[$tmpSql["SVRID"]]->server_info != ""){
+                if($stmt instanceOf PDOStatement){
+                    //pdo_mysql
+                    //컬럼 정보 꺼내오기
+                    for($k=0;$k<$stmt->columnCount();$k++)
+                    {
+                        $colNms[] = $stmt->getColumnMeta($k)["name"];
+                    }                    
+                }else{
                     //mysqli driver
-
                     //컬럼 정보 꺼내오기
                     $meta = $stmt->result_metadata();
                     while($field = $meta->fetch_field())
                     {
                         $colNms[] = $field->name;
                     }
-        
-                    $arr = getStmtArrayNum($stmt);
-                    closeStmt($stmt);
-
-                    $RtnVal->RTN_CD = "200";
-                    $RtnVal->ERR_CD = "200";
-                    $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
-
-                }else{
-                    //pdo_mysql
-                    //echo "store_result 함수없음.";
-                    //$rowCount = $stmt->rowCount(); //PDO
-
-
-                    //컬럼 정보 꺼내오기
-                    for($k=0;$k<$stmt->columnCount();$k++)
-                    {
-                        $colNms[] = $stmt->getColumnMeta($k)["name"];
-                    }
-                    
-                    //pdo
-                    $arr = getStmtArrayNum($stmt);
-                    closeStmt($stmt);
-
-                    $RtnVal->RTN_CD = "200";
-                    $RtnVal->ERR_CD = "200";
-                    $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);                    
                 }
+
+                $arr = getStmtArrayNum($stmt);
+                closeStmt($stmt);      
+
+                $RtnVal->RTN_CD = "200";
+                $RtnVal->ERR_CD = "200";
+                if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
+                    $RtnVal->RTN_DATA->rows = transBtgridLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
+                }else{
+                    //pdo
+                    $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
+                }                
                 
             }
 
@@ -2143,7 +2140,7 @@ end
                 alog("SEQYN Y : " . $db[$svrid]->insert_id);
                 $to_row["COLID"] = $db[$svrid]->insert_id; //insert문인 경우 insert id받기
 
-				$stmt->close();
+				closeStmt($stmt);;
 
 				$tarr = array("OLD_ID"=>$row,"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>"","AFFECTED_ROWS"=>$to_affected_rows);
 
@@ -2219,7 +2216,7 @@ end
                     alog("SEQYN Y : " . $db[$svrid]->insert_id);
                     $to_row["COLID"] = $db[$svrid]->insert_id; //insert문인 경우 insert id받기
 
-                    $stmt->close();
+                    closeStmt($stmt);;
 
                     $tarr = array("OLD_ID"=>$row,"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>"","AFFECTED_ROWS"=>$to_affected_rows);
 
@@ -2643,21 +2640,8 @@ end
 					$to_row[trim($colord_array[$j])] = "";
 				}else{
                     //암호화 컬럼에 존재 하는지 확인
-                    if($colcrypt_array[trim($colord_array[$j])] == "CRYPT" ){
-                        //양방향 암호화
-                        alog("  crypt 전 col/key: [" . $col . "]/" . $CFG["CFG_SEC_KEY"]);
-                        alog("  crypt 후 : [" .  aes_encrypt($col,$CFG["CFG_SEC_KEY"]) . "]");                        
-                        $to_row[trim($colord_array[$j])] = aes_encrypt($col,$CFG["CFG_SEC_KEY"]);
-                    }else if($colcrypt_array[trim($colord_array[$j])] == "HASH" ){
-                        //일방향 암호화
-                        alog("  hash 전 col/salt: [" . $col . "]/" . $CFG["CFG_SEC_SALT"]);
-                        alog("  hash 후 : [" .  pwd_hash($col,$CFG["CFG_SEC_SALT"]) . "]");                        
-                        $to_row[trim($colord_array[$j])] = pwd_hash($col,$CFG["CFG_SEC_SALT"]);
-                    }else{
-                        //평문
-                        //alog("  [평문] " . trim($colord_array[$j]) . " = " . $col);
-                        $to_row[trim($colord_array[$j])] = $col;
-                    }
+                    $to_row[trim($colord_array[$j])] = makeParamEnc($colord_array[$j],$col,$colcrypt_array);
+
 				}
 			}
 
@@ -2799,21 +2783,7 @@ end
 					$to_row[trim($colord_array[$j])] = "";
 				}else{
                     //암호화 컬럼에 존재 하는지 확인
-                    if($colcrypt_array[trim($colord_array[$j])] == "CRYPT" ){
-                        //양방향 암호화
-                        alog("  crypt 전 col/key: [" . $col . "]/" . $CFG["CFG_SEC_KEY"]);
-                        alog("  crypt 후 : [" .  aes_encrypt($col,$CFG["CFG_SEC_KEY"]) . "]");                        
-                        $to_row[trim($colord_array[$j])] = aes_encrypt($col,$CFG["CFG_SEC_KEY"]);
-                    }else if($colcrypt_array[trim($colord_array[$j])] == "HASH" ){
-                        //일방향 암호화
-                        alog("  hash 전 col/salt: [" . $col . "]/" . $CFG["CFG_SEC_SALT"]);
-                        alog("  hash 후 : [" .  pwd_hash($col,$CFG["CFG_SEC_SALT"]) . "]");                        
-                        $to_row[trim($colord_array[$j])] = pwd_hash($col,$CFG["CFG_SEC_SALT"]);
-                    }else{
-                        //평문
-                        //alog("  [평문] " . trim($colord_array[$j]) . " = " . $col);
-                        $to_row[trim($colord_array[$j])] = $col;
-                    }
+                    $to_row[trim($colord_array[$j])] = makeParamEnc($colord_array[$j],$col,$colcrypt_array);
 				}
 			}
 
@@ -2926,9 +2896,9 @@ end
 
 
 
-    function makeParamEnc($tSql, $tReq, $colcrypt_array){
+    function makeSqlParamEnc($tSql, $tReq, $colcrypt_array){
         global $CFG;
-        //alog("makeParamEnc()........................................................start");
+        //alog("makeSqlParamEnc()........................................................start");
         $k = 0;
         $to_sql = $tSql;
         $RtnVal = null;
@@ -2972,6 +2942,33 @@ end
         return $RtnVal;
     }
 
+    function makeParamEnc($tKey, $tValue, $colcrypt_array){
+        global $CFG;
+        //alog("makeParamEnc()........................................................start");
+        $RtnVal = null;
+
+        $fullParam = $tKey;
+        if(strpos($tKey,"-")>0){
+            $colid = explode("-",$tKey)[1];
+        }else{
+            $colid = $tKey;
+        }
+
+        //colid가 암호화 대상이면 암호화 처리
+        if( $colcrypt_array[trim($colid)] == "CRYPT" ){
+            //양방향 암호화                   
+            alog(" CRYPT");
+            $RtnVal = aes_encrypt($tValue,$CFG["CFG_SEC_KEY"]);
+        }else if( $colcrypt_array[trim($colid)] == "HASH" ){
+            //일방향 암호화
+            alog(" HASH");                
+            $RtnVal = pwd_hash($tValue,$CFG["CFG_SEC_SALT"]);
+        }else{
+            //평문
+            $RtnVal = $tValue;
+        }     
+        return $RtnVal;
+    }
 
     function makeParamDec($tKey, $tValue, $colcrypt_array){
         global $CFG;
@@ -2986,11 +2983,13 @@ end
         }else if( $colcrypt_array[trim($tKey)] == "HASH" ){
             //일방향 암호화
             $RtnVal = $tValue;
+        }else if( $colCrypt[trim($k)] == "CDATA" ){
+            //Tag가 있는 컬럼.(Cdata더하기)
+            $RtnVal = xmlCdataAdd($tValue);            
         }else{
             //평문
             $RtnVal = $tValue;
         }     
-
         return $RtnVal;
     }
 
@@ -3220,15 +3219,20 @@ end
         $colcrypt_array = $map["COLCRYPT"];   
 
         //폼 입력값에 암호화 컬럼 있는지 검사해서 암호화 처리
-        $tParamEnc = makeParamEnc($map["SQL"]["R"]["SQLTXT"], $REQ, $colcrypt_array);
+        $tParamEnc = makeSqlParamEnc($map["SQL"]["R"]["SQLTXT"], $REQ, $colcrypt_array);
 
+        $sqlMap = getSqlParam($map["SQL"]["R"]["SQLTXT"],$map["SQL"]["R"]["BINDTYPE"],$tParamEnc);
+        //echo "<pre>" . jsonView($sqlMap);
+        $stmt = getStmt($db[$svrid],$sqlMap);
 
-		$stmt = makeStmt($db[$map["SQL"]["R"]["SVRID"]],$map["SQL"]["R"]["SQLTXT"], $map["SQL"]["R"]["BINDTYPE"], $tParamEnc);
+		//$stmt = makeStmt($db[$map["SQL"]["R"]["SVRID"]],$map["SQL"]["R"]["SQLTXT"], $map["SQL"]["R"]["BINDTYPE"], $tParamEnc);
 		if(!$stmt)   JsonMsg("500","300","stmt 생성 실패" . $db->errno . " -> " . $db->error);
 
 		//alog("make_detail_read_json-------------------------------start");
 		if(!$stmt->execute())JsonMsg("500","310","stmt 실행 실패" . $db->errno . " -> " . $db->error);
 
+
+        
         $stmt->store_result();
         //$colcrypt_array = explode(",",$map["COLCRYPT"]);   
 
@@ -3283,7 +3287,7 @@ end
              alog("      BINDTYPE = " . $tmpSql["BINDTYPE"]);
 
             //폼 입력값에 암호화 컬럼 있는지 검사해서 암호화 처리
-            $tParamEnc = makeParamEnc($tmpSql["SQLTXT"], $REQ, $colcrypt_array);
+            $tParamEnc = makeSqlParamEnc($tmpSql["SQLTXT"], $REQ, $colcrypt_array);
 
             $stmt = makeStmt($db[$tmpSql["SVRID"]],$tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $tParamEnc);
             if(!$stmt)  JsonMsg("500","300","(makeFormviewSearchJsonArray) " . $tmpSql["SQLID"] . " stmt 생성 실패" . $db->errno . " -> " . $db->error);
@@ -3294,31 +3298,35 @@ end
             //main인 경우만
             if( $tmpSql["PARENT_FNCTYPE"] == ""){
 
-                $stmt->store_result();
+                //$stmt->store_result();
                 //$colcrypt_array = explode(",",$map["COLCRYPT"]);   
 
-                $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $stmt->num_rows;
-
-                $cols = null; //결과 
-                $meta = $stmt->result_metadata(); 
-                while ($field = $meta->fetch_field()) 
-                { 
-                    $params[] = &$row[$field->name]; 
-                } 
-                call_user_func_array(array($stmt, 'bind_result'), $params); 
-
-
-                //alog("	fetch out");
-                if($stmt->fetch()) {
-                    //alog("	fetch in");
-                    foreach( $row as $key=>$value )
+                //$PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $stmt->num_rows;
+                if($stmt instanceOf PDOStatement){
+                    //pdo_mysql
+                    //컬럼 정보 꺼내오기
+                    for($k=0;$k<$stmt->columnCount();$k++)
                     {
-                        //alog("	fetch foreach : $key = $value");
-                        $RtnVal->RTN_DATA[$key] = makeParamDec($key, $value, $colcrypt_array);		
+                        $colNms[] = $stmt->getColumnMeta($k)["name"];
+                    }                    
+                }else{
+                    //mysqli driver
+                    //컬럼 정보 꺼내오기
+                    $meta = $stmt->result_metadata();
+                    while($field = $meta->fetch_field())
+                    {
+                        $colNms[] = $field->name;
                     }
-                } 
+                }                
+
+                $arr = getStmtArrayNum($stmt)[0];
+                
+                for($t=0;$t<count($arr);$t++){
+                    //alog("	fetch foreach : $key = $value");
+                    $RtnVal->RTN_DATA[$colNms[$t]] = makeParamDec($colNms[$t], $arr[$t], $colcrypt_array);		
+                }
             }
-            $stmt->close();
+            closeStmt($stmt);;
         }
 
 		//$result_array = fetch_all($result,MYSQLI_NUM);//indDB.php
@@ -3373,7 +3381,7 @@ end
 
         //폼 입력값에 암호화 컬럼 있는지 검사해서 암호화 처리
         $colcrypt_array = $map["COLCRYPT"];           
-        $tParamEnc = makeParamEnc($sqltxt, $REQ, $colcrypt_array);
+        $tParamEnc = makeSqlParamEnc($sqltxt, $REQ, $colcrypt_array);
 
 		$stmt = makeStmt($db[$svrid], $sqltxt, $bindtype, $tParamEnc);
 		if(!$stmt)  JsonMsg("500","400","stmt 생성 실패" . $db->errno . " -> " . $db->error);
@@ -3392,7 +3400,7 @@ end
             $RtnVal->COLID = $db->insert_id;//insert문인 경우 insert id받기
         }
 
-		$stmt->close();
+		closeStmt($stmt);;
 
 		//$tarr = array("OLD_ID"=>$row["@attributes"]["id"],"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>$row["userdata"],"AFFECTED_ROWS"=>$to_affected_rows);
 
@@ -3427,7 +3435,7 @@ end
         
             //폼 입력값에 암호화 컬럼 있는지 검사해서 암호화 처리
             $colcrypt_array = $map["COLCRYPT"];           
-            $tParamEnc = makeParamEnc($tmpSql["SQLTXT"], $REQ, $colcrypt_array);
+            $tParamEnc = makeSqlParamEnc($tmpSql["SQLTXT"], $REQ, $colcrypt_array);
     
             $stmt = makeStmt($db[$tmpSql["SVRID"]], $tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $tParamEnc);
             if(!$stmt)  JsonMsg("500","400","(makeFormviewSaveJsonArray)" . $tmpSql["SQLID"] . " stmt 생성 실패" . $db->errno . " -> " . $db->error);
@@ -3453,7 +3461,7 @@ end
                 $RtnVal->GRP_TYPE = "FORMVIEW";
                 $RtnVal->SEQ_COLID = ($map["SEQYN"] == "Y")?$map["KEYCOLID"]:"";
             }
-            $stmt->close();
+            closeStmt($stmt);;
     
             //$tarr = array("OLD_ID"=>$row["@attributes"]["id"],"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>$row["userdata"],"AFFECTED_ROWS"=>$to_affected_rows);
     
