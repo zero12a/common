@@ -456,16 +456,26 @@ function mysql_fetch_all($r, $db){
 
 function fetch_all($tresult,$resulttype)
 {
+    //echo "<br>";
+    if($tresult instanceof PDOStatement){
+        //pdo
+        $res = $tresult->fetchAll(PDO::FETCH_ASSOC);
+    }else{
+        //mysqli
+        if (method_exists('mysqli_result', 'fetch_all')) # Compatibility layer with PHP < 5.3
+        {
+            //echo "fetch_all method exist";
+            $res = $tresult->fetch_all($resulttype);
+        }
+        else{
+            //echo "fetch_all method not exist";
+            for ($res = array(); $tmp = $tresult->fetch_array($resulttype);) $res[] = $tmp;
+        }        
+    }
+    //var_dump($tresult);
+    //exit;
     //echo "fetch_all:";
-    if (method_exists('mysqli_result', 'fetch_all')) # Compatibility layer with PHP < 5.3
-    {
-        //echo "fetch_all method exist";
-        $res = $tresult->fetch_all($resulttype);
-    }
-    else{
-        //echo "fetch_all method not exist";
-        for ($res = array(); $tmp = $tresult->fetch_array($resulttype);) $res[] = $tmp;
-    }
+
 
     return $res;
 }
@@ -1146,7 +1156,21 @@ function getStmt(&$db,$sqlMap){
         $rtnStmt = $db->prepare($sqlMap["TO_SQL"]);
 
         if(!$rtnStmt)JsonMsg("500","101", "(PDO) stmt null error : stmt is " . $rtnStmt->errno . " > " . $rtnStmt->error . ", db is " . $db->errno . " > " . $db->error);
+        for($t=0;$t<count($sqlMap["TO_PARAM"]);$t++){
+            $value = $sqlMap["TO_PARAM"][$t];
+            if(is_int($value))
+                $param = PDO::PARAM_INT;
+            elseif(is_bool($value))
+                $param = PDO::PARAM_BOOL;
+            elseif(is_null($value))
+                $param = PDO::PARAM_NULL;
+            elseif(is_string($value))
+                $param = PDO::PARAM_STR;
+            else
+                $param = FALSE;
 
+            $rtnStmt->bindValue($t+1,$value,$param);
+        }
     }else{
         //mysqli
         //echo "<BR>mysqli---" . $sqlMap["TO_SQL"];
@@ -1196,7 +1220,7 @@ function getStmt(&$db,$sqlMap){
     return $rtnStmt;
 }
 
-function getStmtArray(&$db, &$stmt,$param){
+function getStmtArray(&$stmt){
     alog("getStmtArray()...............................start");    
     $RtnVal = array();
 
@@ -1205,7 +1229,9 @@ function getStmtArray(&$db, &$stmt,$param){
         //pdo
         //var_dump($param);
         //exit;
-        if(!$stmt->execute($param))JsonMsg("500","101","getStmtArray() (PDO) stmt execute fail1 -"
+        //if(!$stmt->execute($param))JsonMsg("500","101","getStmtArray() (PDO) stmt execute fail1 -"
+        // . $stmt->errno . " -> " . $stmt->error);        
+        if(!$stmt->execute())JsonMsg("500","101","getStmtArray() (PDO) stmt execute fail1 -"
          . $stmt->errno . " -> " . $stmt->error);
         $RtnVal =  $stmt->fetchAll(PDO::FETCH_ASSOC); //해쉬맵
         //var_dump($RtnVal);
@@ -1213,7 +1239,7 @@ function getStmtArray(&$db, &$stmt,$param){
     }else{
         //mysqli
         if(!$stmt->execute())JsonMsg("500","102","getStmtArray() (MysqlI) stmt execute fail2 -"
-         . $stmt->errno . " -> " . $stmt->error . ", " . $db->errno . " -> " . $db->error);
+         . $stmt->errno . " -> " . $stmt->error);
 
         $result = $stmt->get_result();
         //$array = $result->mysqli_fetch_all(MYSQLI_ASSOC);
@@ -1226,7 +1252,7 @@ function getStmtArray(&$db, &$stmt,$param){
     return  $RtnVal;
 }
 
-function getStmtArrayNum(&$db, &$stmt,$param){
+function getStmtArrayNum(&$stmt){
     alog("getStmtArrayNum()...............................start");    
     $RtnVal = array();
 
@@ -1235,7 +1261,9 @@ function getStmtArrayNum(&$db, &$stmt,$param){
         //pdo
         //var_dump($param);
         //exit;
-        if(!$stmt->execute($param))JsonMsg("500","101","getStmtArrayNum() (PDO) stmt execute fail1 -"
+        //if(!$stmt->execute($param))JsonMsg("500","101","getStmtArrayNum() (PDO) stmt execute fail1 -"
+        //. $stmt->errno . " -> " . $stmt->error);
+        if(!$stmt->execute())JsonMsg("500","101","getStmtArrayNum() (PDO) stmt execute fail1 -"
          . $stmt->errno . " -> " . $stmt->error);
         $RtnVal =  $stmt->fetchAll(PDO::FETCH_NUM); //해쉬맵
         //var_dump($RtnVal);
@@ -1243,7 +1271,7 @@ function getStmtArrayNum(&$db, &$stmt,$param){
     }else{
         //mysqli
         if(!$stmt->execute())JsonMsg("500","102","getStmtArrayNum() (MysqlI) stmt execute fail2 -"
-         . $stmt->errno . " -> " . $stmt->error . ", " . $db->errno . " -> " . $db->error);
+         . $stmt->errno . " -> " . $stmt->error);
 
         $result = $stmt->get_result();
         //$array = $result->mysqli_fetch_all(MYSQLI_ASSOC);
@@ -1817,80 +1845,52 @@ end
 		alog("makeGridSearchJson..........................start");
 
         //mysql
-        if($db->server_info != ""){
+        //var_dump($db[$map["SQL"]["R"]["SVRID"]]);
+        if($db[$map["SQL"]["R"]["SVRID"]]->server_info != ""){
             alog("  mysqli dbdriver ok.");
-            $stmt = makeStmt($db[$map["SQL"]["R"]["SVRID"]],$map["SQL"]["R"]["SQLTXT"], $map["SQL"]["R"]["BINDTYPE"], $REQ);
+            
+            //$stmt = makeStmt($db[$map["SQL"]["R"]["SVRID"]],$map["SQL"]["R"]["SQLTXT"], $map["SQL"]["R"]["BINDTYPE"], $REQ);
+
+            $sqlMap = getSqlParam($map["SQL"]["R"]["SQLTXT"],$map["SQL"]["R"]["BINDTYPE"],$REQ);
+            $stmt = getStmt($db[$map["SQL"]["R"]["SVRID"]],$sqlMap);
+
             if(!$stmt)   JsonMsg("500","100","(makeGridSearchJson) stmt 생성 실패 " . $db->errno . " -> " . $db->error);
-    
             if(!$stmt->execute())JsonMsg("500","110","(makeGridSearchJson) stmt 실행 실패 " . $stmt->error);
 
+
+            
             //$colcrypt_array = explode(",",$map["COLCRYPT"]);   
             $colcrypt_array =$map["COLCRYPT"];  
     
             //$map["SQLTXT"] = "1111";
             //alog("makeGridSearchJson() SQLTXT = " . $map["SQLTXT"]);
     
-            $stmt->store_result();
+            
+            //$stmt->store_result();
             
             //num_rows는 store_result실행 후에 해야함.
-            alog("stmt.num_rows = " . $stmt->num_rows);
+            //alog("stmt.num_rows = " . $stmt->num_rows);
     
             //[로그 저장용]
-            $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $stmt->num_rows;
+            //$PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $stmt->num_rows;
     
-            $variables = array();
-            $data = array();
+
             $meta = $stmt->result_metadata();
             while($field = $meta->fetch_field())
             {
-                $variables[] = &$data[$field->name];
+                $colNms[] = $field->name;
             }
-            call_user_func_array(array($stmt, 'bind_result'), $variables);
-            $i=0;
-            while($stmt->fetch())
-            {
-                    $array[$i] = array();
-                    $one_row = array();
-                    $j = 0;
-                    foreach($data as $k=>$v){
-                        //암호화 컬럼에 존재 하는지 확인
-                        if( $colcrypt_array[trim($k)] == "CRYPT" ){
-                            //양방향 암호화
-                            alog("  crypt 전 col/key: " . $v . "/" . $CFG["CFG_SEC_KEY"]);
-                            alog("  cyrpt 후 : [" .  aes_decrypt($v,$CFG["CFG_SEC_KEY"]) . "]");                        
-    
-                            //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-    
-                            array_push($one_row, aes_decrypt($v,$CFG["CFG_SEC_KEY"]) );
-                        }else if( $colcrypt_array[trim($k)] == "HASH" ){
-                            //일방향 암호화
-                            alog("  hash 전 col/key: " . $v . "/" . $CFG["CFG_SEC_SALT"]);
-                            //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-    
-                            array_push($one_row, $v );
-                        }else if( $colcrypt_array[trim($k)] == "CDATA" ){
-                            //Tag가 있는 컬럼.(Cdata더하기)
-                            array_push($one_row, xmlCdataAdd($v) );
-                        }else{
-                            //평문
-                            array_push($one_row, $v );
-                        }
-                        
-                        
-                        if($j == $map["KEYCOLIDX"])$id_col_value = $v;
-                        $j++;
-                    }
-                    $RtnVal->RTN_DATA->rows[$i]['id']=$id_col_value;
-                    $RtnVal->RTN_DATA->rows[$i]['data']=$one_row;
-                    //alog($i);
-                    $i++;
-            }
-            $stmt->close();
-    
-            //$result_array = fetch_all($result,MYSQLI_NUM);//indDB.php
+
+            $arr = getStmtArrayNum($stmt);
+            closeStmt($stmt);
+            //echo "<pre><BR>" . jsonView($arr);
+
             //결과 JSON 화면 출력
             $RtnVal->RTN_CD = "200";
             $RtnVal->ERR_CD = "200";
+            $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
+
+
         }else{
             alog("  PDO dbdriver ok.");            
             //PDO
@@ -1905,33 +1905,21 @@ end
                 
             //var_dump($stmt);
             //$stmt2 = makeStmt($db2,$sql,$coltype="i",$REQ);
-
-
             
-            $arr = getStmtArrayNum($db[$map["SQL"]["R"]["SVRID"]], $stmt, $sqlMap["TO_PARAM"]);
-
+            $arr = getStmtArrayNum($stmt);
 
             //컬럼 정보 꺼내오기
-            /*
             for($k=0;$k<$stmt->columnCount();$k++)
             {
-                echo $k . " ";
-                $meta[] = $stmt->getColumnMeta($k);
-                //echo jsonView($stmt->getColumnMeta($k));
+                //echo $k . " ";
+                $colNms[] = $stmt->getColumnMeta($k)["name"];
             }
-            */
-            //echo jsonView($meta);
-            //exit;
+            closeStmt($stmt);
 
-            for($j=0;$j<sizeof($arr);$j++){
-                //echo $j . " ";
-                //$id_col_value = ;
-                $RtnVal->RTN_DATA->rows[$j]['id']   =   $arr[$j][$map["KEYCOLIDX"]];
-                $RtnVal->RTN_DATA->rows[$j]['data'] =   $arr[$j];
-            }
 
             $RtnVal->RTN_CD = "200";
             $RtnVal->ERR_CD = "200";
+            $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
 
             //echo "<pre>" . jsonView($RtnVal);
             //exit;
@@ -1942,7 +1930,55 @@ end
 		//$RtnVal = json_encode($RtnVal)
 		return  $RtnVal;
 
-	}
+    }
+
+
+
+    //배열 데이터를 dhtmlxLoad 데이터 타입으로 변경하기
+    function transDhtmlxLoad($rows,$colNms,$colCrypt,$keyColIdx){
+        global $CFG;
+
+        $RtnVal = array();
+
+        for($r=0;$r<count($rows);$r++){
+            $one_row = array();
+            $j = 0;
+            $cols = $rows[$r];
+            for($m=0;$m<count($cols);$m++){
+                $k = $colNms[$m];
+                $v = $cols[$m];
+
+                //암호화 컬럼에 존재 하는지 확인
+                if( $colCrypt[trim($k)] == "CRYPT" ){
+                    //양방향 암호화
+                    alog("  crypt 전 col/key: " . $v . "/" . $CFG["CFG_SEC_KEY"]);
+                    alog("  cyrpt 후 : [" .  aes_decrypt($v,$CFG["CFG_SEC_KEY"]) . "]");                        
+
+                    //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
+
+                    array_push($one_row, aes_decrypt($v,$CFG["CFG_SEC_KEY"]) );
+                }else if( $colCrypt[trim($k)] == "HASH" ){
+                    //일방향 암호화
+                    alog("  hash 전 col/key: " . $v . "/" . $CFG["CFG_SEC_SALT"]);
+                    //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
+
+                    array_push($one_row, $v );
+                }else if( $colCrypt[trim($k)] == "CDATA" ){
+                    //Tag가 있는 컬럼.(Cdata더하기)
+                    array_push($one_row, xmlCdataAdd($v) );
+                }else{
+                    //평문
+                    array_push($one_row, $v );
+                }
+
+                if($m == $keyColIdx)$id_col_value = $v;
+            }
+            $RtnVal[$r]['id']=$id_col_value;
+            $RtnVal[$r]['data']=$one_row;
+        }
+
+        return $RtnVal;
+    }
 
 
 
@@ -1961,160 +1997,60 @@ end
             alog("      SQLTXT = " . $tmpSql["SQLTXT"]);
             alog("      BINDTYPE = " . $tmpSql["BINDTYPE"]);
             
-            $stmt = makeStmt($db[$tmpSql["SVRID"]], $tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $REQ);
-            if(!$stmt)   JsonMsg("500","112","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " stmt 생성 실패 " . $db->errno . " -> " . $db->error);
+            //$stmt = makeStmt($db[$tmpSql["SVRID"]], $tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $REQ);
 
-            if(!$stmt->execute())JsonMsg("500","123","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " stmt 실행 실패 " . $stmt->error);
+            $sqlMap = getSqlParam($tmpSql["SQLTXT"],$tmpSql["BINDTYPE"],$REQ);
+            $stmt = getStmt($db[$tmpSql["SVRID"]],$sqlMap);
+
+            if(!$stmt)   JsonMsg("500","112","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " stmt create fail - " . $db->errno . " -> " . $db->error);
+            if(!$stmt->execute())JsonMsg("500","123","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " stmt execute fail - " . $stmt->error);
     
             //main만 처리
             if( $tmpSql["PARENT_FNCTYPE"] == ""){
+
+
                 //$colcrypt_array = explode(",",$map["COLCRYPT"]);   
                 $colcrypt_array =$map["COLCRYPT"];  
-    
-                //$map["SQLTXT"] = "1111";
-                //alog("makeGridSearchJson() SQLTXT = " . $map["SQLTXT"]);
-    
-                if(!function_exists($stmt->store_result)) {
-                    //pdo_mysql
-                    //echo "store_result 함수없음.";
-                    $rowCount = $stmt->rowCount(); //PDO
-                }else{
-                    //mysqli
-                    $stmt->store_result();
-                    //num_rows는 store_result실행 후에 해야함.
-                    alog("stmt.num_rows = " . $stmt->num_rows);
-                    $rowCount = $stmt->num_rows;
-                }
 
-                
 
-    
-                //[로그 저장용]
-                $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $rowCount ;
-    
-                if(function_exists($stmt->result_metadata)) {
-                    //mysqli
-                    $variables = array();
-                    $data = array();
+                if($db[$tmpSql["SVRID"]]->server_info != ""){
+                    //mysqli driver
+
+                    //컬럼 정보 꺼내오기
                     $meta = $stmt->result_metadata();
                     while($field = $meta->fetch_field())
                     {
-                        $variables[] = &$data[$field->name];
+                        $colNms[] = $field->name;
                     }
-                    call_user_func_array(array($stmt, 'bind_result'), $variables);
-
-                    $i=0;
-                    while($stmt->fetch())
-                    {
-                            $array[$i] = array();
-                            $one_row = array();
-                            $j = 0;
-                            foreach($data as $k=>$v){
-                                $tMap = array();
-                                //암호화 컬럼에 존재 하는지 확인
-                                if( $colcrypt_array[trim($k)] == "CRYPT" ){
-                                    //양방향 암호화
-                                    alog("  crypt 전 col/key: " . $v . "/" . $CFG["CFG_SEC_KEY"]);
-                                    alog("  cyrpt 후 : [" .  aes_decrypt($v,$CFG["CFG_SEC_KEY"]) . "]");                        
         
-                                    //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-                                    if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
-                                        $one_row[$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-                                    }else{
-                                        array_push($one_row, aes_decrypt($v,$CFG["CFG_SEC_KEY"]) );
-                                    }
-                                    
-                                }else if( $colcrypt_array[trim($k)] == "HASH" ){
-                                    //일방향 암호화
-                                    alog("  hash 전 col/key: " . $v . "/" . $CFG["CFG_SEC_SALT"]);
-                                    //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-                                    if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
-                                        $one_row[$k] = $v;
-                                    }else{
-                                        array_push($one_row, $v );
-                                    }
-                                }else{
-                                    //평문
-                                    if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
-                                        $one_row[$k] = $v;
-                                    }else{
-                                        array_push($one_row, $v );
-                                    }                                
-                                }
-                                
-                                
-                                if($j == $map["KEYCOLIDX"])$id_col_value = $v;
-                                $j++;
-                            }
-                            
-                            if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
-                                $RtnVal->RTN_DATA->rows[$i]=$one_row;                            
-                            }else{
-                                $RtnVal->RTN_DATA->rows[$i]['id']=$id_col_value;
-                                $RtnVal->RTN_DATA->rows[$i]['data']=$one_row;
-                            }
-    
-                            //alog($i);
-                            $i++;
-                    }
+                    $arr = getStmtArrayNum($stmt);
+                    closeStmt($stmt);
 
+                    $RtnVal->RTN_CD = "200";
+                    $RtnVal->ERR_CD = "200";
+                    $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
 
                 }else{
-                    //pdo
-                    while($data = $stmt->fetchAll(PDO::FETCH_ASSOC)){
-                        $array[$i] = array();
-                        $one_row = array();
-                        $j = 0;
+                    //pdo_mysql
+                    //echo "store_result 함수없음.";
+                    //$rowCount = $stmt->rowCount(); //PDO
 
-                        foreach($data as $k=>$v){
-                            $tMap = array();
-                            //암호화 컬럼에 존재 하는지 확인
-                            if( $colcrypt_array[trim($k)] == "CRYPT" ){
-                                //양방향 암호화
-                                alog("  crypt 전 col/key: " . $v . "/" . $CFG["CFG_SEC_KEY"]);
-                                alog("  cyrpt 후 : [" .  aes_decrypt($v,$CFG["CFG_SEC_KEY"]) . "]");                        
-    
-                                //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-                                if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
-                                    $one_row[$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-                                }else{
-                                    array_push($one_row, aes_decrypt($v,$CFG["CFG_SEC_KEY"]) );
-                                }
-                                
-                            }else if( $colcrypt_array[trim($k)] == "HASH" ){
-                                //일방향 암호화
-                                alog("  hash 전 col/key: " . $v . "/" . $CFG["CFG_SEC_SALT"]);
-                                //$array[$i][$k] = aes_decrypt($v,$CFG["CFG_SEC_KEY"]);
-                                if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
-                                    $one_row[$k] = $v;
-                                }else{
-                                    array_push($one_row, $v );
-                                }
-                            }else{
-                                //평문
-                                if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
-                                    $one_row[$k] = $v;
-                                }else{
-                                    array_push($one_row, $v );
-                                }                                
-                            }
-                            
-                            
-                            if($j == $map["KEYCOLIDX"])$id_col_value = $v;
-                            $j++;                            
-                        }
+
+                    //컬럼 정보 꺼내오기
+                    for($k=0;$k<$stmt->columnCount();$k++)
+                    {
+                        $colNms[] = $stmt->getColumnMeta($k)["name"];
                     }
+                    
+                    //pdo
+                    $arr = getStmtArrayNum($stmt);
+                    closeStmt($stmt);
 
+                    $RtnVal->RTN_CD = "200";
+                    $RtnVal->ERR_CD = "200";
+                    $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);                    
                 }
                 
-                if(function_exists($stmt->close)){
-                    //mysqli
-                    $stmt->close();
-                }else{
-                    //pdo mysql
-                    $stmt->closeCursor();
-                }
-
             }
 
             

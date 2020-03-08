@@ -300,9 +300,9 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 					this.privateCombo.put("","");
 
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 
-						this.privateCombo.put(data.RTN_DATA.rows[i].data[0],data.RTN_DATA.rows[i].data[1]);
+						this.privateCombo.put(data.RTN_DATA.rows[i][0],data.RTN_DATA.rows[i][1]);
 					}
 				}else if(tGrptype == "CONDITION"){
 					if(!data.RTN_DATA)return;
@@ -312,9 +312,9 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 					this.privateCombo.append("<option value=''></option>"); //빈라인 추가
 
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						//alog(data.RTN_DATA.rows[i].data[1] + "=" + data.RTN_DATA.rows[i].data[2]);
+						//alog(data.RTN_DATA.rows[i][1] + "=" + data.RTN_DATA.rows[i][2]);
 
-						this.privateCombo.append("<option value='" + data.RTN_DATA.rows[i].data[0] + "'>" + data.RTN_DATA.rows[i].data[1] + "</option>");
+						this.privateCombo.append("<option value='" + data.RTN_DATA.rows[i][0] + "'>" + data.RTN_DATA.rows[i][1] + "</option>");
 					}
 				}else if(tGrptype == "FORMVIEW"){
 					if(!data.RTN_DATA)return;
@@ -324,9 +324,9 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 					this.privateCombo.append("<option value=''></option>"); //빈라인 추가
 
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						//alog(data.RTN_DATA.rows[i].data[1] + "=" + data.RTN_DATA.rows[i].data[2]);
+						//alog(data.RTN_DATA.rows[i][1] + "=" + data.RTN_DATA.rows[i][2]);
 
-						this.privateCombo.append("<option value='" + data.RTN_DATA.rows[i].data[0] + "'>" + data.RTN_DATA.rows[i].data[1] + "</option>");
+						this.privateCombo.append("<option value='" + data.RTN_DATA.rows[i][0] + "'>" + data.RTN_DATA.rows[i][1] + "</option>");
 					}
 				}else{
 					alog("	그룹 타입이 없습니다");

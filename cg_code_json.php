@@ -61,10 +61,12 @@
 
             $sqlMap = getSqlParam($sql,$coltype="i",$REQ);
             //echo "<pre>" . json_encode($sqlMap,JSON_PRETTY_PRINT);
-            $stmt2 = $db2->prepare($sqlMap["TO_SQL"]);
+            //$stmt2 = $db2->prepare($sqlMap["TO_SQL"]);
+
+            $stmt2 = getStmt($db2,$sqlMap);
 
             //$stmt2 = makeStmt($db2,$sql,$coltype="i",$REQ);
-            $pjtInfo = getStmtArray($db2,$stmt2,$sqlMap["TO_PARAM"])[0];
+            $pjtInfo = getStmtArray($stmt2)[0];
             closeStmt($stmt2);
             closeDb($db2);
             //var_dump($pjtInfo);
@@ -156,7 +158,7 @@
     //$stmt2 = makeStmt($db2,$sql,$coltype="i",$REQ);
     $RtnVal->RTN_CD = "200";
     $RtnVal->ERR_CD = "200";
-    $RtnVal->RTN_DATA->rows = getStmtArray($db, $stmt, $sqlMap["TO_PARAM"]);
+    $RtnVal->RTN_DATA->rows = getStmtArrayNum($stmt);
     echo json_encode($RtnVal);
 
     //alog("cg_clode_json.php...............555");
