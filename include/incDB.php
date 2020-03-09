@@ -3453,7 +3453,11 @@ end
             $colcrypt_array = $map["COLCRYPT"];           
             $tParamEnc = makeSqlParamEnc($tmpSql["SQLTXT"], $REQ, $colcrypt_array);
     
-            $stmt = makeStmt($db[$tmpSql["SVRID"]], $tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $tParamEnc);
+            //$stmt = makeStmt($db[$tmpSql["SVRID"]], $tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $tParamEnc);
+
+            $sqlMap = getSqlParam($tmpSql["SQLTXT"],$tmpSql["BINDTYPE"],$tParamEnc);
+            $stmt = getStmt($db[$tmpSql["SVRID"]],$sqlMap);
+
             if(!$stmt)  JsonMsg("500","400","(makeFormviewSaveJsonArray)" . $tmpSql["SQLID"] . " stmt 생성 실패" . $db->errno . " -> " . $db->error);
             
             if(!$stmt->execute())JsonMsg("500","410","(makeFormviewSaveJsonArray)" . $tmpSql["SQLID"] . " stmt 실행 실패" . $stmt->errno . " -> " . $stmt->error);
@@ -3462,12 +3466,10 @@ end
             if( $tmpSql["PARENT_FNCTYPE"] == ""){
 
                 //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
-        
-
                 if($stmt instanceof PDOStatement){
                     $to_affected_rows = $stmt->rowCount();
                 }else{
-                    $to_affected_rows = $db->affected_rows;
+                    $to_affected_rows = $db[$tmpSql["SVRID"]]->affected_rows;
                 }
         
                 //$to_affected_rows = $db->affected_rows;
