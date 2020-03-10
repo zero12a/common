@@ -1159,6 +1159,7 @@ function make_detail_read_json2($stmt){
 
 
 function getStmt(&$db,$sqlMap){
+    global $log;
     alog("getStmt()...............................start");
     $rtnStmt = null;
     //echo "<BR>ATTR_CLIENT_VERSION : " . $db->getAttribute("PDO::ATTR_CLIENT_VERSION");
@@ -1171,7 +1172,12 @@ function getStmt(&$db,$sqlMap){
     if($db->server_info == ""){
         //pdo
         //echo "<BR>pdo---"  . $sqlMap["TO_SQL"];
-        $rtnStmt = $db->prepare($sqlMap["TO_SQL"]);
+        try{
+            $rtnStmt = $db->prepare($sqlMap["TO_SQL"]);
+        }catch (Exception $e) {
+            if($log)$log->info("db prepare error:" . $e->getMessage());
+        }
+
 
         if(!$rtnStmt)JsonMsg("500","101", "(PDO) stmt null error : stmt is " . $rtnStmt->errno . " > " . $rtnStmt->error . ", db is " . $db->errno . " > " . $db->error);
         for($t=0;$t<count($sqlMap["TO_PARAM"]);$t++){
@@ -3223,7 +3229,7 @@ end
 
         $sqlMap = getSqlParam($map["SQL"]["R"]["SQLTXT"],$map["SQL"]["R"]["BINDTYPE"],$tParamEnc);
         //echo "<pre>" . jsonView($sqlMap);
-        $stmt = getStmt($db[$svrid],$sqlMap);
+        $stmt = getStmt($db[$map["SQL"]["R"]["SVRID"]],$sqlMap);
 
 		//$stmt = makeStmt($db[$map["SQL"]["R"]["SVRID"]],$map["SQL"]["R"]["SQLTXT"], $map["SQL"]["R"]["BINDTYPE"], $tParamEnc);
 		if(!$stmt)   JsonMsg("500","300","stmt 생성 실패" . $db->errno . " -> " . $db->error);
@@ -3231,31 +3237,36 @@ end
 		//alog("make_detail_read_json-------------------------------start");
 		if(!$stmt->execute())JsonMsg("500","310","stmt 실행 실패" . $db->errno . " -> " . $db->error);
 
-
-        
-        $stmt->store_result();
+        //$stmt->store_result();
         //$colcrypt_array = explode(",",$map["COLCRYPT"]);   
 
-        $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $stmt->num_rows;
-
-		$cols = null; //결과 
-		$meta = $stmt->result_metadata(); 
-		while ($field = $meta->fetch_field()) 
-		{ 
-			$params[] = &$row[$field->name]; 
-		} 
-		call_user_func_array(array($stmt, 'bind_result'), $params); 
+        //$PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $stmt->num_rows;
 
 
-		//alog("	fetch out");
-		if($stmt->fetch()) {
-			//alog("	fetch in");
-			foreach( $row as $key=>$value )
-			{
-                //alog("	fetch foreach : $key = $value");
-                $RtnVal->RTN_DATA[$key] = makeParamDec($key, $value, $colcrypt_array);		
-			}
-		} 
+        if($stmt instanceOf PDOStatement){
+            //pdo_mysql
+            //컬럼 정보 꺼내오기
+            for($k=0;$k<$stmt->columnCount();$k++)
+            {
+                $colNms[] = $stmt->getColumnMeta($k)["name"];
+            }                    
+        }else{
+            //mysqli driver
+            //컬럼 정보 꺼내오기
+            $meta = $stmt->result_metadata();
+            while($field = $meta->fetch_field())
+            {
+                $colNms[] = $field->name;
+            }
+        }                
+
+        $arr = getStmtArrayNum($stmt)[0];
+        
+        for($t=0;$t<count($arr);$t++){
+            //alog("	fetch foreach : $key = $value");
+            $RtnVal->RTN_DATA[$colNms[$t]] = makeParamDec($colNms[$t], $arr[$t], $colcrypt_array);		
+        }
+
 
 		//$result_array = fetch_all($result,MYSQLI_NUM);//indDB.php
 		//결과 JSON 화면 출력
