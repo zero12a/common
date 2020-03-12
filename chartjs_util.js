@@ -159,6 +159,7 @@ Chart.plugins.register({
 		var ctx = chart.ctx;
 
 		chart.data.datasets.forEach(function(dataset, i) {
+			//alog(dataset);
 			var meta = chart.getDatasetMeta(i);
 			if (!meta.hidden) {
 				meta.data.forEach(function(element, index) {
