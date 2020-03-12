@@ -37,6 +37,7 @@
     $REQ["PJTSEQ"] = $_GET['PJTSEQ'];
     $REQ["PGMSEQ"] = $_GET['PGMSEQ'];
     $REQ["PCD"] = $_GET['PCD'];
+    $REQ["CD"] = $_GET['CD'];
     $REQ["GRPSEQ"] = $_GET['GRPSEQ']; //GRP선택시 INHERIT        
     $REQ["FNCSEQ"] = $_GET['FNCSEQ']; //FNC선택시 SVC
     $REQ["SVCSEQ"] = $_GET['SVCSEQ']; //SVC선택시 IO
@@ -122,6 +123,10 @@
         $to_coltype = "ii";
         $sql = " select SQLSEQ as CD,SQLID as NM from CG_PGMSQL where PJTSEQ = #{PJTSEQ} and PGMSEQ = #{PGMSEQ} and (PSQLSEQ is null or PSQLSEQ = 0) ORDER BY SQLORD ASC   ";
 
+    }else if($REQ["CD"] != "" ){
+        //일반 코드가져오기
+        $to_coltype = "ss";
+        $sql = " select * from CG_CODED where  PCD = #{PCD} and CD = #{CD} and DELYN = 'N' and USEYN='Y' ORDER BY   ORD ASC   ";
     }else{
         //일반 코드가져오기
         $to_coltype = "s";
@@ -158,7 +163,11 @@
     //$stmt2 = makeStmt($db2,$sql,$coltype="i",$REQ);
     $RtnVal->RTN_CD = "200";
     $RtnVal->ERR_CD = "200";
-    $RtnVal->RTN_DATA->rows = getStmtArrayNum($stmt);
+    if($REQ["CD"] != ""){
+        $RtnVal->RTN_DATA = getStmtArray($stmt)[0];
+    }else{
+        $RtnVal->RTN_DATA->rows = getStmtArrayNum($stmt);
+    }
     echo json_encode($RtnVal);
 
     //alog("cg_clode_json.php...............555");
