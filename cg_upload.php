@@ -18,7 +18,7 @@ $check = getimagesize($tmpPath);
 
 if($check !== false) {
     //echo "File is an image - " . $check["mime"] . ".";
-    if(isAllowExtension($fileNm,array("jpg","jpeg","gif","bmp","png"))){
+    if(isAllowExtension($fileNm,$CFG["CFG_IMG_EXT"])){
 
         $saveFileNm = getFileSvrNm($fileNm,"WE_");
 
