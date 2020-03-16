@@ -24,14 +24,14 @@
         , "PGM_ID"=>"CODE_JSON"
         , "REQTOKEN" => $reqToken
         , "RESTOKEN" => $resToken
-        , "LOG_LEVEL" => Monolog\Logger::DEBUG
+        , "LOG_LEVEL" => Monolog\Logger::INFO
         )
     );
 
 
 
 
-    //alog("cg_clode_json.php...............222");
+    $log->info("cg_clode_json.php...............222");
 
     //그룹ID받기
     $REQ["PJTSEQ"] = $_GET['PJTSEQ'];
@@ -74,14 +74,14 @@
             if($pjtInfo["DSNM"] == "")JsonMsg("500","100","해당 프로젝트의 데이터소스 정보가 없습니다.");
 
             //프로젝트의 데이터소스 정보 가져오기
-            alog("데이터소스 : " . $pjtInfo["DSNM"]);
+            $log->debug("데이터소스 : " . $pjtInfo["DSNM"]);
             $db=getDbConn($CFG["CFG_DB"][$pjtInfo["DSNM"]]);
-            alog("데이터소스 드라이버 : " . $CFG["CFG_DB"][$pjtInfo["DSNM"]]["DRIVER"]);
+            $log->debug("데이터소스 드라이버 : " . $CFG["CFG_DB"][$pjtInfo["DSNM"]]["DRIVER"]);
             break;
         default:
-            alog("데이터소스 : CGCORE");
+            $log->debug("데이터소스 : CGCORE");
             $db=getDbConn($CFG["CFG_DB"]["CGCORE"]);
-            alog("데이터소스 드라이버 : " . $CFG["CFG_DB"]["CGCORE"]["DRIVER"]);            
+            $log->debug("데이터소스 드라이버 : " . $CFG["CFG_DB"]["CGCORE"]["DRIVER"]);            
             break;
     }
 
@@ -97,7 +97,7 @@
              "
              , addSqlSlashes($userSeq)
             );
-        alog($sql);
+        //alog($sql);
     }else if($REQ["PCD"] =="PGMSEQ_POPUP" ){
         $to_coltype = "";
         $sql = sprintf("
@@ -148,16 +148,16 @@
     //echo "<BR>server_info=" . $db->server_info;
     //echo "<BR>host_info=" . $db->host_info;
 
-
+    //$log->info("111");
     $sqlMap = getSqlParam($sql,$to_coltype, $REQ);
 
     //echo "<pre>" . json_encode( $sqlMap,JSON_PRETTY_PRINT );
-    //echo "<br>222";
+    //$log->info("222");
 
     $stmt = getStmt($db,$sqlMap);
-    
+    //$log->info("333");
     if(!$stmt)JsonMsg("500","102", "cd_code_json.php (MysqlI) stmt null error : stmt is " . $stmt->errno . " > " . $stmt->error . ", db is " . $db->errno . " > " . $db->error);
-        
+    //$log->info("444");
 
     //var_dump($stmt);
     //$stmt2 = makeStmt($db2,$sql,$coltype="i",$REQ);
