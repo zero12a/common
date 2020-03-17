@@ -5,6 +5,12 @@ function jsonView($tmp){
     return json_encode($tmp,JSON_PRETTY_PRINT);
 }
 
+function microtime_float()
+{
+    list($usec, $sec) = explode(" ", microtime());
+    return ((float)$usec + (float)$sec);
+}
+
 function getLoggerSwoole($arrLog){
     alog("getLoggerSwoole()...........................start");
     global $CFG;
