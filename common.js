@@ -300,7 +300,7 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 					this.privateCombo.put("","");
 
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 
 						this.privateCombo.put(data.RTN_DATA.rows[i][0],data.RTN_DATA.rows[i][1]);
 					}
@@ -703,7 +703,7 @@ function setCodeComboSvc(tGrptype, tCombo, tPcd, tFristNm){
 					tCombo.put("",tFristNm);
 
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						//alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
 
 						tCombo.put(data.RTN_DATA.rows[i].data[0],data.RTN_DATA.rows[i].data[1]);
 					}
