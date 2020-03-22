@@ -394,14 +394,14 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 						var chkText = "";
 						for(var k=0;k<arrCheckVal.length;k++){
-							if(arrCheckVal[k] == data.RTN_DATA.rows[i].data[0])chkText = "checked";
+							if(arrCheckVal[k] == data.RTN_DATA.rows[i][0])chkText = "checked";
 						}
 
 						if(i>0)strSpace = "&nbsp;";						
-						$("#" + tCheckNm + "-HOLDER").append(strSpace + "<input type=checkbox name='" + tCheckNm + "' id='" + tCheckNm + "' value='" + data.RTN_DATA.rows[i].data[0] + "' " + chkText + ">" + data.RTN_DATA.rows[i].data[1]);
+						$("#" + tCheckNm + "-HOLDER").append(strSpace + "<input type=checkbox name='" + tCheckNm + "' id='" + tCheckNm + "' value='" + data.RTN_DATA.rows[i][0] + "' " + chkText + ">" + data.RTN_DATA.rows[i][1]);
 					}
 				}else if(tGrptype == "FORMVIEW"){
 					if(!data.RTN_DATA)return;
@@ -410,15 +410,15 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 
 						var chkText = "";
 						for(var k=0;k<arrCheckVal.length;k++){
-							if(arrCheckVal[k] == data.RTN_DATA.rows[i].data[0])chkText = "checked";
+							if(arrCheckVal[k] == data.RTN_DATA.rows[i][0])chkText = "checked";
 						}
 								
 						if(i>0)strSpace = "&nbsp;";								
-						$("#" + tCheckNm + "-HOLDER").append(strSpace + "<input type=checkbox name='" + tCheckNm + "' id='" + tCheckNm + "' value='" + data.RTN_DATA.rows[i].data[0] + "' " + chkText + ">" + data.RTN_DATA.rows[i].data[1]);
+						$("#" + tCheckNm + "-HOLDER").append(strSpace + "<input type=checkbox name='" + tCheckNm + "' id='" + tCheckNm + "' value='" + data.RTN_DATA.rows[i][0] + "' " + chkText + ">" + data.RTN_DATA.rows[i][1]);
 					}
 				}else{
 					alog("	그룹 타입이 없습니다");
