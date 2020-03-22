@@ -73,15 +73,19 @@ if(typeof dhtmlXCalendarObject !== 'undefined'){
 	dhtmlXCalendarObject.prototype.langData["kr"] = {
 		// date format
 		dateformat: "%Y-%m-%d",
+
+		/// header format
+		hdrformat: "%Y년 %F월",
+	
 		// full names of months
 		monthesFNames: [
-			"1월","2월","3월","4월","5월","6월","7월",
-			"8월","9월","10월","11월","12월"
+			"1","2","3","4","5","6","7",
+			"8","9","10","11","12"
 		],
 		// short names of months
 		monthesSNames: [
-			"1월","2월","3월","4월","5월","6월","7월",
-			"8월","9월","10월","11월","12월"
+			"1","2","3","4","5","6","7",
+			"8","9","10","11","12"
 		],
 		// full names of days
 		daysFNames: [
@@ -439,10 +443,14 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
 	alog("   setCodeRadio----------------------start");
 	alog("		tGrptype = " + tGrptype);		
-	alog("		tRadioNm = " + tRadioNm);	
+	alog("		tRadioNm = " + typeof tRadioNm);	
 	alog("		tPcd = " + tPcd);
 
 	if(tRadioNm == "")return;
+	if(typeof tRadioNm == 'object'){
+		alert("setCodeRadio는 라디오 오브젝트를 처리할수 없습니다.(라디오 오브젝트 이름으로 호출필요)");
+		return;
+	}
 
 	//불러오기
 	$.ajax({
@@ -469,13 +477,13 @@ function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
 					
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 
 						var chkText = "";
-						if(tCheckVal == data.RTN_DATA.rows[i].data[0])chkText = "checked";
+						if(tCheckVal == data.RTN_DATA.rows[i][0])chkText = "checked";
 
 						if(i>0)strSpace = "&nbsp;";
-						$("#" + tRadioNm + "-HOLDER").append(strSpace + "<input type=radio name='" + tRadioNm + "' id='" + tRadioNm + "' value='" + data.RTN_DATA.rows[i].data[0] + "' " + chkText + ">" + data.RTN_DATA.rows[i].data[1]);
+						$("#" + tRadioNm + "-HOLDER").append(strSpace + "<input type=radio name='" + tRadioNm + "' id='" + tRadioNm + "' value='" + data.RTN_DATA.rows[i][0] + "' " + chkText + ">" + data.RTN_DATA.rows[i][1]);
 					}
 				}else if(tGrptype == "FORMVIEW"){
 					if(!data.RTN_DATA)return;
@@ -484,13 +492,13 @@ function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 
 						var chkText = "";
-						if(tCheckVal == data.RTN_DATA.rows[i].data[0])chkText = "checked";
+						if(tCheckVal == data.RTN_DATA.rows[i][0])chkText = "checked";
 
 						if(i>0)strSpace = "&nbsp;";
-						$("#" + tRadioNm + "-HOLDER").append(strSpace + "<input type=radio name='" + tRadioNm + "' id='" + tRadioNm + "' value='" + data.RTN_DATA.rows[i].data[0] + "' " + chkText + ">" + data.RTN_DATA.rows[i].data[1]);
+						$("#" + tRadioNm + "-HOLDER").append(strSpace + "<input type=radio name='" + tRadioNm + "' id='" + tRadioNm + "' value='" + data.RTN_DATA.rows[i][0] + "' " + chkText + ">" + data.RTN_DATA.rows[i][1]);
 					}
 				}else{
 					alog("	그룹 타입이 없습니다");
