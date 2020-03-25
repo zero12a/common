@@ -72,8 +72,8 @@ input[type=text]:read-only {
 .GRID_OBJECT {overflow:hidden;background-color: white;position: relative;width:100%;z-index:20;}
 
 .CONDITION_LABELGRP {overflow:hidden;position:relative;width:100%;height:32px;z-index:20;}
-.CONDITION_LABEL {white-space: nowrap;position:relative;float:left;width:60%;height:22px;line-height:22px;vertical-align:middle;z-index:30;}
-.CONDITION_LABELBTN {white-space: nowrap;position: relative;float:left;width:40%;height:22px;line-height:22px;vertical-align:middle;text-align:right;z-index:30;}
+.CONDITION_LABEL {white-space: nowrap;position:relative;float:left;width:30%;height:22px;line-height:22px;vertical-align:middle;z-index:30;}
+.CONDITION_LABELBTN {white-space: nowrap;position: relative;float:left;width:70%;height:22px;line-height:22px;vertical-align:middle;text-align:right;z-index:30;}
 .CONDITION_OBJECT {position: relative;background-color:rgb(247, 248, 255);padding:0px 0px 0px 0px;overflow:auto;}
 
 .FORMVIEW_LABELGRP {overflow:hidden;position:relative;width:100%;height:32px;z-index:20;}
