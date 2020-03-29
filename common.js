@@ -273,6 +273,112 @@ function setCodeYN(tGrptype, tCombo, tPcd){
 }
 
 
+function apiCodeCombo(tGrpId, tColId, tJsonParam, tDefaultValue){
+	alog("   apiCodeCombo----------------------start : tGrpId=" + tGrpId + ", tColId=" + tColId);
+	//alog("		tPcd = " + tPcd);
+
+	//if(!tCombo)return;
+
+	//불러오기
+	//alert(CFG_URL_CODE_API);
+	$.ajax({
+		type : "GET",
+		url : CFG_URL_CODE_API,
+		data : tJsonParam,
+		privateGrpId : tGrpId,
+		privateColId : tColId,
+		privateDefaultValue : tDefaultValue,
+		dataType: "json",
+		async: true,
+		success: function(data){
+			alog("   apiCodeCombo json return----------------------");
+			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
+			//alog("   json RTN_CD : " + data.RTN_CD);
+			//alog("   json ERR_CD : " + data.ERR_CD);
+			//alog("   json RTN_MSG length : " + data.RTN_MSG.length);
+
+			//그리드에 데이터 반영
+			if(data.RTN_CD == "200"){
+				if(grpInfo.get(this.privateGrpId).GRPTYPE == "GRID"){
+					if(!data.RTN_DATA)return;
+					//alog("	코드수 : " + data.RTN_DATA.rows.length);
+					
+					this.tGrid = eval("mygrid"+this.privateGrpId); //그리드 오브젝트 얻기
+					this.privateCombo = this.tGrid.getCombo(this.tGrid.getColIndexById(this.privateColId)); //콤보 얻기
+
+					this.privateCombo.clear(); //비우기
+					this.privateCombo.put("","");
+
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+						cd = data.RTN_DATA.rows[i].data[0];
+						nm = data.RTN_DATA.rows[i].data[1];
+						this.privateCombo.put(cd,nm);
+					}
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "CONDITION"){
+					if(!data.RTN_DATA)return;
+					//alog("	코드수 : " + data.RTN_DATA.rows.length);
+					
+					this.privateCombo = $("#" + this.privateGrpId + "-" + this.privateColId); //오브젝트 얻기
+
+					this.privateCombo.empty(); //비우기
+					this.privateCombo.append("<option value=''></option>"); //빈라인 추가
+
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						//alog(data.RTN_DATA.rows[i][1] + "=" + data.RTN_DATA.rows[i][2]);
+						cd = data.RTN_DATA.rows[i].data[0];
+						nm = data.RTN_DATA.rows[i].data[1];
+
+						chkText ="";
+						if(this.privateDefaultValue == cd)chkText = " selected";
+
+						this.privateCombo.append("<option value='" + cd + "'" + chkText + ">" + nm + "</option>");
+					}
+					//선택하기
+					//$("#" + this.privateGrpId + "-" + this.privateColId + " > option[@value=" + this.privateDefaultValue + "]").attr("selected","true"); //선택하기
+
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "FORMVIEW"){
+					if(!data.RTN_DATA)return;
+					//alog("	코드수 : " + data.RTN_DATA.rows.length);
+					
+					this.privateCombo = $("#" + this.privateGrpId + "-" + this.privateColId); //오브젝트 얻기
+
+					this.privateCombo.empty(); //비우기
+					this.privateCombo.append("<option value=''></option>"); //빈라인 추가
+
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						//alog(data.RTN_DATA.rows[i][1] + "=" + data.RTN_DATA.rows[i][2]);
+						cd = data.RTN_DATA.rows[i].data[0];
+						nm = data.RTN_DATA.rows[i].data[1];
+
+						chkText ="";
+						if(this.privateDefaultValue == cd)chkText = " selected";
+
+						this.privateCombo.append("<option value='" + cd + "'" + chkText + ">" + nm + "</option>");
+					}
+					//선택하기
+					//$("#" + this.privateGrpId + "-" + this.privateColId + " > option[@value=" + this.privateDefaultValue + "]").attr("selected","true");
+
+				}else{
+					alog("	그룹 타입이 없습니다");
+				}
+
+			}else{
+				alert("서버 조회중 에러가 발생했습니다.\nRTN_CD : " + data.RTN_CD + "\nERR_CD : " + data.ERR_CD + "\nRTN_MSG :" + data.RTN_MSG);
+			}
+		},
+		error: function(error){
+			alert("Error:" + error);
+		}
+	});
+
+	alog("   setCodeCombo----------------------end");
+
+}
+
+
+
+
 function setCodeCombo(tGrptype, tCombo, tPcd){
 	alog("   setCodeCombo----------------------start");
 	//alog("		tPcd = " + tPcd);
@@ -349,6 +455,104 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 
 }
 
+
+
+
+function apiCodeCheck(tGrpId, tColId, tJsonParam, tDefaultValue){
+	alog("   apiCodeCheck----------------------start : tGrpId=" + tGrpId + ", tColId=" + tColId);
+	alog("		tGrpId = " + tGrpId);		
+	alog("		tColId = " + tColId);	
+	//alog("		tPcd = " + tPcd);
+
+	if(tColId == "")return;
+
+	//alert(tCheckVal);
+
+
+	//alert(arrCheckVal.length);
+
+	//불러오기
+	$.ajax({
+		type : "GET",
+		url : CFG_URL_CODE_API,
+		data : tJsonParam,
+		privateGrpId : tGrpId,
+		privateColId : tColId,
+		privateDefaultValue : tDefaultValue,
+		dataType: "json",
+		async: false,
+		success: function(data){
+			alog("   apiCodeCheck json return----------------------");
+			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
+			//alog("   json RTN_CD : " + data.RTN_CD);
+			//alog("   json ERR_CD : " + data.ERR_CD);
+			//alog("   json RTN_MSG length : " + data.RTN_MSG.length);
+			var arrCheckVal;
+			if(this.privateDefaultValue == ""){
+				 arrCheckVal = new Array();
+			}else{
+				 arrCheckVal = this.privateDefaultValue.split(",");
+			}
+
+			tCheckNm = this.privateGrpId + "-" + this.privateColId;
+			 
+			//그리드에 데이터 반영
+			if(data.RTN_CD == "200"){
+				if(grpInfo.get(this.privateGrpId).GRPTYPE == "GRID"){
+					alert("GRID는 지원하지 않는 타입입니다.")
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "CONDITION"){
+					if(!data.RTN_DATA)return;
+					alog("	코드수 : " + data.RTN_DATA.rows.length);
+					//$("#" + tCheckNm + "-HOLDER").html(""); //비우기
+
+					strSpace = "";
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						cd = data.RTN_DATA.rows[i].data[0];
+						nm = data.RTN_DATA.rows[i].data[1];
+						alog(cd + "=" + nm);
+						var chkText = "";
+						for(var k=0;k<arrCheckVal.length;k++){
+							if(arrCheckVal[k] == val)chkText = "checked";
+						}
+
+						if(i>0)strSpace = "&nbsp;";						
+						$("#" + tCheckNm + "-HOLDER").append(strSpace + "<input type=checkbox name='" + tCheckNm + "' id='" + tCheckNm + "' value='" + cd + "' " + chkText + ">" + nm);
+					}
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "FORMVIEW"){
+					if(!data.RTN_DATA)return;
+					alog("	코드수 : " + data.RTN_DATA.rows.length);
+					//$("#" + tCheckNm + "-HOLDER").html(""); //비우기
+
+					strSpace = "";
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						cd = data.RTN_DATA.rows[i].data[0];
+						nm = data.RTN_DATA.rows[i].data[1];
+						alog(cd + "=" + nm);
+
+						var chkText = "";
+						for(var k=0;k<arrCheckVal.length;k++){
+							if(arrCheckVal[k] == val)chkText = "checked";
+						}
+								
+						if(i>0)strSpace = "&nbsp;";								
+						$("#" + tCheckNm + "-HOLDER").append(strSpace + "<input type=checkbox name='" + tCheckNm + "' id='" + tCheckNm + "' value='" + cd + "' " + chkText + ">" + nm);
+					}
+				}else{
+					alog("	그룹 타입이 없습니다");
+				}
+
+			}else{
+				alert("서버 조회중 에러가 발생했습니다.\nRTN_CD : " + data.RTN_CD + "\nERR_CD : " + data.ERR_CD + "\nRTN_MSG :" + data.RTN_MSG);
+			}
+		},
+		error: function(error){
+			alert("Error:" + error);
+		}
+	});
+
+	//alog("   setGridCombo----------------------end");
+
+}
 
 
 function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
@@ -438,6 +642,92 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 }
 
 
+function apiCodeRadio(tGrpId, tColId, tJsonParam, tDefaultValue){
+	alog("   apiCodeRadio----------------------start : tGrpId=" + tGrpId + ", tColId=" + tColId);
+	alog("		tGrpId = " + tGrpId);		
+	alog("		tColId = " + tColId);	
+	//alog("		tPcd = " + tPcd);
+
+	if(tColId == "")return;
+	if(typeof tColId == 'object'){
+		alert("apiCodeRadio는 라디오 오브젝트를 처리할수 없습니다.(라디오 오브젝트 이름으로 호출필요)");
+		return;
+	}
+
+	//불러오기
+	$.ajax({
+		type : "GET",
+		url : CFG_URL_CODE_API,
+		data : tJsonParam,
+		privateGrpId : tGrpId,
+		privateColId : tColId,
+		privateDefaultValue : tDefaultValue,
+		dataType: "json",
+		async: false,
+		success: function(data){
+			alog("   getCodeJson json return----------------------");
+			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
+			//alog("   json RTN_CD : " + data.RTN_CD);
+			//alog("   json ERR_CD : " + data.ERR_CD);
+			//alog("   json RTN_MSG length : " + data.RTN_MSG.length);
+
+
+			tRadioNm = this.privateGrpId + "-" + this.privateColId;
+
+			//그리드에 데이터 반영
+			if(data.RTN_CD == "200"){
+				if(grpInfo.get(this.privateGrpId).GRPTYPE == "GRID"){
+					alert("(apiCodeRadio) GRID는 지원하지 않는 타입입니다.")
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "CONDITION"){
+					if(!data.RTN_DATA)return;
+					alog("	코드수 : " + data.RTN_DATA.rows.length);
+					//$("#" + tRadioNm + "-HOLDER").html(""); //비우기
+					
+					strSpace = "";
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						cd = data.RTN_DATA.rows[i].data[0];
+						nm = data.RTN_DATA.rows[i].data[1];
+						alog(cd + "=" + nm);
+
+						var chkText = "";
+						if(this.privateDefaultValue == cd)chkText = "checked";
+
+						if(i>0)strSpace = "&nbsp;";
+						$("#" + tRadioNm + "-HOLDER").append(strSpace + "<input type=radio name='" + tRadioNm + "' id='" + tRadioNm + "' value='" + cd + "' " + chkText + ">" + nm);
+					}
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "FORMVIEW"){
+					if(!data.RTN_DATA)return;
+					alog("	코드수 : " + data.RTN_DATA.rows.length);
+					//$("#" + tRadioNm + "-HOLDER").html(""); //비우기
+
+					strSpace = "";
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						cd = data.RTN_DATA.rows[i].data[0];
+						nm = data.RTN_DATA.rows[i].data[1];
+						alog(cd + "=" + nm);
+
+						var chkText = "";
+						if(this.privateDefaultValue == cd)chkText = "checked";
+
+						if(i>0)strSpace = "&nbsp;";
+						$("#" + tRadioNm + "-HOLDER").append(strSpace + "<input type=radio name='" + tRadioNm + "' id='" + tRadioNm + "' value='" + cd + "' " + chkText + ">" + nm);
+					}
+				}else{
+					alog("	그룹 타입이 없습니다");
+				}
+
+			}else{
+				alert("서버 조회중 에러가 발생했습니다.\nRTN_CD : " + data.RTN_CD + "\nERR_CD : " + data.ERR_CD + "\nRTN_MSG :" + data.RTN_MSG);
+			}
+		},
+		error: function(error){
+			alert("Error:" + error);
+		}
+	});
+
+	//alog("   setGridCombo----------------------end");
+
+}
 
 
 function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
