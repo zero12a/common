@@ -36,13 +36,18 @@ codemirror 폰트 사이즈 문제로 전체 오브젝트 적용은 없앴음.
     border: 1px solid #909090;
 }
 
-input[type=text]:-moz-read-only { /* For Firefox */
-    background-color: silver;
+textarea:-moz-read-only, input[type="radio"]:-moz-read-only, input[type="text"]:-moz-read-only { /* For Firefox */
+    background-color: rgb(255, 241, 220);
 }
 
-input[type=text]:read-only {
-    background-color: silver;
+textarea:read-only, input[type="radio"]:read-only, input[type="text"]:read-only {
+    background-color: rgb(255, 241, 220);
 }
+
+select:disabled, input[type="radio"]:disabled, input[type="checkbox"]:disabled {
+    background-color: rgb(255, 228, 220);
+}
+
 
 .BODY_BOX {overflow:visible;width:100%;background-color:rgb(98, 166, 245);padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;z-index:1;
     font-family: "Nanum Gothic", sans-serif;font-size: 11px;
