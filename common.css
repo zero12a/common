@@ -44,10 +44,13 @@ textarea:read-only, input[type="radio"]:read-only, input[type="text"]:read-only 
     background-color: rgb(255, 241, 220);
 }
 
-select:disabled, input[type="radio"]:disabled, input[type="checkbox"]:disabled {
+select:disabled{
     background-color: rgb(255, 228, 220);
 }
 
+input[type="radio"]:disabled, input[type="checkbox"]:disabled {
+    background: rgb(223, 255, 220);
+}
 
 .BODY_BOX {overflow:visible;width:100%;background-color:rgb(98, 166, 245);padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;z-index:1;
     font-family: "Nanum Gothic", sans-serif;font-size: 11px;
@@ -189,3 +192,25 @@ canvas {
     background-position: right;
     background-repeat: no-repeat;
 }
+
+/*
+******************************************** 
+** signature pad 
+******************************************** 
+*/
+.signpad_div {
+    position: relative;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0px solid blue;
+  }
+  
+  .signpad_canvas {
+    position: absolute;
+    left: 0;
+    top: 31px;
+    background-color: white;
+    border: 1px solid silver;
+  }
