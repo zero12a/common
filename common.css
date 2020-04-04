@@ -195,10 +195,20 @@ canvas {
 
 /*
 ******************************************** 
+** signature pad & codemirror button
+******************************************** 
+*/
+.fnc_button {
+    border: 1px solid gray;
+   }
+
+/*
+******************************************** 
 ** signature pad 
 ******************************************** 
 */
-.signpad_div {
+
+   .signpad_div {
     position: relative;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -210,7 +220,7 @@ canvas {
   .signpad_canvas {
     position: absolute;
     left: 0;
-    top: 31px;
+    top: 24px;
     background-color: white;
     border: 1px solid silver;
   }
