@@ -62,8 +62,118 @@ function eXcell_button(cell){ //the eXcell name is defined here
 		}
 	}
 }
+
+
+
+function eXcell_dropdown(a) {
+    try {
+        this.cell = a;
+        this.grid = this.cell.parentNode.grid
+    } catch (c) {}
+    this.edit = function() {
+		//alog("eXcell_dropdown2() edit...................start");
+		this.val = this.getValue();
+		this.text = this.getText()._dhx_trim();
+		//alog("	this.val=" + this.val);
+		//alog("	this.text=" + this.text);
+        var g = (this.cell._combo || this.grid.clists[this.cell._cellIndex]);
+        if (!g) {
+            return
+        }
+        this.obj = document.createElement("DIV");
+        var e = this.val.split(",");
+        var o = "";
+        for (var m = 0; m < g.length; m++) {
+
+            var n = false;
+            for (var h = 0; h < e.length; h++) {
+				alog(m + ", " + h + " [" + g[m].cd._dhx_trim() + " = " + e[h] + "]");
+                if (g[m].cd._dhx_trim() == e[h]) {
+                    n = true
+                }
+            }
+            if (n) {
+                o += "<div><input type='checkbox' id='dhx_clist_" + m + "' checked='true' value='" + g[m].cd + "'/><label for='dhx_clist_" + m + "'>" + g[m].nm + "</label></div>"
+            } else {
+                o += "<div><input type='checkbox' id='dhx_clist_" + m + "'  value='" + g[m].cd + "' /><label for='dhx_clist_" + m + "'>" + g[m].nm + "</label></div>"
+            }
+        }
+        o += "<div><input type='button' value='" + (this.grid.applyButtonText || "Apply") + "' style='width:100px; font-size:8pt;' onclick='this.parentNode.parentNode.editor.grid.editStop();'/></div>";
+        this.obj.editor = this;
+        this.obj.innerHTML = o;
+        document.body.appendChild(this.obj);
+        this.obj.style.position = "absolute";
+        this.obj.className = "dhx_clist";
+        this.obj.onclick = function(r) {
+            (r || event).cancelBubble = true;
+            return true
+        };
+        var l = this.grid.getPosition(this.cell);
+        this.obj.style.left = l[0] + "px";
+        this.obj.style.top = l[1] + this.cell.offsetHeight + "px";
+        this.obj.getValue = function() {
+            var s = "";
+            for (var r = 0; r < this.childNodes.length - 1; r++) {
+                if (this.childNodes[r].childNodes[0].checked) {
+                    if (s) {
+                        s += ","
+					}
+					s += this.childNodes[r].childNodes[0].value;
+                    //s += this.childNodes[r].childNodes[1].innerHTML
+                }
+            }
+            return s.replace(/&amp;/g, "&")
+        }
+	};
+	this.getValue=function(){
+        return this.cell.firstChild.getAttribute("value"); // get button label
+    };
+	this.setValue=function(val){
+		//alog("eXcell_dropdown2() setValue................................start");		
+		rowId = this.cell.parentNode.idd;
+		colIndex = this.cell.cellIndex;
+
+		var g = this.grid.clists[this.cell.cellIndex];
+        if (!g) {
+            g = new Array();
+		}
+		var e = val.split(",");
+		nm = "";
+		for(i=0;i<e.length;i++){
+			for (m = 0; m < g.length; m++) {
+				alog(i + "," + m + " [" + e[i]._dhx_trim() + "=" + g[m].cd + "]");
+				if(e[i]._dhx_trim() == g[m].cd){
+					if(nm != "")nm+=", ";
+					nm += g[m].nm;
+				}
+			}
+		}
+		if(nm =="")nm=val;
+		//alog("nm=" + nm);
+		//alog("cd=" + val);
+		
+		this.setCValue("<span value='" + val + "'>" + nm + "</span>",val);//NM,CD
+	};
+	this.getText = function() {
+		//alog("eXcell_dropdown() getText...................start");
+		return this.cell.childNodes[0].innerHTML; // gets the value;
+	};
+
+    this.detach = function(e) {
+		//alog("eXcell_dropdown() detach...................start");
+        if (this.obj) {
+            this.setValue(this.obj.getValue());
+            this.obj.editor = null;
+            this.obj.parentNode.removeChild(this.obj);
+            this.obj = null
+        }
+        return this.val != this.getValue()
+    }
+}
+
 if(typeof eXcell !== 'undefined'){
 	eXcell_button.prototype = new eXcell;// nests all other methods from the base class
+	eXcell_dropdown.prototype = new eXcell;// nests all other methods from the base class
 }
 
 
@@ -272,6 +382,63 @@ function setCodeYN(tGrptype, tCombo, tPcd){
 
 }
 
+function apiCodeDropDown(tGrpId, tColId, tJsonParam, tDefaultValue){
+	alog("   apiCodeDropDown----------------------start : tGrpId=" + tGrpId + ", tColId=" + tColId);
+
+	$.ajax({
+		type : "GET",
+		url : CFG_URL_CODE_API,
+		data : tJsonParam,
+		privateGrpId : tGrpId,
+		privateColId : tColId,
+		privateDefaultValue : tDefaultValue,
+		dataType: "json",
+		async: true,
+		success: function(data){
+			alog("   apiCodeDropDown json return----------------------");
+			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
+			//alog("   json RTN_CD : " + data.RTN_CD);
+			//alog("   json ERR_CD : " + data.ERR_CD);
+			//alog("   json RTN_MSG length : " + data.RTN_MSG.length);
+
+			//그리드에 데이터 반영
+			if(data.RTN_CD == "200"){
+				if(grpInfo.get(this.privateGrpId).GRPTYPE == "GRID"){
+					if(!data.RTN_DATA)return;
+					//alog("	코드수 : " + data.RTN_DATA.rows.length);
+					
+					this.tGrid = eval("mygrid"+this.privateGrpId); //그리드 오브젝트 얻기
+					
+					//make arr (cd:cd1,nm:nm1)
+					tarr = [];
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+						cd = data.RTN_DATA.rows[i].data[0];
+						nm = data.RTN_DATA.rows[i].data[1];
+						tarr[i] = {"cd": cd, "nm": nm};
+					}
+
+					this.tGrid.registerCList(this.tGrid.getColIndexById(this.privateColId),tarr);
+
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "CONDITION"){
+					
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "FORMVIEW"){
+					
+				}else{
+					alog("	그룹 타입이 없습니다");
+				}
+
+			}else{
+				alert("서버 조회중 에러가 발생했습니다.\nRTN_CD : " + data.RTN_CD + "\nERR_CD : " + data.ERR_CD + "\nRTN_MSG :" + data.RTN_MSG);
+			}
+		},
+		error: function(error){
+			alert("Error:" + error);
+		}
+	});
+
+	alog("   apiCodeDropDown----------------------end");
+}
 
 function apiCodeCombo(tGrpId, tColId, tJsonParam, tDefaultValue){
 	alog("   apiCodeCombo----------------------start : tGrpId=" + tGrpId + ", tColId=" + tColId);
