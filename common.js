@@ -93,12 +93,12 @@ function eXcell_dropdown(a) {
                 }
             }
             if (n) {
-                o += "<div><input type='checkbox' id='dhx_clist_" + m + "' checked='true' value='" + g[m].cd + "'/><label for='dhx_clist_" + m + "'>" + g[m].nm + "</label></div>"
+                o += "<div class='dropDownChkDiv'><input type='checkbox' id='dhx_clist_" + m + "' checked='true' value='" + g[m].cd + "'/><label for='dhx_clist_" + m + "'>" + g[m].nm + "</label></div>"
             } else {
-                o += "<div><input type='checkbox' id='dhx_clist_" + m + "'  value='" + g[m].cd + "' /><label for='dhx_clist_" + m + "'>" + g[m].nm + "</label></div>"
+                o += "<div class='dropDownChkDiv'><input type='checkbox' id='dhx_clist_" + m + "'  value='" + g[m].cd + "' /><label for='dhx_clist_" + m + "'>" + g[m].nm + "</label></div>"
             }
         }
-        o += "<div><input type='button' value='" + (this.grid.applyButtonText || "Apply") + "' style='width:100px; font-size:8pt;' onclick='this.parentNode.parentNode.editor.grid.editStop();'/></div>";
+        o += "<div><input type='button' value='" + (this.grid.applyButtonText || "Apply") + "' style='width:100%; font-size:8pt;' onclick='this.parentNode.parentNode.editor.grid.editStop();'/></div>";
         this.obj.editor = this;
         this.obj.innerHTML = o;
         document.body.appendChild(this.obj);

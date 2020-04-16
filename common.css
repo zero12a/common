@@ -164,6 +164,18 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td img{
     margin: 2px 0px 3px 0px
 }
 
+/* dropDown */
+.dropDownChkDiv{
+    background-color:white;
+    height:22px;
+    padding:2px 0px 0px 3px;
+}
+.dropDownChkDiv:hover{
+    background-color:silver;
+}
+label{
+    font-size: 11px;
+}
 
 /*
 ******************************************** 
