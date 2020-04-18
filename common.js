@@ -80,8 +80,8 @@ function eXcell_dropdown(a) {
         if (!g) {
             return
         }
-        this.obj = document.createElement("DIV");
-        var e = this.val.split(",");
+		this.obj = document.createElement("DIV");
+        var e = this.val.toString().split(",");
         var o = "";
         for (var m = 0; m < g.length; m++) {
 
@@ -137,7 +137,7 @@ function eXcell_dropdown(a) {
         if (!g) {
             g = new Array();
 		}
-		var e = val.split(",");
+		var e = val.toString().split(",");
 		nm = "";
 		for(i=0;i<e.length;i++){
 			for (m = 0; m < g.length; m++) {
