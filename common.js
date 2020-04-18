@@ -402,6 +402,7 @@ function apiCodeDropDown(tGrpId, tColId, tJsonParam, tDefaultValue){
 			//alog("   json RTN_MSG length : " + data.RTN_MSG.length);
 
 			//그리드에 데이터 반영
+			alog("	GRPTYPE = " + grpInfo.get(this.privateGrpId).GRPTYPE);
 			if(data.RTN_CD == "200"){
 				if(grpInfo.get(this.privateGrpId).GRPTYPE == "GRID"){
 					if(!data.RTN_DATA)return;
@@ -418,12 +419,28 @@ function apiCodeDropDown(tGrpId, tColId, tJsonParam, tDefaultValue){
 						tarr[i] = {"cd": cd, "nm": nm};
 					}
 
-					this.tGrid.registerCList(this.tGrid.getColIndexById(this.privateColId),tarr);
+					this.tGrid.registerCList(this.tGrid.getColIndexById(this.privateColId),tarr);//값세팅하기
 
 				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "CONDITION"){
-					
+					tarr = [];
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+						value = data.RTN_DATA.rows[i].data[0];
+						name = data.RTN_DATA.rows[i].data[1];
+						tarr[i] = {"value": value, "name": name};
+					}
+
+					$("#" + this.privateGrpId + "-" + this.privateColId).multiselect( 'loadOptions', tarr);//값세팅하기
 				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "FORMVIEW"){
-					
+					tarr = [];
+					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						//alog("		" + data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						value = data.RTN_DATA.rows[i].data[0];
+						name = data.RTN_DATA.rows[i].data[1];
+						tarr[i] = {"value": value, "name": name};
+					}
+					//alog(tarr);
+					$("#" + this.privateGrpId + "-" + this.privateColId).multiselect( 'loadOptions', tarr);//값세팅하기
 				}else{
 					alog("	그룹 타입이 없습니다");
 				}
