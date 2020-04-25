@@ -87,7 +87,7 @@ function eXcell_dropdown(a) {
 
             var n = false;
             for (var h = 0; h < e.length; h++) {
-				alog(m + ", " + h + " [" + g[m].cd._dhx_trim() + " = " + e[h] + "]");
+				//alog(m + ", " + h + " [" + g[m].cd._dhx_trim() + " = " + e[h] + "]");
                 if (g[m].cd._dhx_trim() == e[h]) {
                     n = true
                 }
@@ -141,7 +141,7 @@ function eXcell_dropdown(a) {
 		nm = "";
 		for(i=0;i<e.length;i++){
 			for (m = 0; m < g.length; m++) {
-				alog(i + "," + m + " [" + e[i]._dhx_trim() + "=" + g[m].cd + "]");
+				//alog(i + "," + m + " [" + e[i]._dhx_trim() + "=" + g[m].cd + "]");
 				if(e[i]._dhx_trim() == g[m].cd){
 					if(nm != "")nm+=", ";
 					nm += g[m].nm;
@@ -317,7 +317,7 @@ function addRowLast(tGrid,tCols){
 
 
 function setCodeYN(tGrptype, tCombo, tPcd){
-	alog("   setGridCombo----------------------start");
+	alog("(common)   setCodeYN----------------------start");
 	//alog("		tPcd = " + tPcd);
 	
 	//alert(tCombo);
@@ -644,8 +644,8 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 
 function apiCodeCheck(tGrpId, tColId, tJsonParam, tDefaultValue){
 	alog("   apiCodeCheck----------------------start : tGrpId=" + tGrpId + ", tColId=" + tColId);
-	alog("		tGrpId = " + tGrpId);		
-	alog("		tColId = " + tColId);	
+	//alog("		tGrpId = " + tGrpId);		
+	//alog("		tColId = " + tColId);	
 	//alog("		tPcd = " + tPcd);
 
 	if(tColId == "")return;
@@ -693,7 +693,7 @@ function apiCodeCheck(tGrpId, tColId, tJsonParam, tDefaultValue){
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
 						cd = data.RTN_DATA.rows[i].data[0];
 						nm = data.RTN_DATA.rows[i].data[1];
-						alog(cd + "=" + nm);
+						//alog(cd + "=" + nm);
 						var chkText = "";
 						for(var k=0;k<arrCheckVal.length;k++){
 							if(arrCheckVal[k] == val)chkText = "checked";
@@ -711,7 +711,7 @@ function apiCodeCheck(tGrpId, tColId, tJsonParam, tDefaultValue){
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
 						cd = data.RTN_DATA.rows[i].data[0];
 						nm = data.RTN_DATA.rows[i].data[1];
-						alog(cd + "=" + nm);
+						//alog(cd + "=" + nm);
 
 						var chkText = "";
 						for(var k=0;k<arrCheckVal.length;k++){
@@ -740,10 +740,10 @@ function apiCodeCheck(tGrpId, tColId, tJsonParam, tDefaultValue){
 
 
 function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
-	alog("   setCodeCheck----------------------start");
-	alog("		tGrptype = " + tGrptype);		
-	alog("		tCheckNm = " + tCheckNm);	
-	alog("		tPcd = " + tPcd);
+	alog("(common) setCodeCheck----------------------start : tGrptype=" + tGrptype + ", tCheckNm=" + tCheckNm + ", tPcd=" + tPcd);
+	//alog("		tGrptype = " + tGrptype);		
+	//alog("		tCheckNm = " + tCheckNm);	
+	//alog("		tPcd = " + tPcd);
 
 	if(tCheckNm == "")return;
 
@@ -765,7 +765,7 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 		dataType: "json",
 		async: false,
 		success: function(data){
-			alog("   getCodeJson json return----------------------");
+			alog("(common) setCodeCheck json return----------------------");
 			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
 			//alog("   json RTN_CD : " + data.RTN_CD);
 			//alog("   json ERR_CD : " + data.ERR_CD);
@@ -782,7 +782,7 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 						var chkText = "";
 						for(var k=0;k<arrCheckVal.length;k++){
 							if(arrCheckVal[k] == data.RTN_DATA.rows[i][0])chkText = "checked";
@@ -798,7 +798,7 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 
 						var chkText = "";
 						for(var k=0;k<arrCheckVal.length;k++){
@@ -827,9 +827,9 @@ function setCodeCheck(tGrptype, tCheckNm, tPcd, tCheckVal){
 
 
 function apiCodeRadio(tGrpId, tColId, tJsonParam, tDefaultValue){
-	alog("   apiCodeRadio----------------------start : tGrpId=" + tGrpId + ", tColId=" + tColId);
-	alog("		tGrpId = " + tGrpId);		
-	alog("		tColId = " + tColId);	
+	alog("(common) apiCodeRadio()----------------------start : tGrpId=" + tGrpId + ", tColId=" + tColId);
+	//alog("		tGrpId = " + tGrpId);		
+	//alog("		tColId = " + tColId);	
 	//alog("		tPcd = " + tPcd);
 
 	if(tColId == "")return;
@@ -849,7 +849,7 @@ function apiCodeRadio(tGrpId, tColId, tJsonParam, tDefaultValue){
 		dataType: "json",
 		async: false,
 		success: function(data){
-			alog("   getCodeJson json return----------------------");
+			alog("(common) apiCodeRadio() json return----------------------");
 			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
 			//alog("   json RTN_CD : " + data.RTN_CD);
 			//alog("   json ERR_CD : " + data.ERR_CD);
@@ -871,7 +871,7 @@ function apiCodeRadio(tGrpId, tColId, tJsonParam, tDefaultValue){
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
 						cd = data.RTN_DATA.rows[i].data[0];
 						nm = data.RTN_DATA.rows[i].data[1];
-						alog(cd + "=" + nm);
+						//alog(cd + "=" + nm);
 
 						var chkText = "";
 						if(this.privateDefaultValue == cd)chkText = "checked";
@@ -888,7 +888,7 @@ function apiCodeRadio(tGrpId, tColId, tJsonParam, tDefaultValue){
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
 						cd = data.RTN_DATA.rows[i].data[0];
 						nm = data.RTN_DATA.rows[i].data[1];
-						alog(cd + "=" + nm);
+						//alog(cd + "=" + nm);
 
 						var chkText = "";
 						if(this.privateDefaultValue == cd)chkText = "checked";
@@ -915,10 +915,10 @@ function apiCodeRadio(tGrpId, tColId, tJsonParam, tDefaultValue){
 
 
 function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
-	alog("   setCodeRadio----------------------start");
-	alog("		tGrptype = " + tGrptype);		
-	alog("		tRadioNm = " + typeof tRadioNm);	
-	alog("		tPcd = " + tPcd);
+	alog("(common) setCodeRadio()----------------------start ");
+	//alog("		tGrptype = " + tGrptype);		
+	//alog("		tRadioNm = " + typeof tRadioNm);	
+	//alog("		tPcd = " + tPcd);
 
 	if(tRadioNm == "")return;
 	if(typeof tRadioNm == 'object'){
@@ -934,7 +934,7 @@ function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
 		dataType: "json",
 		async: false,
 		success: function(data){
-			alog("   getCodeJson json return----------------------");
+			alog("(common) setCodeRadio() json return----------------------");
 			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
 			//alog("   json RTN_CD : " + data.RTN_CD);
 			//alog("   json ERR_CD : " + data.ERR_CD);
@@ -951,7 +951,7 @@ function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
 					
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 
 						var chkText = "";
 						if(tCheckVal == data.RTN_DATA.rows[i][0])chkText = "checked";
@@ -966,7 +966,7 @@ function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 
 						var chkText = "";
 						if(tCheckVal == data.RTN_DATA.rows[i][0])chkText = "checked";
@@ -993,7 +993,7 @@ function setCodeRadio(tGrptype, tRadioNm, tPcd, tCheckVal){
 
 
 function setCodeCheckSvc(tGrptype, tCheckNm, tPcd, tCheckVal){
-	alog("   setCodeCheckSvc----------------------start");
+	alog("(common) setCodeCheckSvc()----------------------start");
 	alog("		tGrptype = " + tGrptype);		
 	alog("		tCheckNm = " + tCheckNm);	
 	alog("		tPcd = " + tPcd);
@@ -1018,7 +1018,7 @@ function setCodeCheckSvc(tGrptype, tCheckNm, tPcd, tCheckVal){
 		dataType: "json",
 		async: false,
 		success: function(data){
-			alog("   getCodeJson json return----------------------");
+			alog("(common) setCodeCheckSvc() json return----------------------");
 			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
 			//alog("   json RTN_CD : " + data.RTN_CD);
 			//alog("   json ERR_CD : " + data.ERR_CD);
@@ -1035,7 +1035,7 @@ function setCodeCheckSvc(tGrptype, tCheckNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						//alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
 						var chkText = "";
 						for(var k=0;k<arrCheckVal.length;k++){
 							if(arrCheckVal[k] == data.RTN_DATA.rows[i].data[0])chkText = "checked";
@@ -1050,7 +1050,7 @@ function setCodeCheckSvc(tGrptype, tCheckNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						//alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
 
 						var chkText = "";
 						for(var k=0;k<arrCheckVal.length;k++){
@@ -1080,7 +1080,7 @@ function setCodeCheckSvc(tGrptype, tCheckNm, tPcd, tCheckVal){
 
 
 function setCodeRadioSvc(tGrptype, tRadioNm, tPcd, tCheckVal){
-	alog("   setCodeRadioSvc----------------------start");
+	alog("(common) setCodeRadioSvc()----------------------start");
 	alog("		tGrptype = " + tGrptype);		
 	alog("		tRadioNm = " + tRadioNm);	
 	alog("		tPcd = " + tPcd);
@@ -1095,7 +1095,7 @@ function setCodeRadioSvc(tGrptype, tRadioNm, tPcd, tCheckVal){
 		dataType: "json",
 		async: false,
 		success: function(data){
-			alog("   getCodeJson json return----------------------");
+			alog("(common) setCodeRadioSvc() json return----------------------");
 			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
 			//alog("   json RTN_CD : " + data.RTN_CD);
 			//alog("   json ERR_CD : " + data.ERR_CD);
@@ -1112,7 +1112,7 @@ function setCodeRadioSvc(tGrptype, tRadioNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						//alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
 
 						var chkText = "";
 						if(tCheckVal == data.RTN_DATA.rows[i].data[0])chkText = "checked";
@@ -1127,7 +1127,7 @@ function setCodeRadioSvc(tGrptype, tRadioNm, tPcd, tCheckVal){
 
 					strSpace = "";
 					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+						//alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
 						
 						var chkText = "";
 						if(tCheckVal == data.RTN_DATA.rows[i].data[0])chkText = "checked";
@@ -1156,7 +1156,7 @@ function setCodeRadioSvc(tGrptype, tRadioNm, tPcd, tCheckVal){
 
 
 function setCodeComboSvc(tGrptype, tCombo, tPcd, tFristNm){
-	//alog("   setGridCombo----------------------start");
+	alog("(common) setCodeComboSvc()----------------------start");
 	//alog("		tPcd = " + tPcd);
 
 	if(!tCombo)return;
@@ -1169,7 +1169,7 @@ function setCodeComboSvc(tGrptype, tCombo, tPcd, tFristNm){
 		dataType: "json",
 		async: false,
 		success: function(data){
-			//alog("   getCodeJson json return----------------------");
+			alog("(common) setCodeComboSvc() json return----------------------");
 			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
 			//alog("   json RTN_CD : " + data.RTN_CD);
 			//alog("   json ERR_CD : " + data.ERR_CD);
