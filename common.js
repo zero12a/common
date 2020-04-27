@@ -32,10 +32,10 @@ function eXcell_button(cell){ //the eXcell name is defined here
 	// the cell is read-only, so it's always in the disabled state
 	this.isDisabled = function(){ return true; }
 	this.getValue=function(){
-		if(this.cell.firstChild == null){
+		if(this.cell.firstChild == null  || this.cell.firstChild.firstChild == null){
 			return "";
 		}else{
-			return this.cell.firstChild.id; // get button label
+			return this.cell.firstChild.firstChild.id; // get button label
 		}
 	}	
 	this.setValue=function(val){
@@ -53,8 +53,8 @@ function eXcell_button(cell){ //the eXcell name is defined here
 			//alog("parentNode.idd = " + this.cell.parentNode.idd);
 			alog("cell.cellIndex = " + colIndex);
 			//alog("this.grid.getUserData(GRPID) = " + this.grid.getUserData("","GRPID"));	
-			tStr += "<span  id=\"" + tValue + "\" >" + tText + "</span>";
-			tStr += "<input type=\"image\" src=\"" + CFG_URL_LIBS_ROOT + "img/search.png\" height=20 style=\"vertical-align:middle;\" onclick=\"goGridPopOpen('" + tGrpId + "','" + rowId + "','" + colIndex + "','" +  tValue + "','" + tText + "',this)\">";
+			tStr += "<div style='text-align:right;' ><span id=\"" + tValue + "\" >" + tText + "</span>";
+			tStr += "<input type=\"image\" src=\"" + CFG_URL_LIBS_ROOT + "img/search.png\" height=20 style=\"vertical-align:middle;\" onclick=\"goGridPopOpen('" + tGrpId + "','" + rowId + "','" + colIndex + "','" +  tValue + "','" + tText + "',this)\"></div>";
 			
 			this.setCValue(tStr,tValue);//NM,CD
 		}else{
