@@ -22,8 +22,8 @@ var dateFormatJson = {
 	buttonText: "Select date"
 	};
 
-//DHTMLX 버튼 타입 정의
-function eXcell_button(cell){ //the eXcell name is defined here
+//DHTMLX 코드서치팝업 타입 정의
+function eXcell_codesearch(cell){ //the eXcell name is defined here
 	if (cell){                // the default pattern, just copy it
 		this.cell = cell;
 		this.grid = this.cell.parentNode.grid;
@@ -172,7 +172,7 @@ function eXcell_dropdown(a) {
 }
 
 if(typeof eXcell !== 'undefined'){
-	eXcell_button.prototype = new eXcell;// nests all other methods from the base class
+	eXcell_codesearch.prototype = new eXcell;// nests all other methods from the base class
 	eXcell_dropdown.prototype = new eXcell;// nests all other methods from the base class
 }
 
