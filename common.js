@@ -317,7 +317,7 @@ function addRowLast(tGrid,tCols){
 
 
 function setCodeYN(tGrptype, tCombo, tPcd){
-	alog("(common)   setCodeYN----------------------start");
+	//alog("(common)   setCodeYN----------------------start");
 	//alog("		tPcd = " + tPcd);
 	
 	//alert(tCombo);
@@ -345,7 +345,7 @@ function setCodeYN(tGrptype, tCombo, tPcd){
 		tCombo.put("","");
 
 		for(var i=0;i<data.RTN_DATA.rows.length;i++){
-			alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+			//alog(data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
 
 			tCombo.put(data.RTN_DATA.rows[i].data[0],data.RTN_DATA.rows[i].data[1]);
 		}
@@ -564,7 +564,7 @@ function apiCodeCombo(tGrpId, tColId, tJsonParam, tDefaultValue){
 
 
 function setCodeCombo(tGrptype, tCombo, tPcd){
-	alog("   setCodeCombo----------------------start");
+	alog("   setCodeCombo----------------------start : tGrptype = " + tGrptype + ", tPcd = " + tPcd);
 	//alog("		tPcd = " + tPcd);
 
 	if(!tCombo)return;
@@ -635,7 +635,7 @@ function setCodeCombo(tGrptype, tCombo, tPcd){
 		}
 	});
 
-	alog("   setCodeCombo----------------------end");
+	//alog("   setCodeCombo----------------------end");
 
 }
 
