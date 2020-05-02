@@ -124,8 +124,8 @@ function configReload(){
     if(!$stmt)alog("500/300/SQL makeStmt create fail 실패");
     if(!$stmt->execute())alog("500/100/stmt execute fail 실패" . $db->errno . " -> " . $db->error);
 
-    $stmt->close();
-    $db->close();
+    closeStmt($stmt);
+    closeDb($db);
     if($db)unset($db);    
 }
 

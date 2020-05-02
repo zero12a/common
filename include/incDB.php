@@ -12,6 +12,28 @@ class dbServer
 	}
 }
 
+//db연결 정보로 db 종류 알아내기
+function getDbType($db){
+    $RtnVal = "";
+
+    if(method_exists($db,'getAttribute')){
+        $info = $db->getAttribute(constant("PDO::ATTR_SERVER_INFO"));
+        $ver = $db->getAttribute(constant("PDO::ATTR_SERVER_VERSION"));
+    }else{
+        $info = $db->server_info;
+        $ver = $db->server_version;
+    }
+
+    if(preg_match("/mariadb/i",$info.$ver,$mat)){
+        $RtnVal = "mariadb";
+    }else if(preg_match("/mariadb/i",$info.$ver,$mat)){
+        $RtnVal = "postgresql";
+    }else{
+        $RtnVal = "mysql";
+    }
+    return $RtnVal;
+}
+
 
 //mysqli bind_param call_user_func_array 용
 function refValues($arr){
@@ -662,6 +684,15 @@ function getSqlParam($sql,$coltype,$map){
         //echo "\ntosql : " . $tosql;
         //exit;
     }
+
+    //sequence 컬럼 추출
+    $RtnVal = array();
+    if(preg_match("/\s+nextval\((\s*|')([a-z0-9A-Z_]+)(\s*|')\)/i",$sql,$mat)){
+        //mat[0] : full match
+        //mat[2] : only sequence name
+        $RtnVal["SEQ_NM"] = $mat[2];
+    }
+
 
     //최종
     if($log)$log->info("to_coltype after : " . $to_coltype);    
@@ -2362,7 +2393,22 @@ function getStmtArrayNum(&$stmt){
                     $to_row["COLID"] = "";
                     if($row["userdata"] == "inserted"){
                         if($map["SEQYN"] == "Y"){
-                            if($stmt instanceof PDOStatement){
+                            //sequence nextval이 sql에 있으면
+                            if($sqlMap["SEQ_NM"] != "" ){
+                                //현재 db 세션에서 sequence 정보가져오기
+                                if(getDbType($db[$svrid]) == "mariadb"){
+                                    $sqlSeq = "select lastval(" . $sqlMap["SEQ_NM"] . ") as seq_val ";
+                                }else if(getDbType($db[$svrid]) == "postgresql"){
+                                    $sqlSeq = "select currval('" . $sqlMap["SEQ_NM"] . "') as seq_val  ";
+                                }
+                                $sqlMapSeq = getSqlParam($sqlSeq,'','');
+                                //var_dump($sqlMapSeq);
+                                $stmtSeq = getStmt($db[$svrid],$sqlMapSeq);
+                                if(!$stmtSeq) JsonMsg("500","221","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt create fail " . $db[$svrid]->errno . " -> " . $db[$svrid]->error);                
+                                $to_row["COLID"] = getStmtArray($stmtSeq)[0]["seq_val"];
+                                closeStmt($stmtSeq);
+
+                            }else if($stmt instanceof PDOStatement){
                                 alog("SEQYN Y : " . $db[$svrid]->lastInsertId());
                                 $to_row["COLID"]=$db[$svrid]->lastInsertId(); //insert문인 경우 insert id받기                            
                             }else{
@@ -2967,6 +3013,7 @@ function getStmtArrayNum(&$stmt){
             //$stmt = makeStmt($db[$tmpSql["SVRID"]], $tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $tParamEnc);
 
             $sqlMap = getSqlParam($tmpSql["SQLTXT"],$tmpSql["BINDTYPE"],$tParamEnc);
+
             $stmt = getStmt($db[$tmpSql["SVRID"]],$sqlMap);
 
             if(!$stmt)  JsonMsg("500","400","(makeFormviewSaveJsonArray)" . $tmpSql["SQLID"] . " stmt 생성 실패" . $db->errno . " -> " . $db->error);
@@ -2988,13 +3035,31 @@ function getStmtArrayNum(&$stmt){
         
                 $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;
         
+                //alog("  FNCTYPE = ". $map["FNCTYPE"] );
+                //alog("  SEQYN = ". $map["SEQYN"] );
                 if($map["FNCTYPE"] == "C" && $map["SEQYN"] == "Y"){
-                    if($stmt instanceof PDOStatement){
+
+                    //sequence nextval이 sql에 있으면
+                    if($sqlMap["SEQ_NM"] !="" ){
+                        //현재 db 세션에서 sequence 정보가져오기
+                        if(getDbType($db[$tmpSql["SVRID"]]) == "mariadb"){
+                            $sqlSeq = "select lastval(" . $sqlMap["SEQ_NM"] . ") as seq_val ";
+                        }else if(getDbType($db[$tmpSql["SVRID"]]) == "postgresql"){
+                            $sqlSeq = "select currval('" . $sqlMap["SEQ_NM"] . "') as seq_val  ";
+                        }
+                        $sqlMapSeq = getSqlParam($sqlSeq,'','');
+                        //var_dump($sqlMapSeq);
+                        $stmtSeq = getStmt($db[$tmpSql["SVRID"]],$sqlMapSeq);
+                        if(!$stmtSeq) JsonMsg("500","221","(makeFormviewSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt create fail " . $db[$svrid]->errno . " -> " . $db[$svrid]->error);                
+                        $RtnVal->NEW_ID = getStmtArray($stmtSeq)[0]["seq_val"];
+                        closeStmt($stmtSeq);
+                                            
+                    }else if($stmt instanceof PDOStatement){
                         alog("SEQYN Y : " . $db->lastInsertId());
-                        $RtnVal->COLID = $db->lastInsertId(); //insert문인 경우 insert id받기                            
+                        $RtnVal->NEW_ID = $db->lastInsertId(); //insert문인 경우 insert id받기                            
                     }else{
                         alog("SEQYN Y : " . $db->insert_id);
-                        $RtnVal->COLID = $db->insert_id;//insert문인 경우 insert id받기
+                        $RtnVal->NEW_ID = $db->insert_id;//insert문인 경우 insert id받기
                     }            
                 }
         

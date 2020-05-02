@@ -1406,7 +1406,13 @@ function saveToGroup(data){
 				}
 			}else if(data.GRP_DATA[i].GRP_TYPE == "FORMVIEW"){
 				alog("i[" + i + "] is FORMVIEW");
-				
+
+				//SEQ_COLID가 있는 경우 해당 입력에 값넣기
+				if(data.GRP_DATA[i].SEQ_COLID != ""){
+					$("#" + data.GRP_DATA[i].GRPID + "-" + data.GRP_DATA[i].SEQ_COLID).val(data.GRP_DATA[i].NEW_ID);
+				}
+
+				msgNotice("[" + data.GRP_DATA[i].GRPID + "]성공적으로 저장되었습니다.[영향받은건수:" + data.GRP_DATA[i].RTN_DATA + "]");
 			}else{
 				alog("i[" + i + "] is not GRID/FORMVIEW");
 			}

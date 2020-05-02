@@ -151,8 +151,8 @@ function dataSourceSaveRedisFromDB(){
     $stmt = makeStmt($db,$sql,$coltype,$REQ);
     if(!$stmt)JsonMsg("500","300","SQL makeStmt 생성 실패 했습니다.");
     $svrArray = getStmtArray($stmt);
-    $stmt->close();
-    $db->close();
+    closeStmt($stmt);
+    closeDb($db);
     if($db)unset($db);
 
     /*
