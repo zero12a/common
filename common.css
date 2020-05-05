@@ -142,8 +142,14 @@ div.gridbox_dhx_skyblue.gridbox{
 }
 /* 헤더 좌측여백없애고, 가운데 정렬 */
 td div.hdrcell input{
-    margin-top:4px;
+    margin-top:1px;
+    height:21px;
 }
+td div.hdrcell select{
+    margin-top:1px;
+    height:21px;
+}
+
 div.gridbox_dhx_skyblue.gridbox table.hdr td div.hdrcell{
     text-align: center;
     height: 23px;
