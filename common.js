@@ -176,7 +176,191 @@ if(typeof eXcell !== 'undefined'){
 	eXcell_dropdown.prototype = new eXcell;// nests all other methods from the base class
 }
 
+//체크 필터 정의
+if(typeof dhtmlXGridObject !== 'undefined'){
 
+
+
+	dhtmlXGridObject.prototype._in_header_dropdown_filter=function(a,b) {
+
+		var self=this;
+
+		a.innerHTML="<div style='align: center'><input type='hidden' id='ckFilter' value=''><div id ='comboContainer'></div></div>";
+		//a.innerHTML = "<select style='width: 100%;'><option value></option> <option value='1'>Yes</option><option value='0'>No</option></select>"
+		container = a.firstChild;
+		ckFilter = a.firstChild.childNodes[0];
+		comboBox = a.firstChild.childNodes[1];
+
+		myCombo = new dhtmlXCombo(comboBox,"comboFilterId");
+		myCombo.addOption(null,"");
+		myCombo.addOption(1, "Yes");
+		myCombo.addOption(0, "No");
+		
+		a.onselectstart=function(){
+			return event.cancelBubble=!0;
+		};
+
+		a.onclick=a.onmousedown=function(a){
+			return(a||event).cancelBubble=!0;
+		};
+		
+		this.makeFilter(ckFilter, b);
+		
+		ckFilter._filter=function(){
+			var a = this.value;
+			return (a == "") ? "" : function(b){
+				return a == b;
+			}
+		}
+		
+		this._filters_ready();
+		
+		myCombo.attachEvent("onChange", function(){
+			ckFilter.value = myCombo.getSelectedValue();
+			self.filterByAll();
+		});
+	}
+
+	//alert(1);
+	dhtmlXGridObject.prototype._in_header_ck2_filter=function(a,b) {
+
+		var self=this;
+
+		a.innerHTML="<div style='align: center'><input type='hidden' id='ckFilter' value=''><div id ='comboContainer'></div></div>";
+		//a.innerHTML = "<select style='width: 100%;'><option value></option> <option value='1'>Yes</option><option value='0'>No</option></select>"
+		container = a.firstChild;
+		ckFilter = a.firstChild.childNodes[0];
+		comboBox = a.firstChild.childNodes[1];
+
+		myCombo = new dhtmlXCombo(comboBox,"comboFilterId");
+		myCombo.addOption(null,"");
+		myCombo.addOption(1, "Yes");
+		myCombo.addOption(0, "No");
+		
+		a.onselectstart=function(){
+			return event.cancelBubble=!0;
+		};
+
+		a.onclick=a.onmousedown=function(a){
+			return(a||event).cancelBubble=!0;
+		};
+		
+		this.makeFilter(ckFilter, b);
+		
+		ckFilter._filter=function(){
+			var a = this.value;
+			return (a == "") ? "" : function(b){
+				return a == b;
+			}
+		}
+		
+		this._filters_ready();
+		
+		myCombo.attachEvent("onChange", function(){
+			ckFilter.value = myCombo.getSelectedValue();
+			self.filterByAll();
+		});
+	}
+
+	//alert(1);
+	dhtmlXGridObject.prototype._in_header_ck_filter_Default=function(a,b) {
+
+		var self=this;
+
+		a.innerHTML="<div style='align: center'><input type='hidden' id='ckFilter' value=''><input type=checkbox id='chkFilter' value='' style='width:18px;height:18px;border: 1px solid #bcbcbc;'></div>";
+		//a.innerHTML = "<select style='width: 100%;'><option value></option> <option value='1'>Yes</option><option value='0'>No</option></select>"
+		container = a.firstChild;
+		ckFilter = a.firstChild.childNodes[0];
+		myCheckBox = a.firstChild.childNodes[1];
+		alog(myCheckBox);
+	
+		this.makeFilter(ckFilter, b);
+		
+		ckFilter._filter=function(){
+			var a = this.value;
+			return (a == "") ? "" : function(b){
+				return a == b;
+			}
+		}
+		
+		this._filters_ready();
+		
+		myCheckBox.addEventListener( 'change', function() {
+			if(this.checked) {
+				// Checkbox is checked..
+				ckFilter.value = 1;
+			} else {
+				// Checkbox is not checked..
+				ckFilter.value = 0;
+			}
+			self.filterByAll();
+		});
+
+	}
+
+	//best checkbox filter
+	dhtmlXGridObject.prototype._in_header_ck_filter=function(a,b) {
+		alog("_in_header_ck_filter().................................start");
+
+		var self=this;
+
+		a.innerHTML="<div style='align: center;'><input type='hidden' id='ckFilter' value=''><div status='empty' style='margin-top:2px;display: inline-block;width:19px;height:19px;text-align:top;line-height:19px;border: 1px solid #bcbcbc;'></div></div>";
+		//a.innerHTML = "<select style='width: 100%;'><option value></option> <option value='1'>Yes</option><option value='0'>No</option></select>"
+		container = a.firstChild;
+		ckFilter = a.firstChild.childNodes[0];
+		myDiv = a.firstChild.childNodes[1];
+		alog(myDiv);
+	
+		this.makeFilter(ckFilter, b);
+		
+		ckFilter._filter=function(){
+			var a = this.value;
+			return (a == "") ? "" : function(b){
+				return a == b;
+			}
+		}
+		
+		this._filters_ready();
+
+		//디펄트
+		myDiv.style.backgroundColor="silver";
+		myDiv.style.fontSize="9pt";
+		myDiv.style.fontWeight="bold";
+		
+		//이벤트
+		myDiv.addEventListener( 'mousedown', function() {
+			//step : empty, check, uncheck
+			//alert(this.getAttribute("status"));
+			if(this.getAttribute("status") == "empty") {
+				// Checkbox is checked..
+				ckFilter.value = 1;
+				this.setAttribute("status","check");
+				this.style.backgroundColor="white";
+				this.innerHTML="V";
+				//var path = CFG_URL_LIBS_ROOT + "lib/dhtmlxSuite/codebase/imgs/dhxgrid_skyblue/item_chk1.gif";
+				//alog(path);
+				//this.style.backgroundImage = "url('" + path + "')";
+			}else if(this.getAttribute("status") == "check") {
+				// Checkbox is not checked..
+				ckFilter.value = 0;
+				this.setAttribute("status","uncheck");
+				this.style.backgroundColor="white";
+				this.innerHTML="";
+				//this.style.backgroundImage = "";
+			}else if(this.getAttribute("status") == "uncheck") {
+				// Checkbox is not checked..
+				ckFilter.value = "";
+				this.setAttribute("status","empty");
+				this.style.backgroundColor="silver";
+				this.innerHTML="";
+				//this.style.backgroundImage = "";
+			}
+			self.filterByAll();
+		});
+
+	}
+
+}
 
 //달력 타입 정의
 if(typeof dhtmlXCalendarObject !== 'undefined'){
