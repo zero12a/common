@@ -182,7 +182,9 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 
 
 	dhtmlXGridObject.prototype._in_header_dropdown_filter=function(a,b) {
-
+		alog("_in_header_dropdown_filter.......................start")
+		alog(a);
+		alog(b);
 		var self=this;
 
 		a.innerHTML="<div style='align: center'><input type='hidden' id='ckFilter' value=''><div id ='comboContainer'></div></div>";
@@ -190,11 +192,12 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 		container = a.firstChild;
 		ckFilter = a.firstChild.childNodes[0];
 		comboBox = a.firstChild.childNodes[1];
+		alog(comboBox);
 
 		myCombo = new dhtmlXCombo(comboBox,"comboFilterId");
-		myCombo.addOption(null,"");
-		myCombo.addOption(1, "Yes");
-		myCombo.addOption(0, "No");
+		//myCombo.addOption(null,"");//addOption(value,label,css,img_src);
+		//myCombo.addOption(1, "Yes");
+		//myCombo.addOption(0, "No");
 		
 		a.onselectstart=function(){
 			return event.cancelBubble=!0;
@@ -219,6 +222,8 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 			ckFilter.value = myCombo.getSelectedValue();
 			self.filterByAll();
 		});
+
+		alog("_in_header_dropdown_filter.......................end")
 	}
 
 	//alert(1);
@@ -233,7 +238,7 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 		comboBox = a.firstChild.childNodes[1];
 
 		myCombo = new dhtmlXCombo(comboBox,"comboFilterId");
-		myCombo.addOption(null,"");
+		myCombo.addOption(null,"");//addOption(value,label,css,img_src);
 		myCombo.addOption(1, "Yes");
 		myCombo.addOption(0, "No");
 		
@@ -272,7 +277,7 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 		container = a.firstChild;
 		ckFilter = a.firstChild.childNodes[0];
 		myCheckBox = a.firstChild.childNodes[1];
-		alog(myCheckBox);
+		//alog(myCheckBox);
 	
 		this.makeFilter(ckFilter, b);
 		
@@ -299,8 +304,8 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 	}
 
 	//best checkbox filter
-	dhtmlXGridObject.prototype._in_header_ck_filter=function(a,b) {
-		alog("_in_header_ck_filter().................................start");
+	dhtmlXGridObject.prototype._in_header_check_filter=function(a,b) {
+		alog("_in_header_check_filter().................................start");
 
 		var self=this;
 
@@ -309,7 +314,7 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 		container = a.firstChild;
 		ckFilter = a.firstChild.childNodes[0];
 		myDiv = a.firstChild.childNodes[1];
-		alog(myDiv);
+		//alog(myDiv);
 	
 		this.makeFilter(ckFilter, b);
 		
@@ -324,11 +329,13 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 
 		//디펄트
 		myDiv.style.backgroundColor="silver";
-		myDiv.style.fontSize="9pt";
+		myDiv.style.fontSize="8pt";
 		myDiv.style.fontWeight="bold";
+		myDiv.innerHTML="";
 		
 		//이벤트
 		myDiv.addEventListener( 'mousedown', function() {
+			alog(this.getAttribute("status"));
 			//step : empty, check, uncheck
 			//alert(this.getAttribute("status"));
 			if(this.getAttribute("status") == "empty") {
@@ -336,24 +343,26 @@ if(typeof dhtmlXGridObject !== 'undefined'){
 				ckFilter.value = 1;
 				this.setAttribute("status","check");
 				this.style.backgroundColor="white";
-				this.innerHTML="V";
-				//var path = CFG_URL_LIBS_ROOT + "lib/dhtmlxSuite/codebase/imgs/dhxgrid_skyblue/item_chk1.gif";
+				//this.innerHTML="V";
+				var path = CFG_URL_LIBS_ROOT + "lib/dhtmlxSuite/codebase/imgs/dhxgrid_skyblue/item_chk1.gif";
 				//alog(path);
-				//this.style.backgroundImage = "url('" + path + "')";
+				this.style.backgroundImage = "url('" + path + "')";
 			}else if(this.getAttribute("status") == "check") {
 				// Checkbox is not checked..
 				ckFilter.value = 0;
 				this.setAttribute("status","uncheck");
 				this.style.backgroundColor="white";
 				this.innerHTML="";
-				//this.style.backgroundImage = "";
+				var path = CFG_URL_LIBS_ROOT + "lib/dhtmlxSuite/codebase/imgs/dhxgrid_skyblue/item_chk0.gif";
+				//alog(path);
+				this.style.backgroundImage = "url('" + path + "')";
 			}else if(this.getAttribute("status") == "uncheck") {
 				// Checkbox is not checked..
 				ckFilter.value = "";
 				this.setAttribute("status","empty");
 				this.style.backgroundColor="silver";
 				this.innerHTML="";
-				//this.style.backgroundImage = "";
+				this.style.backgroundImage = "";
 			}
 			self.filterByAll();
 		});
@@ -604,6 +613,7 @@ function apiCodeDropDown(tGrpId, tColId, tJsonParam, tDefaultValue){
 					}
 
 					this.tGrid.registerCList(this.tGrid.getColIndexById(this.privateColId),tarr);//값세팅하기
+
 
 				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "CONDITION"){
 					tarr = [];
