@@ -142,12 +142,15 @@ div.gridbox_dhx_skyblue.gridbox{
 }
 /* 헤더 좌측여백없애고, 가운데 정렬 */
 td div.hdrcell input{
-    margin-top:1px;
+    margin-top:1px; /* 필터 input가 위로 너무 딱 붙어서 추가*/
     height:21px;
 }
 td div.hdrcell select{
-    margin-top:1px;
+    margin-top:1px; /* 필터 select가 위로 너무 딱 붙어서 추가*/
     height:21px;
+}
+td div.hdrcell div.combo div.dhxcombo_dhx_skyblue{
+    display: inline-block; /* 필터 combo가 가운데정렬 안되서 추가 */
 }
 
 div.gridbox_dhx_skyblue.gridbox table.hdr td div.hdrcell{
