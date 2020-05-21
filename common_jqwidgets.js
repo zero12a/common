@@ -30,7 +30,7 @@ var getLocalization = function(){
 //##    셀 스타일
 //##################################################################
 var cellclass = function (rowIndex, columnName, value, data) {
-    //alog("cellclass().................start");
+    //alog("cellclass().................start : changeCud=" + data.changeCud);
     //alog("  rowIndex = " + rowIndex);
     //alog("  columnName = " + columnName);
     //alog("  value = " + value);

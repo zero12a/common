@@ -1591,15 +1591,21 @@ function getStmtArrayNum(&$stmt){
                     }
                 }
 
-                $arr = getStmtArrayNum($stmt);
-                closeStmt($stmt);      
+ 
 
                 $RtnVal->RTN_CD = "200";
                 $RtnVal->ERR_CD = "200";
                 if($map["GRPTYPE"] == "GRID_BOOTSTRAP"){
+                    $arr = getStmtArrayNum($stmt);
+                    closeStmt($stmt);     
                     $RtnVal->RTN_DATA->rows = transBtgridLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
+                }else if($map["GRPTYPE"] == "GRID_JQXWIDGETS"){
+                    $arr = getStmtArray($stmt);
+                    closeStmt($stmt);     
+                    $RtnVal->RTN_DATA->rows = $arr;
                 }else{
-                    //pdo
+                    $arr = getStmtArrayNum($stmt);
+                    closeStmt($stmt);     
                     $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
                 }                
                 
@@ -1612,8 +1618,8 @@ function getStmtArrayNum(&$stmt){
 
 		//$result_array = fetch_all($result,MYSQLI_NUM);//indDB.php
 		//결과 JSON 화면 출력
-		$RtnVal->RTN_CD = "200";
-		$RtnVal->ERR_CD = "200";
+		//$RtnVal->RTN_CD = "200";
+		//$RtnVal->ERR_CD = "200";
 		//var_dump($RtnVal);
 	
         //$RtnVal = json_encode($RtnVal)
