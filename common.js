@@ -1598,6 +1598,12 @@ function saveToGroup(data){
 				}else{
 					alog("	is not object ");
 				}
+			}else if(data.GRP_DATA[i].GRP_TYPE == "GRIDJQX"){
+				alog("i[" + i + "] is GRID");
+				//tDataAdapter = eval("dataAdapter"+data.GRP_DATA[i].GRPID);
+
+				saveToGridjqx(data.GRP_DATA[i].GRPID,data.GRP_DATA[i]);
+
 			}else if(data.GRP_DATA[i].GRP_TYPE == "FORMVIEW"){
 				alog("i[" + i + "] is FORMVIEW");
 
@@ -1617,6 +1623,89 @@ function saveToGroup(data){
     }
 }
 
+
+function saveToGridjqx(tGrpId,data){
+    alog("(common) saveToGridjqx----------------------------start");
+
+	alog( "      GRP_TYPE : " + data.GRP_TYPE);
+	alog( "      GRPID : " + data.GRPID);
+	if(!data.ROWS){
+		alog("		ROWS is null");
+		return;
+	}
+	var affectedRows = 0;
+	var updateIds = [];
+	var deleteIds = [];
+	var updateDatas = [];
+
+	for(var i=0;i<data.ROWS.length;i++){
+		alog( "   i : " + i);
+		alog( "      OLD_ID : " + data.ROWS[i].OLD_ID);
+		alog( "      NEW_ID : " + data.ROWS[i].NEW_ID);
+		alog( "      USER_DATA : " + data.ROWS[i].USER_DATA);
+		alog( "      AFFECTED_ROWS : " + data.ROWS[i].AFFECTED_ROWS);
+
+		affectedRows = affectedRows + data.ROWS[i].AFFECTED_ROWS;
+
+		if(data.ROWS[i].AFFECTED_ROWS=="-1"){
+	        msgError("["+data.GRPID+"] " + data.ROWS[i].NEW_ID + "는 저장 실패",3);
+		}else{
+			//rid = mygrid.getRowId(j);
+			rid = data.ROWS[i].OLD_ID;
+			if( data.ROWS[i].USER_DATA == "inserted" ){
+				updateIds[updateIds.length] = rid;
+
+				oldData = $('#jqxgrid' + tGrpId).jqxGrid('getrowdatabyid', rid);
+				alog(oldData);
+				oldData.uid = data.ROWS[i].NEW_ID;
+				oldData.changeState = false; //변경 상태 초기화
+				oldData.changeCud = ""; //변경 상태 초기화
+				updateDatas[updateDatas.length] = oldData;
+
+				alog("	rid [" + rid + "] is [inserted]");
+			}
+			if( data.ROWS[i].USER_DATA == "updated" ){
+				//렌더링 비용을 줄이기 위에 배열 한번에 담아놨다가, 일괄 update 렌더링
+
+				updateIds[updateIds.length] = rid;
+
+				oldData = $('#jqxgrid' + tGrpId).jqxGrid('getrowdatabyid', rid);
+				oldData.changeState = false; //변경 상태 초기화
+				oldData.changeCud = ""; //변경 상태 초기화
+				updateDatas[updateDatas.length] = oldData;
+				
+
+
+				alog("	rid [" + rid + "] is [updated]");
+			}
+			if( data.ROWS[i].USER_DATA == "deleted" ){
+				deleteIds[deleteIds.length] = rid;
+
+				alog("	rid [" + rid + "] is [deleted]");
+			}
+		}
+	}
+
+	//변경 내용 일괄 업데이트.
+	if(updateIds.length > 0){
+		$('#jqxgrid' + tGrpId).jqxGrid('updaterow', updateIds, updateDatas);
+		alog(updateIds.length + " data is [updated]");
+	}
+
+	//삭제 내용 일괄 화면에서 삭제.
+	if(deleteIds.length > 0){
+		$('#jqxgrid' + tGrpId).jqxGrid('deleterow', deleteIds);
+		alog(deleteIds.length + " data is [deleted]");
+	}
+
+
+
+
+	//변경 상태 모두 초기화
+	//tGrid2.clearChangedState();
+	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]");
+
+}
 
 function saveToGrid(tGrid2,data){
     alog("(common) saveToGrid----------------------------start");
