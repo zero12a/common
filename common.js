@@ -1657,11 +1657,16 @@ function saveToGridjqx(tGrpId,data){
 
 				oldData = $('#jqxgrid' + tGrpId).jqxGrid('getrowdatabyid', rid);
 				alog(oldData);
-				oldData.uid = data.ROWS[i].NEW_ID;
+
+				oldData.PGMSEQ = data.ROWS[i].NEW_ID;
+
+				_.set(oldData,data.ROWS[i].SEQ_COLID , data.ROWS[i].NEW_ID); //lodash 특정 컬럼 값 바꾸기.
+
 				oldData.changeState = false; //변경 상태 초기화
 				oldData.changeCud = ""; //변경 상태 초기화
 				updateDatas[updateDatas.length] = oldData;
 
+				alog(oldData);
 				alog("	rid [" + rid + "] is [inserted]");
 			}
 			if( data.ROWS[i].USER_DATA == "updated" ){
