@@ -1,0 +1,47 @@
+/* 헤더 여백 슬림 */
+.webix_hcell{
+    padding:0 2px 0 2px;
+    text-align: center;
+}
+
+/* 데이터컬럼 여백 슬림 */
+.webix_column > div, .webix_table_cell{
+    padding:0 4px 0 4px;
+}
+
+/* 메시지 디펄트가 톱인데 하단으로 내리기*/
+.webix_message_area{
+    top:initial !important;
+    bottom: 1px;   
+}
+
+.myhover{
+    background: #F0DCB6;
+}
+
+.fontStateInsert{
+    text-decoration: none;
+    font-weight: bold;
+    color: darkblue;
+}
+
+.fontStateUpdate{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.fontStateDelete{
+    text-decoration: line-through;
+    font-weight: bold;
+    color: black;
+}
+
+.fontNormal{
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.highlight{
+    background-color:#FFAAAA;
+}
