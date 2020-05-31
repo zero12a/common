@@ -2938,6 +2938,9 @@ function getStmtArrayNum(&$stmt){
                     $to_row[$colNm] = makeParamEnc($colNm,$colValue,$colcrypt_array);
 				}
             }
+            //id컬럼은 무조건 받아오기.
+            $to_row["id"] = $row["id"];
+
             //echo jsonView($to_row);
 
             //SQL 갯수만큼 루프
@@ -3038,7 +3041,13 @@ function getStmtArrayNum(&$stmt){
                         }
                     }
 
-                    $tarr = array("OLD_ID"=>$to_row[$map["KEYCOLID"]],"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>$row["changeCud"],"AFFECTED_ROWS"=>$to_affected_rows);
+                    $tarr = array(
+                        "ROW_ID"        =>  $to_row["id"]
+                        ,"OLD_ID"       =>  $to_row[$map["KEYCOLID"]]
+                        ,"NEW_ID"       =>  $to_row["COLID"]
+                        ,"USER_DATA"    =>  $row["changeCud"]
+                        ,"AFFECTED_ROWS"=>  $to_affected_rows
+                    );
     
                     $RtnVal->ROWS[$RtnCnt] = $tarr;
                     $RtnCnt++;

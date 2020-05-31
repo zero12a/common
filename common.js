@@ -1655,31 +1655,46 @@ function saveToGridwix(tGrpId,data){
 	        msgError("["+data.GRPID+"] " + data.ROWS[i].NEW_ID + "는 저장 실패",3);
 		}else{
 			//rid = mygrid.getRowId(j);
+			rowId =  data.ROWS[i].ROW_ID;
 			rid = data.ROWS[i].OLD_ID;
 			if( data.ROWS[i].USER_DATA == "inserted" ){
 
 
-				$$("wixdt"+data.GRPID).removeRowCss(rid, "fontStateInsert");
+				$$("wixdt"+data.GRPID).removeRowCss(rowId, "fontStateInsert");
 
 				if(data.ROWS[i].NEW_ID != ""){
-					$$("wixdt"+data.GRPID).changeId(data.ROWS[i].OLD_ID, data.ROWS[i].NEW_ID);
+					//해당 행의 데이터 가져오기
+					rowItem = $$("wixdt"+data.GRPID).data.getItem(rowId);
+
+					//키 컬럼의 값 교체하기
+					//alog(grpInfo.get(data.GRPID));
+					//alog(grpInfo.get(data.GRPID).KEYCOLID);
+					//alog(rowItem[grpInfo.get(data.GRPID).KEYCOLID]);
+					//SEQYN이 Y일때만 변경된 값 업데이트
+					if(grpInfo.get(data.GRPID).SEQYN == "Y") rowItem[grpInfo.get(data.GRPID).KEYCOLID] = data.ROWS[i].NEW_ID;
+
+					//rowItem.changeState = null;
+					rowItem.changeCud = "inserted_end";
+					$$("wixdt"+data.GRPID).data.updateItem(rowId, rowItem);
+
+					//$$("wixdt"+data.GRPID).changeId(data.ROWS[i].OLD_ID, data.ROWS[i].NEW_ID);
 				}
 
-				alog("	rid [" + rid + "] is [inserted]");
+				alog("	rid [" + rowId + "], rid [" + rid + "] is [inserted]");
 			}
 			if( data.ROWS[i].USER_DATA == "updated" ){
 				//렌더링 비용을 줄이기 위에 배열 한번에 담아놨다가, 일괄 update 렌더링
 
-				$$("wixdt"+data.GRPID).removeRowCss(rid, "fontStateUpdate");
+				$$("wixdt"+data.GRPID).removeRowCss(rowId, "fontStateUpdate");
 				
-				alog("	rid [" + rid + "] is [updated]");
+				alog("	rid [" + rowId + "], rid [" + rid + "]  is [updated]");
 			}
 			if( data.ROWS[i].USER_DATA == "deleted" ){
 
-				$$("wixdt"+data.GRPID).removeRowCss(rid, "fontStateUpdate");
-				$$("wixdt"+data.GRPID).remove(rid); // removes the item with ID=1
+				$$("wixdt"+data.GRPID).removeRowCss(rowId, "fontStateUpdate");
+				$$("wixdt"+data.GRPID).remove(rowId); // removes the item with ID=1
 
-				alog("	rid [" + rid + "] is [deleted]");
+				alog("	rid [" + rowId + "], rid [" + rid + "]  is [deleted]");
 			}
 		}
 	}
