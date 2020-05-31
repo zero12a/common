@@ -1599,6 +1599,10 @@ function getStmtArrayNum(&$stmt){
                     $arr = getStmtArrayNum($stmt);
                     closeStmt($stmt);     
                     $RtnVal->RTN_DATA->rows = transBtgridLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
+                }else if($map["GRPTYPE"] == "GRID_WEBIX"){
+                    $arr = getStmtArray($stmt);
+                    closeStmt($stmt);     
+                    $RtnVal->RTN_DATA->rows = $arr;                    
                 }else if($map["GRPTYPE"] == "GRID_JQXWIDGETS"){
                     $arr = getStmtArray($stmt);
                     closeStmt($stmt);     
@@ -2198,6 +2202,151 @@ function getStmtArrayNum(&$stmt){
 	}
 
 
+
+	function requireGridwixSaveArray($colord,$json,$sql){
+        global $REQ,$CFG, $PGM_CFG;
+        
+        //ar_dump($sql["U"]);
+        //exit;
+        $RtnVal = null;
+        $RtnVal->GRP_TYPE = "GRID";
+
+        //관련 모든 SQL에 REQUIRE이 하나도 없으면 검사 패스
+        $isRequireOverOne = false;
+        for($s = 0; $s < sizeof($sql["C"]) ; $s++){
+            $tmpSql = $sql["C"][$s];
+            if(sizeof($tmpSql["REQUIRE"]) > 0) $isRequireOverOne = true;
+        }
+        for($s = 0; $s < sizeof($sql["U"]) && $isRequireOverOne == false; $s++){
+            $tmpSql = $sql["U"][$s];
+            if(sizeof($tmpSql["REQUIRE"]) > 0) $isRequireOverOne = true;
+        }
+        for($s = 0; $s < sizeof($sql["D"]) && $isRequireOverOne == false ; $s++){
+            $tmpSql = $sql["D"][$s];
+            if(sizeof($tmpSql["REQUIRE"]) > 0) $isRequireOverOne = true;
+        }                
+        if(!$isRequireOverOne){
+            $RtnVal->RTN_CD = "200";
+            $RtnVal->ERR_CD = "200";
+            return $RtnVal;
+        }
+
+        $isRequireResult = true;
+
+        $colord_array = explode(",",$colord);
+
+		$json_array_last = null;
+        alog("requireGrid is_assoc : " . is_assoc($json) );
+        alog("requireGrid count : " . count($xml["row"]) );
+        alog("requireGrid sizeof : " . sizeof($xml["row"]) );
+		if(is_assoc($xml["row"]) == 1) {
+			alog(" Y " );
+			$json_array_last[0] = $json["row"];
+		}else{
+			alog(" N " );
+
+			$json_array_last = $json["row"];
+		}
+		//var_dump($xml_array_last);
+
+
+		$RtnCnt = 0;
+		alog("json sizeof : " . sizeof($json_array_last));
+		for($i=0;$i<sizeof($json_array_last) && $isRequireResult;$i++){
+
+			$row = $json_array_last[$i];
+			alog("        i : " . $i);
+			//alog("        @attributes : " . $row["@attributes"]["id"]);
+			alog("        changeCud : " . $row["changeCud"]);
+
+			//현재 그리드 line을 bind 배열에 담기
+			$to_row = null;
+			$to_coltype = null;
+			for($j=0;$j<sizeof($row["cell"]);$j++){
+				$col = $row["cell"][$j];
+				if(is_array($col)){
+					$to_row[trim($colord_array[$j])] = "";
+				}else{
+                    $to_row[trim($colord_array[$j])] = $col;
+				}
+            }
+            
+            $tArr = array_merge($REQ,$to_row);
+
+			if($row["changeCud"] == "inserted"  ){
+                alog("        inserted : " );
+
+                //require 필드 갯수 만큼 루프 돌면서 검사
+                for($k=0;$k<sizeof($sql["C"]);$k++){
+                    $tmpSql = $sql["C"][$k];
+
+ 
+                    for($r=0;$r<sizeof($tmpSql["REQUIRE"]);$r++){
+                        $requireCol = $tmpSql["REQUIRE"][$r];
+                        if($tArr[$requireCol] == ""){
+                            $isRequireResult = false; //필수값이 비여있음
+                            $RtnVal->RTN_MSG = $requireCol . "는 DB insert시 필수 값입니다.";
+                            break;
+                        }
+                    }
+                }
+
+			}else if($row["changeCud"] == "updated"){
+                alog("        updated : " );
+
+                //require 필드 갯수 만큼 루프 돌면서 검사
+                for($k=0;$k<sizeof($sql["U"]);$k++){
+                    $tmpSql = $sql["U"][$k];
+
+                    for($r=0;$r<sizeof($tmpSql["REQUIRE"]);$r++){
+                        $requireCol = $tmpSql["REQUIRE"][$r];
+                        if($tArr[$requireCol] == ""){
+                            $isRequireResult = false; //필수값이 비여있음
+                            $RtnVal->RTN_MSG = $requireCol . "는 DB update시 필수 값입니다.";
+                            break;
+                        }
+                    }
+
+                }
+
+			}else if($row["changeCud"] == "deleted" ){
+                alog("        deleted : " );
+
+                for($k=0;$k<sizeof($sql["D"]);$k++){
+                    $tmpSql = $sql["D"][$k];
+
+                    for($r=0;$r<sizeof($tmpSql["REQUIRE"]);$r++){
+                        $requireCol = $tmpSql["REQUIRE"][$r];
+                        if($tArr[$requireCol] == ""){
+                            $isRequireResult = false; //필수값이 비여있음
+                            $RtnVal->RTN_MSG = $requireCol . "는 DB delete시 필수 값입니다.";
+                            break;
+                        }
+                    }
+                }
+
+            }else{
+                alog("         userdata no match : " . $row["userdata"]);
+            }
+
+		}
+
+		//결과 JSON 화면 출력
+
+        if($isRequireResult){
+            $RtnVal->RTN_CD = "200";
+            $RtnVal->ERR_CD = "200";
+        }else{
+            $RtnVal->RTN_CD = "500";
+            $RtnVal->ERR_CD = "333";            
+        }
+
+		//$RtnVal = json_encode($RtnVal);
+		return $RtnVal;
+
+    }
+    
+
 	function requireGridSearch($colord,$xml,$sql){
         global $REQ,$CFG, $PGM_CFG;
         alog("requireGridSearch ");
@@ -2753,6 +2902,164 @@ function getStmtArrayNum(&$stmt){
 
 	}
 
+
+
+	function makeGridwixSaveJsonArray($map,&$db){
+        global $REQ,$CFG, $PGM_CFG;
+        
+        //alog("^^^ COLORD : " . $map["COLORD"]);
+        $colord_array = explode(",",$map["COLORD"]);
+        //$colcrypt_array = explode(",",$map["COLCRYPT"]);        
+        $colcrypt_array = $map["COLCRYPT"];
+        //alog("^^^ colord_array count : " . count($colord_array));
+
+		$json_array_last = $map["JSON"];
+
+		$RtnVal = null;
+		$RtnCnt = 0;
+		alog("json sizeof : " . sizeof($json_array_last));
+		for($i=0;$i<sizeof($json_array_last);$i++){
+
+			$row = $json_array_last[$i];
+			alog("        i : " . $i);
+			alog("        changeCud : " . $row["changeCud"]);
+
+			//현재 그리드 line을 bind 배열에 담기
+			$to_row = null;
+			$to_coltype = null;
+			$sql = null;
+			for($j=0;$j<sizeof($colord_array);$j++){
+                $colNm = $colord_array[$j];
+				$colValue = $row[$colord_array[$j]];
+				if(is_array($colValue)){
+					$to_row[$colNm] = "";
+				}else{
+                    //암호화 컬럼에 존재 하는지 확인
+                    $to_row[$colNm] = makeParamEnc($colNm,$colValue,$colcrypt_array);
+				}
+            }
+            //echo jsonView($to_row);
+
+            //SQL 갯수만큼 루프
+            $mapLoop = null;            
+            switch($row["changeCud"]){
+                case "inserted":
+                    alog("        inserted : " );                
+                    $mapLoop = $map["SQL"]["C"];
+                    break;
+                case "updated":
+                    alog("        updated : " );                      
+                    $mapLoop = $map["SQL"]["U"];
+                    break;
+                case "deleted":
+                    alog("        deleted : " );                      
+                    $mapLoop = $map["SQL"]["D"];
+                    break;    
+                default:
+                    alog("         changeCud no match : " . $row["changeCud"]);           
+                    break;
+            }
+            alog("        mapLoop size : " . sizeof($mapLoop));   
+
+            if(sizeof($mapLoop)==0)JsonMsg("500","899","(makeGridwixSaveJsonArray) 명령어를 처리할 SQL이 없습니다.");
+
+            for($k=0;$k<sizeof($mapLoop);$k++){
+                $tmpSql = $mapLoop[$k];
+                
+                $to_coltype = $tmpSql["BINDTYPE"];
+                //LogMaster::log("        to_coltype : " . $to_coltype);
+                $svrid = $tmpSql["SVRID"];
+                $sql = $tmpSql["SQLTXT"];
+                
+
+                if( getParamCnt($sql) != strlen(str_replace(" ","",$to_coltype)) )JsonMsg("500","190","(makeGridwixSaveJsonArray) " . $tmpSql["SQLID"] . "  sql파라미터와 파라미터타입수가 불일치.");
+
+                alog("svrid : " . $svrid);
+                //alog("  REQ.URL : " . $REQ["URL"]);             
+                //alog("  to_row.URL : " . $to_row["URL"]);             
+                    
+
+                $tArr = array_merge($REQ,$to_row);
+                //alog("  array_merge() tArr.URL : " . $tArr["URL"]);
+
+                //$stmt = makeStmt($db[$svrid], $sql, $to_coltype, array_merge($REQ,$to_row));
+                
+                $sqlMap = getSqlParam($sql,$to_coltype,array_merge($REQ,$to_row));
+                //echo "<pre>" . jsonView($sqlMap);
+                $stmt = getStmt($db[$svrid],$sqlMap);
+
+                if(!$stmt) JsonMsg("500","211","(makeGridwixSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt create fail " . $db[$svrid]->errno . " -> " . $db[$svrid]->error);
+                
+                if(!$stmt->execute())JsonMsg("500","212","(makeGridwixSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt execute fail " . $stmt->error);
+
+                //SUB 쿼리는 리턴정보에 넣지 않음.
+                alog("  PARENT_FNCTYPE = " . $tmpSql["PARENT_FNCTYPE"]);                    
+                if($tmpSql["PARENT_FNCTYPE"] == ""){
+                    //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
+
+                    if($stmt instanceof PDOStatement){
+                        $to_affected_rows = $stmt->rowCount();
+                    }else{
+                        $to_affected_rows = $db[$svrid]->affected_rows;
+                    }
+                
+                    //[로그 저장용]
+                    $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;                
+                
+                    $to_row["COLID"] = "";
+                    if($row["changeCud"] == "inserted"){
+                        if($map["SEQYN"] == "Y"){
+                            //sequence nextval이 sql에 있으면
+                            if($sqlMap["SEQ_NM"] != "" ){
+                                //현재 db 세션에서 sequence 정보가져오기
+                                if(getDbType($db[$svrid]) == "mariadb"){
+                                    $sqlSeq = "select lastval(" . $sqlMap["SEQ_NM"] . ") as seq_val ";
+                                }else if(getDbType($db[$svrid]) == "postgresql"){
+                                    $sqlSeq = "select currval('" . $sqlMap["SEQ_NM"] . "') as seq_val  ";
+                                }
+                                $sqlMapSeq = getSqlParam($sqlSeq,'','');
+                                //var_dump($sqlMapSeq);
+                                $stmtSeq = getStmt($db[$svrid],$sqlMapSeq);
+                                if(!$stmtSeq) JsonMsg("500","221","(makeGridwixSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt create fail " . $db[$svrid]->errno . " -> " . $db[$svrid]->error);                
+                                $to_row["COLID"] = getStmtArray($stmtSeq)[0]["seq_val"];
+                                closeStmt($stmtSeq);
+
+                            }else if($stmt instanceof PDOStatement){
+                                alog("SEQYN Y : " . $db[$svrid]->lastInsertId());
+                                $to_row["COLID"]=$db[$svrid]->lastInsertId(); //insert문인 경우 insert id받기                            
+                            }else{
+                                alog("SEQYN Y : " . $db[$svrid]->insert_id);
+                                $to_row["COLID"]=$db[$svrid]->insert_id; //insert문인 경우 insert id받기
+                            }
+
+                        }else{
+                            alog("SEQYN N : " . $to_row[$map["KEYCOLID"]]);
+                            $to_row["COLID"]=$to_row[$map["KEYCOLID"]]; //사용자 입력 key컬럼을 rowid 로
+                        }
+                    }
+
+                    $tarr = array("OLD_ID"=>$to_row[$map["KEYCOLID"]],"NEW_ID"=>$to_row["COLID"],"USER_DATA"=>$row["changeCud"],"AFFECTED_ROWS"=>$to_affected_rows);
+    
+                    $RtnVal->ROWS[$RtnCnt] = $tarr;
+                    $RtnCnt++;
+                }
+                closeStmt($stmt);
+    
+ 
+            }
+			
+
+
+		}
+
+		//결과 JSON 화면 출력
+		$RtnVal->GRP_TYPE = "GRIDWIX";
+	    $RtnVal->SEQ_COLID = ($map["SEQYN"] == "Y")?$map["KEYCOLID"]:"";
+
+		//$RtnVal = json_encode($RtnVal);
+		return $RtnVal;
+
+	}
 
 
     function makeSqlParamEnc($tSql, $tReq, $colcrypt_array){

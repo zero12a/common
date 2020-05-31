@@ -1589,6 +1589,7 @@ function saveToGroup(data){
     if(data.RTN_CD == "200"){
       
         for(var i=0;i<data.GRP_DATA.length;i++){
+			alog(i + " GRP_TYPE = " + data.GRP_DATA[i].GRP_TYPE);
 			if(data.GRP_DATA[i].GRP_TYPE == "GRID"){
 				alog("i[" + i + "] is GRID");
 				tGrid = eval("mygrid"+data.GRP_DATA[i].GRPID);
@@ -1604,6 +1605,13 @@ function saveToGroup(data){
 
 				saveToGridjqx(data.GRP_DATA[i].GRPID,data.GRP_DATA[i]);
 
+			}else if(data.GRP_DATA[i].GRP_TYPE == "GRIDWIX"){
+				alog("i[" + i + "] is GRID");
+				//tDataAdapter = eval("dataAdapter"+data.GRP_DATA[i].GRPID);
+
+				saveToGridwix(data.GRP_DATA[i].GRPID,data.GRP_DATA[i]);
+
+			
 			}else if(data.GRP_DATA[i].GRP_TYPE == "FORMVIEW"){
 				alog("i[" + i + "] is FORMVIEW");
 
@@ -1621,6 +1629,65 @@ function saveToGroup(data){
     }else{
         msgError("서버 저장중 에러가 발생했습니다.\nRTN_CD : " + data.RTN_CD + "\nERR_CD : " + data.ERR_CD + "\nRTN_MSG :" + data.RTN_MSG,3);
     }
+}
+
+function saveToGridwix(tGrpId,data){
+	alog("(common) saveToGridwix----------------------------start");
+	
+	alog( "      GRP_TYPE : " + data.GRP_TYPE);
+	alog( "      GRPID : " + data.GRPID);
+	if(!data.ROWS){
+		alog("		ROWS is null");
+		return;
+	}
+	var affectedRows = 0;
+
+	for(var i=0;i<data.ROWS.length;i++){
+		alog( "   i : " + i);
+		alog( "      OLD_ID : " + data.ROWS[i].OLD_ID);
+		alog( "      NEW_ID : " + data.ROWS[i].NEW_ID);
+		alog( "      USER_DATA : " + data.ROWS[i].USER_DATA);
+		alog( "      AFFECTED_ROWS : " + data.ROWS[i].AFFECTED_ROWS);
+
+		affectedRows = affectedRows + data.ROWS[i].AFFECTED_ROWS;
+
+		if(data.ROWS[i].AFFECTED_ROWS=="-1"){
+	        msgError("["+data.GRPID+"] " + data.ROWS[i].NEW_ID + "는 저장 실패",3);
+		}else{
+			//rid = mygrid.getRowId(j);
+			rid = data.ROWS[i].OLD_ID;
+			if( data.ROWS[i].USER_DATA == "inserted" ){
+
+
+				$$("wixdt"+data.GRPID).removeRowCss(rid, "fontStateInsert");
+
+				if(data.ROWS[i].NEW_ID != ""){
+					$$("wixdt"+data.GRPID).changeId(data.ROWS[i].OLD_ID, data.ROWS[i].NEW_ID);
+				}
+
+				alog("	rid [" + rid + "] is [inserted]");
+			}
+			if( data.ROWS[i].USER_DATA == "updated" ){
+				//렌더링 비용을 줄이기 위에 배열 한번에 담아놨다가, 일괄 update 렌더링
+
+				$$("wixdt"+data.GRPID).removeRowCss(rid, "fontStateUpdate");
+				
+				alog("	rid [" + rid + "] is [updated]");
+			}
+			if( data.ROWS[i].USER_DATA == "deleted" ){
+
+				$$("wixdt"+data.GRPID).removeRowCss(rid, "fontStateUpdate");
+				$$("wixdt"+data.GRPID).remove(rid); // removes the item with ID=1
+
+				alog("	rid [" + rid + "] is [deleted]");
+			}
+		}
+	}
+
+
+	//변경 상태 모두 초기화
+	//tGrid2.clearChangedState();
+	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]");
 }
 
 

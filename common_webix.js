@@ -12,3 +12,8 @@ var webixConfig = {
     },
     dateFormat: "%Y-%m-%d"
 };
+function logEvent(type, message, args){
+    webix.message({ text:message, expire:500 });
+    console.log(type);
+    console.log(args);
+};
