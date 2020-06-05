@@ -22,12 +22,12 @@ function logEvent(type, message, args){
 var fncDataUpdate = function(id, newObj, oldObj){
     alog("onDataUpdate()............................start");
     alog(id);
-    alog(newObj);
+    alog("  newObj1=" + JSON.stringify(newObj));
     rowId = newObj.id;
 
     //수정하기 했을때 처리
     if(typeof newObj.changeState == "undefined" || newObj.changeState == null){
-        $$("wixdtG2").addRowCss(rowId, "fontStateUpdate");
+        //$$("wixdtG2").addRowCss(rowId, "fontStateUpdate");
         newObj.changeState = true;
         newObj.changeCud = "updated";
     }
@@ -39,8 +39,33 @@ var fncDataUpdate = function(id, newObj, oldObj){
     }			
 
 
-    alog(oldObj);
+    alog("  newObj2=" + JSON.stringify(newObj));
     alog("onDataUpdate()............................end");
+};
+
+var fncAfterEditStop = function(state, editor, ignoreUpdate){
+    alog("onAfterEditStop()................................start");
+    //alog(state);
+    //alog(editor);
+    //alog(ignoreUpdate);
+    var rowId = editor.row;
+    //this.addRowCss(rowId, "fontStateUpdate");
+    var rowItem = this.data.getItem(rowId);
+    alog("  rowItem1=" + JSON.stringify(rowItem));
+    if(
+        typeof rowItem != "undefined" 
+        && typeof rowItem.changeState != "undefined" 
+        && rowItem.changeState == true 
+        &&  rowItem.changeCud == "updated"){
+
+        this.addRowCss(rowId, "fontStateUpdate");
+
+    }
+    alog("  rowItem2=" + JSON.stringify(rowItem));
+    if(state.value != state.old){
+        webix.message("Cell value " + editor.row + " was changed");
+
+    }  
 };
 
 

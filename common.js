@@ -693,6 +693,22 @@ function apiCodeCombo(tGrpId, tColId, tJsonParam, tDefaultValue){
 						nm = data.RTN_DATA.rows[i].data[1];
 						this.privateCombo.put(cd,nm);
 					}
+				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "GRIDWIX"){
+						alog("	GRIDWIX - 코드수 : " + data.RTN_DATA.rows.length);
+						if(!data.RTN_DATA)return;
+
+						var tArr = [];
+
+						for(var i=0;i<data.RTN_DATA.rows.length;i++){
+							//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
+							tArr[i] = {
+								"id": data.RTN_DATA.rows[i].data[0]
+								,"value": data.RTN_DATA.rows[i].data[1]
+							};
+						}	
+						$$("wixdt" + this.privateGrpId).getColumnConfig(this.privateColId).options = tArr;
+						$$("wixdt" + this.privateGrpId).refreshColumns(); //필수호출해야함.
+
 				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "CONDITION"){
 					if(!data.RTN_DATA)return;
 					//alog("	코드수 : " + data.RTN_DATA.rows.length);

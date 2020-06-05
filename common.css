@@ -17,13 +17,22 @@ bootstrapv4 호환
 브라우저 디펄트 : content-box
 부트스트랩 디펄트 : border-box
 dhtmlx 디펄트 : content-box
-*/
+
 *,*::before,*::after {  
     box-sizing: border-box;
 }
+*/
 
-
-
+/* 부트 스트랩4 LIB 안쓸때 대체*/
+.btn-sm {
+    border-radius: 5px;
+    height: 31px;
+    line-height: 24px;
+    font-size: 10pt;
+    text-decoration: none;
+    color: black;
+    background:silver;
+}
 
 /*
 div,input,textarea,select,span {font-family: "Nanum Gothic", sans-serif;font-size: 11px;}
