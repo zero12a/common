@@ -13,21 +13,27 @@ var webixConfig = {
     dateFormat: "%Y-%m-%d"
 };
 function logEvent(type, message, args){
-    webix.message({ text:message, expire:500 });
-    console.log(type);
-    console.log(args);
+    alog("logEvent().................................start")
+    //webix.message({ text:message, expire:500 });
+    alog(type);
+    alog(message);
+    alog(args);
 };
 
 
 var fncDataUpdate = function(id, newObj, oldObj){
     alog("onDataUpdate()............................start");
+    alog(this);
     alog(id);
+    alog("  oldObj=" + JSON.stringify(oldObj));
     alog("  newObj1=" + JSON.stringify(newObj));
     rowId = newObj.id;
 
+    //체크박스는 fncAfterEditStop없이 바로 fncDataUpdate만 이벤트 발생함.
+
     //수정하기 했을때 처리
     if(typeof newObj.changeState == "undefined" || newObj.changeState == null){
-        //$$("wixdtG2").addRowCss(rowId, "fontStateUpdate");
+        $$(this.owner).addRowCss(rowId, "fontStateUpdate");
         newObj.changeState = true;
         newObj.changeCud = "updated";
     }
@@ -45,6 +51,7 @@ var fncDataUpdate = function(id, newObj, oldObj){
 
 var fncAfterEditStop = function(state, editor, ignoreUpdate){
     alog("onAfterEditStop()................................start");
+    alog(this);
     //alog(state);
     //alog(editor);
     //alog(ignoreUpdate);
@@ -56,9 +63,9 @@ var fncAfterEditStop = function(state, editor, ignoreUpdate){
         typeof rowItem != "undefined" 
         && typeof rowItem.changeState != "undefined" 
         && rowItem.changeState == true 
-        &&  rowItem.changeCud == "updated"){
+        && rowItem.changeCud == "updated"){
 
-        this.addRowCss(rowId, "fontStateUpdate");
+        //this.addRowCss(rowId, "fontStateUpdate");
 
     }
     alog("  rowItem2=" + JSON.stringify(rowItem));
