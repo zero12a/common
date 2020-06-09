@@ -70,7 +70,7 @@ input[type="radio"]:disabled, input[type="checkbox"]:disabled {
 
 .CON_LINE {position: relative;width:100%;overflow:auto;z-index:20;}
 .CON_OBJGRP {position: relative;float:left;background-color: #eeeeee;vertical-align:middle ;overflow:auto;z-index:25;}
-.CON_LABEL {overflow:hidden;overflow-y:hidden;position: relative;float:left;background-color: #eeeeee;vertical-align:middle ;padding-left:5px;overflow:auto;z-index:30;}
+.CON_LABEL {overflow:hidden;overflow-y:hidden;position: relative;float:left;background-color: #eeeeee;vertical-align:middle ;padding:3px 5px 0px 5px;overflow:auto;z-index:30;}
 .CON_OBJECT {position: relative;float:left;background-color: #eeeeee;vertical-align:middle;overflow:auto;z-index:30;}
 .CON_LINEPADDING {position: relative;height:5px;overflow:auto;z-index:20;}
 
