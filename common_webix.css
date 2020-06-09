@@ -1,3 +1,13 @@
+/* bootstrap4 충돌 방지
+
+브라우저 디펄트 : content-box
+부트스트랩 디펄트 : border-box
+dhtmlx 디펄트 : content-box
+*/
+.webix_dtable div.webix_ss_vscroll_header {  
+    box-sizing: content-box;
+}
+
 /* 헤더 여백 슬림 */
 .webix_hcell{
     padding:0 2px 0 2px;
