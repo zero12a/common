@@ -52,7 +52,39 @@ var cellclass = function (rowIndex, columnName, value, data) {
 };            
 
 
+//##################################################################
+//##    (에디터) textarea
+//##################################################################
+var fnHtmlCellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+    alog("fncHtmlCellsrenderer().....................start");
+    //alog(value);
+    return '<span style="margin: 4px; margin-top:5px; float: ' + columnproperties.cellsalign + ';">' + _.replace(_.replace(value,/</g,"&lt;"),/>/g,"&gt;") + '</span>';
+}
 
+var fnTextAreaCreateeditor = function(row, cellvalue, editor, celltext, cellwidth, cellheight) {
+    alog("SRCTXT createeditor()................................start")
+    alog(editor);
+    alog(cellvalue);
+    alog(celltext);
+
+    //var editorElement = $('<textarea id="customTextArea' + row + '"></textarea>').prependTo(editor);
+    editor.jqxTextArea({
+        height: 80,
+        width: 300
+    });
+}
+
+var fnTextAreaIniteditor = function(row, cellvalue, editor, celltext, pressedChar) {
+    alog("SRCTXT initeditor()................................start")
+    //editor.find('textarea').val(cellvalue);
+
+    editor.val(cellvalue);
+    editor.focus();
+}
+var fnTextAreaGeteditorvalue = function(row, cellvalue, editor) {
+    //return editor.find('textarea').val();
+    return editor.val();
+}
 
 
 //##################################################################
@@ -233,4 +265,6 @@ var fnComboCreatefilterwidget = function (column, htmlElement, editor) {
         source: dataAdapterCdsFilter.records
         ,displayMember: "nm", valueMember: "cd", checkboxes: false, placeHolder: "Select:" });
 }
+
+
 
