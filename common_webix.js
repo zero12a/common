@@ -9,8 +9,12 @@ var webixConfig = {
         done:"확인",
         clear: "지우기",
         today: "오늘"
-    },
-    dateFormat: "%Y-%m-%d"
+    }
+    ,dateFormat: "%Y-%m-%d"
+    ,popup_text: {
+        view:"popup", 
+        body:{view:"textarea", width:450, height:150}
+    }
 };
 function logEvent(type, message, args){
     alog("logEvent().................................start")
