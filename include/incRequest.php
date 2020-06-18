@@ -88,6 +88,7 @@ function getFilter($tInput,$tValidType,$tValidRule){
         return "";
     }else if($tValidType == "REGEXMAT"){
         $RtnVal = filter_var($tInput, FILTER_VALIDATE_REGEXP,array("options" => array("regexp" => $tValidRule ))); 
+        if($RtnVal == false)$RtnVal = ""; //filter_var는 정규식 실패시 false를 리턴한다.
         //alog("getFilter() REGEXMAT " . $tInput . " ---> ". $RtnVal);
     }else if($tValidType == "CLEARTEXT"){
         $RtnVal = strip_tags($tInput);
@@ -241,6 +242,71 @@ function filterGridXml($map){
 
     }
     //alog("filterGridXml()......................................end");
+    return $RtnVal;
+}
+
+
+function filterGridJson($map){
+    global $purifier;
+    //alog("filterGridJson()......................................start");
+    $xml_array_last = null;
+    $colord_array = explode(",",$map["COLORD"]);
+    $is_assoc = null;
+
+    $json_array_last = $map["JSON"];
+    //var_dump($xml_array_last);
+
+    $RtnVal = $map["XML"];
+    $RtnCnt = 0;
+    //alog("xml sizeof : " . sizeof($json_array_last));
+    for($i=0;$i<sizeof($json_array_last);$i++){
+        $row = $json_array_last[$i];
+        //alog("        i : " . $i);
+
+        //현재 그리드 line을 bind 배열에 담기
+        $to_row = null;
+        $to_coltype = null;
+        $sql = null;
+        for($j=0;$j<sizeof($colord_array);$j++){
+            //alog("        j : " . $j);                     
+            $colBefore = $row[$colord_array[$j]];
+
+            //VALID
+            if(is_array($map["VALID"][trim($colord_array[$j])]) && !is_array($colBefore) && strlen($colBefore) > 0){
+
+                if($map["VALID"][trim($colord_array[$j])][0] == "DATE"){
+                    $colAfter1 = getValidDate($colBefore,$map["VALID"][trim($colord_array[$j])][1]);
+                }else if($map["VALID"][trim($colord_array[$j])][0] == "STRING"){
+                    $colAfter1 = getValidString($colBefore,$map["VALID"][trim($colord_array[$j])][1]);
+                }else if($map["VALID"][trim($colord_array[$j])][0] == "NUMBER"){
+                    $colAfter1 = getValidNumber($colBefore,$map["VALID"][trim($colord_array[$j])][1]);    
+                }else{
+                    $colAfter1 = $colBefore;
+                } 
+
+            }else{
+                $colAfter1 = $colBefore ;
+            }
+            //alog("      valid " . trim($colord_array[$j]) . " : " . $colBefore . " ===> " . $colAfter1);  
+
+            //FILTER
+            if(is_array($map["FILTER"][trim($colord_array[$j])]) && !is_array($colAfter1) && strlen($colAfter1) > 0){
+                $colAfter2 = getFilter($colAfter1,$map["FILTER"][trim($colord_array[$j])][0], $map["FILTER"][trim($colord_array[$j])][1]);
+            }else{
+                $colAfter2 = $colAfter1;
+            }
+            //alog("      filter " . trim($colord_array[$j]) . " : " . $colAfter1 . " ===> " . $colAfter2);              
+            
+
+            $RtnVal[$i][$colord_array[$j]] = $colAfter2;
+            
+        }
+        //컬럼 기타 정보
+        $RtnVal[$i]["id"] = $row["id"];
+        $RtnVal[$i]["changeState"] = $row["changeState"];
+        $RtnVal[$i]["changeCud"] = $row["changeCud"];
+    }
+    //alog("filterGridJson()......................................end");
     return $RtnVal;
 }
 
