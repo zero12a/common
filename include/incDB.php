@@ -2235,43 +2235,17 @@ function getStmtArrayNum(&$stmt){
 
         $colord_array = explode(",",$colord);
 
-		$json_array_last = null;
-        alog("requireGrid is_assoc : " . is_assoc($json) );
-        alog("requireGrid count : " . count($xml["row"]) );
-        alog("requireGrid sizeof : " . sizeof($xml["row"]) );
-		if(is_assoc($xml["row"]) == 1) {
-			alog(" Y " );
-			$json_array_last[0] = $json["row"];
-		}else{
-			alog(" N " );
-
-			$json_array_last = $json["row"];
-		}
-		//var_dump($xml_array_last);
-
-
 		$RtnCnt = 0;
-		alog("json sizeof : " . sizeof($json_array_last));
-		for($i=0;$i<sizeof($json_array_last) && $isRequireResult;$i++){
+		alog("json sizeof : " . sizeof($json));
+		for($i=0;$i<sizeof($json) && $isRequireResult;$i++){
 
-			$row = $json_array_last[$i];
+			$row = $json[$i];
 			alog("        i : " . $i);
 			//alog("        @attributes : " . $row["@attributes"]["id"]);
 			alog("        changeCud : " . $row["changeCud"]);
 
-			//현재 그리드 line을 bind 배열에 담기
-			$to_row = null;
-			$to_coltype = null;
-			for($j=0;$j<sizeof($row["cell"]);$j++){
-				$col = $row["cell"][$j];
-				if(is_array($col)){
-					$to_row[trim($colord_array[$j])] = "";
-				}else{
-                    $to_row[trim($colord_array[$j])] = $col;
-				}
-            }
             
-            $tArr = array_merge($REQ,$to_row);
+            $tArr = array_merge($REQ,$row);
 
 			if($row["changeCud"] == "inserted"  ){
                 alog("        inserted : " );
