@@ -29,9 +29,14 @@ var fncDataUpdate = function(id, newObj, oldObj){
     alog("onDataUpdate()............................start");
     alog(this);
     alog(id);
-    alog("  oldObj=" + JSON.stringify(oldObj));
-    alog("  newObj1=" + JSON.stringify(newObj));
     rowId = newObj.id;
+
+    var oldStr = JSON.stringify(oldObj);
+    var newStr = JSON.stringify(newObj)
+    alog("  oldObj = " + oldStr);
+    alog("  newObj1 = " + newStr);
+    if(oldStr == newStr)return false; //바뀐거 없으면 그냥 리턴
+
 
     //체크박스는 fncAfterEditStop없이 바로 fncDataUpdate만 이벤트 발생함.
 
