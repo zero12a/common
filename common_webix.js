@@ -101,3 +101,67 @@ var fncBeforeFilter  = function(id, value, config){
 
     //alert($$("wixdtG2").getFilter("start").value);
 }
+
+var fncTemplateCodesearch = function(obj,common,value,column,index){
+    //alog("fncTemplateCodesearch ().............................start");
+    //alog(this); //'this' euqal 'column'
+    //alog(obj);
+    //(common);
+    //alog(value);
+    //alog(column);
+    //alog(index);
+    //alog("__grpId = "  + $$("webix_dt").config.__grpId);
+    //obj, which is the full data item (is shown as a table row),
+    //common, which contains predefined template elements (will be discussed later in this chapter),
+    //value, which is the raw field value (based on the column ID),
+    //column, which is the column configuration object,
+    //index, which is the current index of the row.
+
+    var rtnVal = "";
+    if(typeof obj[this.id] != "undefined"){
+        t = obj[this.id] + ""; //형식 nm^cd (정렬시 nm이 먼저활용되게 하기 위함)
+
+        if(t.indexOf("^") >= 0){
+            tCd = t.split("^")[1];
+            tNm = t.split("^")[0];
+            tColor = "";
+        }else{
+            tCd = "";
+            tNm = t;
+            tColor = "red";
+        }
+
+        grpId = column.__GRPID;
+        dataId = obj.id;
+        colId = this.id;
+        rtnVal = "<div style='float:left;color:" + tColor +";' id='" + tCd + "'>" + tNm + "</div>";
+        rtnVal += "<div style='float:right;'>";
+        rtnVal += "<img onclick=\"goGridPopOpen('" + grpId + "','" + dataId + "','" + colId + "','" +  tNm + "','" + tCd + "',this)\" src='http://localhost:8070/img/search.png' align='absmiddle' style='width:26px;height:26px;'>";
+        rtnVal += "</div>";
+    }
+
+    return rtnVal;
+}
+
+var fncTemplateLink = function(obj){
+    //alog("fncTemplateLink().............................start");
+    //alog(this);
+    //alog(obj);
+    var rtnVal = "";
+    if(typeof obj[this.id] != "undefined"){
+        t = obj[this.id] + ""; //형식 nm^link^target (정렬시 nm이 먼저활용되게 하기 위함)
+        if(t.indexOf("^") >= 0){
+            tNm = t.split("^")[0];
+            tLink = t.split("^")[1];
+            tTarget = t.split("^")[2];
+            tColor = "";
+        }else{
+            tNm = t;
+            tLink = "";
+            tTarget = "_blank";
+            tColor = "red";
+        }
+        var rtnVal = "<div style='float:left;'><a style='color:" + tColor + "' href='" + tLink + "' target='" + tTarget + "'>" + tNm + "</a></div>";
+    }
+    return rtnVal;
+}
