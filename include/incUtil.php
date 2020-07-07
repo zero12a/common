@@ -19,7 +19,29 @@ function getLoggerSwoole($arrLog){
     $redisClient = null;
     alog("RedisClient connection make");
     try{
-        $redisClient = new Predis\Client($CFG["CFG_AUTH_REDIS"]);
+
+        //tcp://172.17.0.1:1234?1234
+        if($CFG["REDIS_PASSWD"] != ""){
+            $redisClient = new Predis\Client(//$CFG["CFG_AUTH_REDIS"
+                array(
+                    'scheme' => 'tcp',
+                    'host'   => $CFG["REDIS_HOST"],
+                    'port'   => $CFG["REDIS_PORT"],
+                    'password' => $CFG["REDIS_PASSWD"],
+                    'timeout' => 3
+                )
+            );
+        }else{
+            $redisClient = new Predis\Client(//$CFG["CFG_AUTH_REDIS"
+                array(
+                    'scheme' => 'tcp',
+                    'host'   => $CFG["REDIS_HOST"],
+                    'port'   => $CFG["REDIS_PORT"],
+                    'timeout' => 3
+                )
+            );
+        }
+
         $redisClient->connect();//연결하기
     }catch(Exception $e) {
         alog("RedisClient connection error : " . $e->getMessage());
@@ -961,6 +983,13 @@ function HtmlEncode($tmp){
 function JsonMsg($rtn_cd, $err_cd,  $rtn_msg)
 {
 	$json_array = array( "RTN_CD"=>$rtn_cd, "ERR_CD"=>$err_cd, "RTN_MSG" => $rtn_msg);
+	
+	echo json_encode($json_array);
+	exit;
+}
+
+function JsonData($rtn_cd, $err_cd,  $rtn_msg, $rtn_data){
+    $json_array = array( "RTN_CD"=>$rtn_cd, "ERR_CD"=>$err_cd, "RTN_MSG" => $rtn_msg, "RTN_DATA" => $rtn_data);
 	
 	echo json_encode($json_array);
 	exit;

@@ -16,16 +16,29 @@ if($localCache == "" || $_GET["reload"] == "YES"){
 	$miniConfig = array(
 		"REDIS_HOST" => "{{ var "REDIS_HOST" | default "127.0.0.1" }}"
 		,"REDIS_PORT" => {{ var "REDIS_PORT" | default "6379" }}
+		,"REDIS_PASSWD" => "{{ var "REDIS_PASSWD" | default "" }}"
 	);
 
 	//세션 사용
-	$redisClient = new Predis\Client(
-		array(
-			'scheme' => 'tcp',
-			'host'   => $miniConfig["REDIS_HOST"],
-			'port'   => $miniConfig["REDIS_PORT"],
-			'timeout' => 1
-		));
+	if($miniConfig["REDIS_PASSWD"] != ""){
+		$redisClient = new Predis\Client(
+			array(
+				'scheme' => 'tcp',
+				'host'   => $miniConfig["REDIS_HOST"],
+				'port'   => $miniConfig["REDIS_PORT"],
+				'password'   => $miniConfig["REDIS_PASSWD"],
+				'timeout' => 1
+			));
+	}else{
+		$redisClient = new Predis\Client(
+			array(
+				'scheme' => 'tcp',
+				'host'   => $miniConfig["REDIS_HOST"],
+				'port'   => $miniConfig["REDIS_PORT"],
+				'timeout' => 1
+			));
+	}
+
 	$jsonString = $redisClient->get($cfgNm);
 	//echo "<pre><hr>jsonString<BR>" . json_encode(json_decode($jsonString,true),JSON_PRETTY_PRINT);	
 	$jsonStringDs = $redisClient->get($dataSourceNm);

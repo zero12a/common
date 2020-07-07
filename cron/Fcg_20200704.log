@@ -1,0 +1,1297 @@
+
+20.07.04 10:16:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:16:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:16:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:16:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:16:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:16:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:16:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:16:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:16:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:16:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:16:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:16:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:16:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:16:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:16:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:16:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:16:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:16:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:17:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:17:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:17:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:17:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:17:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:17:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:17:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:17:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:17:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:17:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:17:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:17:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:17:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:17:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:17:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:17:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:17:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:17:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:18:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:18:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:18:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:18:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:18:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:18:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:18:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:18:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:18:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:18:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:18:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:18:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:19:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:19:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:19:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:19:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:19:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:19:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:19:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:19:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:19:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:19:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:19:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:19:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:19:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:20:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:20:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:20:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:20:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:20:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:20:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:20:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:20:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:20:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:20:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:20:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:20:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:20:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:20:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:20:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:20:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:20:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:20:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:21:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:21:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:21:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:21:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:21:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:21:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:21:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:21:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:21:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:21:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:21:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:21:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:21:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:21:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:21:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:21:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:21:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:21:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:22:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:22:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:22:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:22:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:22:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:22:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:22:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:22:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:22:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:22:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:22:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:22:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:22:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:22:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:22:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:22:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:22:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:22:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:23:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:23:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:23:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:23:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:23:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:23:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:23:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:23:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:23:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:23:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:23:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:23:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:23:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:23:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:23:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:23:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:23:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:23:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:32:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:32:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:32:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:32:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:32:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:32:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:32:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:32:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:32:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:32:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:32:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:32:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:32:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:32:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:32:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:32:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:32:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:32:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:33:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:33:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:33:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:33:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:33:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:33:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:33:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:33:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:33:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:33:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:33:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:33:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:33:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:33:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:33:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:33:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:33:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:33:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:34:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:34:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:34:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:34:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:34:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:34:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:34:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:34:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:34:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:34:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:34:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:34:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:34:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:34:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:34:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:34:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:34:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:34:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:35:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:35:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:35:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:35:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:35:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:35:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:35:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:35:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:35:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:35:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:35:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:35:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:35:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:35:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:35:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:35:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:35:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:35:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:36:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:36:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:36:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:36:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:36:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:36:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:36:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:36:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:36:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:36:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:36:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:36:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:36:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:36:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:36:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:36:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:36:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:36:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:37:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:37:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:37:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:37:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:37:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:37:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:37:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:37:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:37:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:37:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:37:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:37:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:37:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:37:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:37:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:37:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:37:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:37:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:38:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:38:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:38:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:38:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:38:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:38:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:38:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:38:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:38:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:38:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:38:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:38:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:38:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:38:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:38:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:38:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:38:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:38:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:39:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:39:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:39:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:39:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:39:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:39:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:39:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:39:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:39:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:39:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:39:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:39:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:39:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:39:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:39:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:39:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:39:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:39:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:40:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:40:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:40:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:40:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:40:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:40:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:40:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:40:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:40:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:40:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:40:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:40:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:40:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:40:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:40:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:40:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:40:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:40:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:41:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:41:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:41:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:41:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:41:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:41:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:41:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:41:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:41:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:41:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:41:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:41:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:41:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:41:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:41:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:41:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:41:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:41:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:42:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:42:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:42:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:42:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:42:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:42:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:42:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:42:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:42:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:42:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:42:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:42:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:42:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:42:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:42:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:42:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:42:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:42:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:43:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:43:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:43:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:43:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:43:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:43:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:43:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:43:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:43:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:43:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:43:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:43:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:43:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:43:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:43:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:43:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:43:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:43:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:44:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:44:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:44:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:44:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:44:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:44:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:44:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:44:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:44:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:44:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:44:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:44:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:44:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:44:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:44:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:44:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:44:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:44:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:45:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:45:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:45:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:45:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:45:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:45:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:45:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:45:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:45:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:45:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:45:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:45:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:45:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:45:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:45:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:45:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:45:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:45:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:46:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:46:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:46:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:46:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:46:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:46:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:46:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:46:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:46:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:46:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:46:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:46:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:46:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:46:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:46:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:46:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:46:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:46:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:47:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:47:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:47:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:47:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:47:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:47:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:47:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:47:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:47:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:47:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:47:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:47:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:47:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:47:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:47:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:47:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:47:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:47:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:48:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:48:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:48:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:48:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:48:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:48:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:48:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:48:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:48:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:48:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:48:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:48:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:48:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:48:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:48:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:48:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:48:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:48:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:49:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:49:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:49:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:49:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:49:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:49:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:49:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:49:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:49:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:49:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:49:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:49:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:49:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:49:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:49:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:49:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:49:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:49:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:50:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:50:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:50:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:50:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:50:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:50:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:50:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:50:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:50:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:50:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:50:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:50:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:50:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:50:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:50:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:50:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:50:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:50:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:51:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:51:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:51:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:51:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:51:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:51:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:51:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:51:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:51:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:51:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:51:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:51:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:51:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:51:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:51:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:51:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:51:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:51:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:52:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:52:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:52:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:52:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:52:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:52:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:52:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:52:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:52:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:52:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:52:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:52:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:52:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:52:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:52:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:52:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:52:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:52:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:53:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:53:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:53:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:53:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:53:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:53:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:53:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:53:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:53:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:53:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:53:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:53:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:53:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:53:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:53:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:53:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:53:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:53:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:54:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:54:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:54:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:54:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:54:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:54:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:54:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:54:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:54:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:54:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:54:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:54:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:54:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:54:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:54:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:54:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:54:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:54:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:55:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:55:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:55:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:55:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:55:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:55:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:55:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:55:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:55:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:55:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:55:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:55:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:55:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:55:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:55:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:55:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:55:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:55:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:56:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:56:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:56:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:56:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:56:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:56:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:56:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:56:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:56:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:56:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:56:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:56:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:56:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:56:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:56:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:56:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:56:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:56:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:57:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:57:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:57:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:57:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:57:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:57:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:57:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:57:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:57:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:57:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:57:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:57:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:57:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:57:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:57:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:57:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:57:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:57:02 [] ./predis_watcher     : cmd result : 
+20.07.04 10:58:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:58:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:58:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:58:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:58:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:58:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:58:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:58:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:58:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:58:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:58:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:58:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:58:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:58:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:59:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:59:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:59:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:59:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:59:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:59:00 [] ./predis_watcher     : cmd result : 
+20.07.04 10:59:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:59:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:59:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:59:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:59:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:59:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:59:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 10:59:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 10:59:01 [] ./predis_watcher     : cmd result : 
+20.07.04 10:59:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 10:59:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 10:59:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:00:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:00:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:00:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:00:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:00:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:00:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:00:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:00:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:00:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:00:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:00:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:00:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:00:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:00:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:00:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:00:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:00:03 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:00:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:01:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:01:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:01:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:01:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:01:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:01:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:01:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:01:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:01:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:01:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:01:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:01:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:01:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:01:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:01:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:01:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:01:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:01:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:02:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:02:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:02:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:02:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:02:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:02:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:02:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:02:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:02:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:02:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:02:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:02:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:02:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:02:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:02:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:02:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:02:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:02:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:03:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:03:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:03:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:03:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:03:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:03:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:03:03 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:03:03 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:03:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:03:03 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:03:03 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:03:03 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:03:04 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:03:04 [] ./predis_watcher     : cmd result : 
+20.07.04 11:03:04 [] ./predis_watcher     : cmd result : 
+20.07.04 11:03:04 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:03:04 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:03:04 [] ./predis_watcher     : cmd result : 
+20.07.04 11:04:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:04:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:04:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:04:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:04:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:04:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:04:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:04:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:04:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:04:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:04:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:04:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:04:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:04:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:04:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:04:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:04:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:04:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:06:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:06:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:06:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:06:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:06:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:06:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:06:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:06:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:06:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:06:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:06:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:06:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:06:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:06:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:06:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:06:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:06:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:06:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:07:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:07:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:07:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:07:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:07:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:07:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:07:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:07:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:07:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:07:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:07:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:07:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:07:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:07:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:07:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:07:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:07:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:07:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:08:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:08:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:08:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:08:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:08:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:08:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:08:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:08:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:08:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:08:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:08:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:08:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:08:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:08:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:08:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:09:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:09:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:09:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:09:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:09:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:09:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:09:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:09:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:09:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:09:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:09:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:09:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:09:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:09:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:10:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:10:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:10:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:10:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:10:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:10:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:10:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:10:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:10:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:10:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:10:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:10:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:10:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:10:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:10:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:10:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:10:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:10:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:11:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:11:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:11:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:11:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:11:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:11:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:11:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:11:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:11:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:11:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:11:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:11:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:11:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:11:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:11:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:11:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:11:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:11:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:12:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:12:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:12:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:12:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:12:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:12:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:12:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:12:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:12:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:12:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:12:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:12:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:12:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:12:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:12:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:12:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:12:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:12:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:13:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:13:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:13:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:13:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:13:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:13:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:13:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:13:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:13:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:13:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:13:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:13:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:13:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:13:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:13:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:13:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:13:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:13:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:14:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:14:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:14:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:14:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:14:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:14:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:14:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:14:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:14:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:14:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:14:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:14:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:14:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:14:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:14:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:14:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:14:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:14:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:15:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:15:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:15:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:15:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:15:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:15:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:15:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:15:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:15:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:15:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:15:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:15:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:15:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:15:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:15:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:15:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:15:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:15:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:16:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:16:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:16:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:16:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:16:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:16:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:16:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:16:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:16:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:16:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:16:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:16:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:16:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:16:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:16:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:16:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:16:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:16:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:17:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:17:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:17:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:17:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:17:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:17:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:17:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:17:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:17:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:17:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:17:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:17:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:17:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:17:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:17:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:17:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:17:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:17:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:18:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:18:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:18:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:18:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:18:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:18:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:18:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:18:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:18:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:18:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:18:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:18:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:18:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:18:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:18:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:19:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:19:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:19:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:19:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:19:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:19:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:19:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:19:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:19:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:19:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:19:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:19:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:19:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:19:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:19:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:20:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:20:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:20:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:20:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:20:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:20:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:20:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:20:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:20:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:20:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:20:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:20:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:20:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:20:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:20:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:20:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:20:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:20:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:23:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:23:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:23:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:23:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:23:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:23:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:23:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:03 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:23:03 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:03 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:23:03 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:03 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:23:03 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:03 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:23:03 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:03 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:03 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:03 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:23:03 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:23:03 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:23:03 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:23:03 [] ./predis_watcher     : cmd result : 
+20.07.04 11:54:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:54:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:54:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:54:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:54:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:54:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:54:45 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:54:45 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:54:45 [] ./predis_watcher     : cmd result : 
+20.07.04 11:54:45 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:54:45 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:54:45 [] ./predis_watcher     : cmd result : 
+20.07.04 11:54:46 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:54:46 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:54:46 [] ./predis_watcher     : cmd result : 
+20.07.04 11:54:46 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:54:46 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:54:46 [] ./predis_watcher     : cmd result : 
+20.07.04 11:55:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:55:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:55:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:55:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:55:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:55:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:55:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:55:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:55:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:55:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:55:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:55:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:55:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:55:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:55:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:55:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:55:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:55:02 [] ./predis_watcher     : cmd result : 
+20.07.04 11:56:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:56:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:56:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:56:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:56:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:56:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:56:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:56:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:56:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:56:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:56:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:56:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:56:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:56:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:56:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:56:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:56:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:56:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:57:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:57:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:57:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:57:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:57:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:57:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:57:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:57:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:57:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:57:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:57:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:57:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:57:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:57:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:57:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:57:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:57:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:57:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:58:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:58:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:58:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:58:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:58:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:58:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:58:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:58:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:58:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:58:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:58:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:58:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:58:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:59:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:59:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:59:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:59:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:59:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:59:00 [] ./predis_watcher     : cmd result : 
+20.07.04 11:59:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:59:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:59:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:59:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:59:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:59:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:59:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 11:59:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 11:59:01 [] ./predis_watcher     : cmd result : 
+20.07.04 11:59:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 11:59:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 11:59:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:00:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:00:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:00:00 [] ./predis_watcher     : cmd result : 
+20.07.04 12:00:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:00:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:00:00 [] ./predis_watcher     : cmd result : 
+20.07.04 12:00:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:00:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:00:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:00:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:00:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:00:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:00:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:00:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:00:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:00:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:00:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:00:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:01:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:01:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:01:00 [] ./predis_watcher     : cmd result : 
+20.07.04 12:01:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:01:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:01:00 [] ./predis_watcher     : cmd result : 
+20.07.04 12:01:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:01:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:01:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:01:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:01:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:01:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:01:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:01:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:01:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:01:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:01:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:01:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:02:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:02:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:02:00 [] ./predis_watcher     : cmd result : 
+20.07.04 12:02:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:02:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:02:00 [] ./predis_watcher     : cmd result : 
+20.07.04 12:02:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:02:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:02:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:02:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:02:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:02:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:02:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 12:02:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 12:02:01 [] ./predis_watcher     : cmd result : 
+20.07.04 12:02:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 12:02:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 12:02:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:05:50 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:05:50 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:05:50 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:05:50 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:05:50 [] ./predis_watcher     : cmd result : 
+20.07.04 21:05:50 [] ./predis_watcher     : cmd result : 
+20.07.04 21:05:50 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:05:50 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:05:50 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:05:50 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:05:50 [] ./predis_watcher     : cmd result : 
+20.07.04 21:05:50 [] ./predis_watcher     : cmd result : 
+20.07.04 21:06:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:06:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:06:02 [] ./predis_watcher     : cmd result : 
+20.07.04 21:06:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:06:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:06:02 [] ./predis_watcher     : cmd result : 
+20.07.04 21:06:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:06:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:06:02 [] ./predis_watcher     : cmd result : 
+20.07.04 21:06:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:06:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:06:02 [] ./predis_watcher     : cmd result : 
+20.07.04 21:06:43 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:06:43 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:06:43 [] ./predis_watcher     : cmd result : 
+20.07.04 21:06:43 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:06:43 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:06:43 [] ./predis_watcher     : cmd result : 
+20.07.04 21:07:00 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:07:00 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:07:00 [] ./predis_watcher     : cmd result : 
+20.07.04 21:07:00 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:07:00 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:07:00 [] ./predis_watcher     : cmd result : 
+20.07.04 21:07:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:07:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:07:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:07:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:07:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:07:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:07:02 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:07:02 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:07:02 [] ./predis_watcher     : cmd result : 
+20.07.04 21:07:02 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:07:02 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:07:02 [] ./predis_watcher     : cmd result : 
+20.07.04 21:08:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:08:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:08:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:08:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:08:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:08:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:08:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:08:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:08:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:08:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:08:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:08:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:08:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:09:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:09:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:09:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:09:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:09:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:09:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:09:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:09:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:09:01 [] ./predis_watcher     : predis_configCG.php process not live.
+20.07.04 21:09:01 [] ./predis_watcher     : cmd : Fcron/predis_configCG.sh > /dev/null 2>&1 &
+20.07.04 21:09:01 [] ./predis_watcher     : cmd result : 
+20.07.04 21:09:01 [] ./predis_watcher     : predis_datasourceCG.php process not live.
+20.07.04 21:09:01 [] ./predis_watcher     : cmd : Fcron/predis_datasourceCG.sh > /dev/null 2>&1 &
+20.07.04 21:09:01 [] ./predis_watcher     : cmd result : 
