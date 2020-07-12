@@ -26,16 +26,29 @@ echo "###########" . $CFG["REDIS_HOST"] . "\n";
 
 //Predis\Autoloader::register();
 
+if($CFG["REDIS_PASSWD"] != ""){
+    $pubsubClient = new Predis\Client(
+        array(
+            'scheme' => 'tcp',
+            'host'   => $CFG["REDIS_HOST"],
+            'port'   => $CFG["REDIS_PORT"],
+            'password'   => $CFG["REDIS_PASSWD"],            
+            'timeout' => 0,
+            'read_write_timeout' => 0
+        )
+    );    
+}else{
+    $pubsubClient = new Predis\Client(
+        array(
+            'scheme' => 'tcp',
+            'host'   => $CFG["REDIS_HOST"],
+            'port'   => $CFG["REDIS_PORT"],
+            'timeout' => 0,
+            'read_write_timeout' => 0
+        )
+    );    
+}
 
-$pubsubClient = new Predis\Client(
-    array(
-        'scheme' => 'tcp',
-        'host'   => $CFG["REDIS_HOST"],
-        'port'   => $CFG["REDIS_PORT"],
-        'timeout' => 0,
-        'read_write_timeout' => 0
-    )
-);    
 
 echo "###########" . $CFG["REDIS_PORT"] . "\n";
 
@@ -133,16 +146,28 @@ function getConfig($REQ){
     global $CFG,$cfgNm;
     alog("getConfig()...............start");
 
-    $redisClient = new Predis\Client(
-        array(
-            'scheme' => 'tcp',
-            'host'   => $CFG["REDIS_HOST"],
-            'port'   => $CFG["REDIS_PORT"],
-            'timeout' => 0
-        )
-    );    
-    
+    if($CFG["REDIS_PASSWD"] != ""){
 
+        $redisClient = new Predis\Client(
+            array(
+                'scheme' => 'tcp',
+                'host'   => $CFG["REDIS_HOST"],
+                'port'   => $CFG["REDIS_PORT"],
+                'password'   => $CFG["REDIS_PASSWD"],
+                'timeout' => 0
+            )
+        );    
+        
+    }else{
+        $redisClient = new Predis\Client(
+            array(
+                'scheme' => 'tcp',
+                'host'   => $CFG["REDIS_HOST"],
+                'port'   => $CFG["REDIS_PORT"],
+                'timeout' => 0
+            )
+        );    
+    }
     //$cfgNm = "CONFIG_CG";
 
     //json
