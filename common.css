@@ -260,3 +260,12 @@ canvas {
     background-color: white;
     border: 1px solid silver;
   }
+
+ /*
+******************************************** 
+** toastr.js
+******************************************** 
+*/ 
+.toast-message {
+    font-size: 10pt;
+}

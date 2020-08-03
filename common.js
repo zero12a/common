@@ -436,21 +436,25 @@ function xmlCdataRemove(tmp){
 
 
 function msgNotice(tMsg,tSecond){
-	alog("(common) msgNotice : " + tMsg);
-	dhtmlx.message({
-		type: "Notice",
-		text: tMsg,
-		expire: tSecond * 1000
-	});
+	alog("(common) msgNotice : " + tMsg + ", tSecond=" + tSecond);
+	
+	//dhtmlx.message({
+	//	type: "Notice",
+	//	text: tMsg,
+	//	expire: tSecond * 1000
+	//});
+
+	toastr.info(tMsg,null,{timeOut: tSecond * 1000});
 }
 function msgError(tMsg,tSecond){
-	alog("(common) msgError : " + tMsg);
+	alog("(common) msgError : " + tMsg + ", tSecond=" + tSecond);
 
-	dhtmlx.message({
-		type: "Error",
-		text: tMsg,
-		expire: tSecond * 1000
-	});
+	//dhtmlx.message({
+	//	type: "Error",
+	//	text: tMsg,
+	//	expire: tSecond * 1000
+	//});
+	toastr.error(tMsg,null,{timeOut: tSecond * 1000});
 }
 
 
