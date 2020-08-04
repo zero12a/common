@@ -269,3 +269,21 @@ canvas {
 .toast-message {
     font-size: 10pt;
 }
+
+
+/*
+button style
+*/
+input[type="button"] {
+    vertical-align: middle;
+	height: 30px;
+	border: 1px solid gray;
+	background-color: silver;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px; 
+	border-bottom-right-radius: 5px;
+}
+input[type="button"]:hover {
+    background-color: gray;
+}
