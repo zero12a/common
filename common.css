@@ -276,7 +276,9 @@ button style
 */
 input.btn-sm {
     vertical-align: middle;
-	height: 30px;
+    height: 30px;
+    color: white;
+    font-size: 10pt;
 	border: 1px solid gray;
 	background-color: rgb(95, 95, 95);
 	border-top-left-radius: 5px;
