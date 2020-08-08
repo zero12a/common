@@ -274,16 +274,16 @@ canvas {
 /*
 button style
 */
-input[type="button"] {
+input.btn-sm {
     vertical-align: middle;
 	height: 30px;
 	border: 1px solid gray;
-	background-color: silver;
+	background-color: rgb(95, 95, 95);
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-top-right-radius: 5px; 
 	border-bottom-right-radius: 5px;
 }
-input[type="button"]:hover {
-    background-color: gray;
+input.btn-sm:hover {
+    background-color: rgb(72, 74, 88);
 }
