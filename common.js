@@ -1202,7 +1202,7 @@ function saveToGroup(data){
 					$("#" + data.GRP_DATA[i].GRPID + "-" + data.GRP_DATA[i].SEQ_COLID).val(data.GRP_DATA[i].NEW_ID);
 				}
 
-				msgNotice("[" + data.GRP_DATA[i].GRPID + "]성공적으로 저장되었습니다.[영향받은건수:" + data.GRP_DATA[i].RTN_DATA + "]");
+				msgNotice("[" + data.GRP_DATA[i].GRPID + "]성공적으로 저장되었습니다.[영향받은건수:" + data.GRP_DATA[i].RTN_DATA + "]",3);
 			}else{
 				alog("i[" + i + "] is not GRID/FORMVIEW");
 			}
@@ -1284,7 +1284,7 @@ function saveToGridwix(tGrpId,data){
 
 	//변경 상태 모두 초기화
 	//tGrid2.clearChangedState();
-	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]");
+	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]",3);
 }
 
 
@@ -1372,7 +1372,7 @@ function saveToGridjqx(tGrpId,data){
 
 	//변경 상태 모두 초기화
 	//tGrid2.clearChangedState();
-	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]");
+	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]",3);
 
 }
 
@@ -1431,7 +1431,7 @@ function saveToGrid(tGrid2,data){
 
 	//변경 상태 모두 초기화
 	tGrid2.clearChangedState();
-	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]");
+	msgNotice("["+data.GRPID+"]성공적으로 저장되었습니다.[처리:" + data.ROWS.length + "건, 영향받은건수:" + affectedRows + "]",3);
 
 }
 
@@ -1487,7 +1487,7 @@ function saveToGridOld(tgrid,data){
 
         //변경 상태 모두 초기화
         tgrid.clearChangedState();
-		msgNotice("성공적으로 저장되었습니다.");
+		msgNotice("성공적으로 저장되었습니다.",3);
     }else{
         msgError("서버 저장중 에러가 발생했습니다.\nRTN_CD : " + data.RTN_CD + "\nERR_CD : " + data.ERR_CD + "\nRTN_MSG :" + data.RTN_MSG,3);
     }
@@ -1575,7 +1575,7 @@ function sendFileSummernote(file, el) {
 	$.ajax({
 	  data: form_data,
 	  type: "POST",
-	  url: '/common/cg_upload.php',
+	  url: '/common/cg_upload_summernote.php',
 	  cache: false,
 	  contentType: false,
 	  enctype: 'multipart/form-data',
