@@ -192,15 +192,52 @@ function apiCodeDropDown(tGrpId, tColId, tJsonParam, tDefaultValue){
 
 					$("#" + this.privateGrpId + "-" + this.privateColId).multiselect( 'loadOptions', tarr);//값세팅하기
 				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "FORMVIEW"){
-					tarr = [];
-					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						//alog("		" + data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
-						value = data.RTN_DATA.rows[i].data[0];
-						name = data.RTN_DATA.rows[i].data[1];
-						tarr[i] = {"value": value, "name": name};
+
+					//alog(grpInfo.get(this.privateGrpId));
+					//alog(grpInfo.get(this.privateGrpId).COLS);
+
+					var colObj = _.find(grpInfo.get(this.privateGrpId).COLS,{'COLID': this.privateColId});
+
+					//alog(colObj);
+
+					alog("OBJTYPE = " + colObj.OBJTYPE);
+					if(colObj != null && colObj.OBJTYPE == "DROPDOWN"){
+
+						tarr = [];
+						for(var i=0;i<data.RTN_DATA.rows.length;i++){
+							//alog("		" + data.RTN_DATA.rows[i].data[0] + "=" + data.RTN_DATA.rows[i].data[1]);
+							value = data.RTN_DATA.rows[i].data[0];
+							name = data.RTN_DATA.rows[i].data[1];
+							tarr[i] = {"value": value, "name": name};
+						}
+
+						//alog(tarr);
+						$("#" + this.privateGrpId + "-" + this.privateColId).multiselect( 'loadOptions', tarr);//값세팅하기= "DROPDOWN"){
+
+					}else if(colObj != null && colObj.OBJTYPE == "SELECT2"){
+
+						tarr = [];
+						for(var i=0;i<data.RTN_DATA.rows.length;i++){
+							id = data.RTN_DATA.rows[i].data[0];
+							text = data.RTN_DATA.rows[i].data[1];
+							tarr[i] = {"id": id, "text": text};
+						}
+						//alog(tarr);
+
+						//var obj = eval("select2_" + this.privateGrpId + "_" + this.privateColId);
+						$("#" + this.privateGrpId + "-" + this.privateColId).select2({
+							placeholder: "Select options",
+							closeOnSelect: false,
+							data: tarr,
+							allowClear: true,
+							tags: true
+						});
+
+					}else{
+						alert(this.privateColId + "정보를 찾을수 없습니다.");
 					}
-					//alog(tarr);
-					$("#" + this.privateGrpId + "-" + this.privateColId).multiselect( 'loadOptions', tarr);//값세팅하기
+
+
 				}else{
 					alog("	그룹 타입이 없습니다");
 				}
