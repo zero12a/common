@@ -289,3 +289,13 @@ input.btn-sm {
 input.btn-sm:hover {
     background-color: rgb(72, 74, 88);
 }
+
+
+ /*
+******************************************** 
+** select2.js
+******************************************** 
+*/ 
+.select2-results__option {
+    font-size: 11px;
+}
