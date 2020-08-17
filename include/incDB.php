@@ -1286,15 +1286,33 @@ function getStmtArray(&$stmt){
         //exit;
         //if(!$stmt->execute($param))JsonMsg("500","101","getStmtArray() (PDO) stmt execute fail1 -"
         // . $stmt->errno . " -> " . $stmt->error);        
-        if(!$stmt->execute())JsonMsg("500","101","getStmtArray() (PDO) stmt execute fail1 -"
-         . $stmt->errno . " -> " . $stmt->error);
+
+        try{
+            if(!$stmt->execute())JsonMsg("500","101","getStmtArray() (PDO) stmt execute fail1 -"
+            . $stmt->errno . " -> " . $stmt->error);
+        }catch(PDOException $e){
+            JsonMsg("500","114","(getStmtArray) PDOException  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }catch(mysqli_sql_exception $e){
+            JsonMsg("500","115","(getStmtArray) mysqli_sql_exception  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }catch(Exception $e){
+            JsonMsg("500","116","(getStmtArray) Exception  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }
+
         $RtnVal =  fetchAll($stmt); //해쉬맵
         //var_dump($RtnVal);
         $stmt->closeCursor();
     }else{
         //mysqli
-        if(!$stmt->execute())JsonMsg("500","102","getStmtArray() (MysqlI) stmt execute fail2 -"
-         . $stmt->errno . " -> " . $stmt->error);
+        try{
+            if(!$stmt->execute())JsonMsg("500","102","getStmtArray() (MysqlI) stmt execute fail2 -"
+            . $stmt->errno . " -> " . $stmt->error);
+        }catch(PDOException $e){
+            JsonMsg("500","124","(getStmtArray) PDOException  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }catch(mysqli_sql_exception $e){
+            JsonMsg("500","125","(getStmtArray) mysqli_sql_exception  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }catch(Exception $e){
+            JsonMsg("500","126","(getStmtArray) Exception  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }
 
         $result = $stmt->get_result();
         //$array = $result->mysqli_fetch_all(MYSQLI_ASSOC);
@@ -1318,15 +1336,33 @@ function getStmtArrayNum(&$stmt){
         //exit;
         //if(!$stmt->execute($param))JsonMsg("500","101","getStmtArrayNum() (PDO) stmt execute fail1 -"
         //. $stmt->errno . " -> " . $stmt->error);
-        if(!$stmt->execute())JsonMsg("500","101","getStmtArrayNum() (PDO) stmt execute fail1 -"
-         . $stmt->errno . " -> " . $stmt->error);
+        try{
+            if(!$stmt->execute())JsonMsg("500","101","getStmtArrayNum() (PDO) stmt execute fail1 -"
+            . $stmt->errno . " -> " . $stmt->error);
+        }catch(PDOException $e){
+            JsonMsg("500","114","(getStmtArrayNum) PDOException  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }catch(mysqli_sql_exception $e){
+            JsonMsg("500","115","(getStmtArrayNum) mysqli_sql_exception  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }catch(Exception $e){
+            JsonMsg("500","116","(getStmtArrayNum) Exception stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }
+
         $RtnVal =  fetchAllNum($stmt); //해쉬맵
         //var_dump($RtnVal);
         //$stmt->closeCursor();
     }else{
         //mysqli
-        if(!$stmt->execute())JsonMsg("500","102","getStmtArrayNum() (MysqlI) stmt execute fail2 -"
-         . $stmt->errno . " -> " . $stmt->error);
+        try{
+            if(!$stmt->execute())JsonMsg("500","102","getStmtArrayNum() (MysqlI) stmt execute fail2 -"
+            . $stmt->errno . " -> " . $stmt->error);
+        }catch(PDOException $e){
+            JsonMsg("500","124","(getStmtArrayNum) PDOException  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }catch(mysqli_sql_exception $e){
+            JsonMsg("500","125","(getStmtArrayNum) mysqli_sql_exception  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }catch(Exception $e){
+            JsonMsg("500","126","(getStmtArrayNum) Exception  stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+        }        
+
 
         $result = $stmt->get_result();
         //$array = $result->mysqli_fetch_all(MYSQLI_ASSOC);
@@ -1564,7 +1600,16 @@ function getStmtArrayNum(&$stmt){
             $stmt = getStmt($db[$tmpSql["SVRID"]],$sqlMap);
 
             if(!$stmt)   JsonMsg("500","112","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " stmt create fail - " . $db->errno . " -> " . $db->error);
-            if(!$stmt->execute())JsonMsg("500","123","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " stmt execute fail - " . $stmt->error);
+
+            try{
+                if(!$stmt->execute())JsonMsg("500","123","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " stmt execute fail - " . $stmt->error);
+            }catch(PDOException $e){
+                JsonMsg("500","114","(makeGridSearchJsonArray) PDOException " . $tmpSql["SQLID"] . " stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+            }catch(mysqli_sql_exception $e){
+                JsonMsg("500","115","(makeGridSearchJsonArray) mysqli_sql_exception " . $tmpSql["SQLID"] . " stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+            }catch(Exception $e){
+                JsonMsg("500","115","(makeGridSearchJsonArray) Exception " . $tmpSql["SQLID"] . " stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+            }
     
             //main만 처리
             if( $tmpSql["PARENT_FNCTYPE"] == ""){
@@ -2646,7 +2691,16 @@ function getStmtArrayNum(&$stmt){
 
                 if(!$stmt) JsonMsg("500","211","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt create fail " . $db[$svrid]->errno . " -> " . $db[$svrid]->error);
                 
-                if(!$stmt->execute())JsonMsg("500","212","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt execute fail " . $stmt->error);
+
+                try{
+                    if(!$stmt->execute())JsonMsg("500","212","(makeGridSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt execute fail " . $stmt->error);
+                }catch(PDOException $e){
+                    JsonMsg("500","214","(makeGridSaveJsonArray) PDOException " . $tmpSql["SQLID"] . " stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+                }catch(mysqli_sql_exception $e){
+                    JsonMsg("500","215","(makeGridSaveJsonArray) mysqli_sql_exception " . $tmpSql["SQLID"] . " stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+                }catch(Exception $e){
+                    JsonMsg("500","216","(makeGridSaveJsonArray) Exception " . $tmpSql["SQLID"] . " stmt execute fail - " . $e->getMessage() . "(ErrorCode=" . $e->getCode() . ")" );
+                }
 
                 //SUB 쿼리는 리턴정보에 넣지 않음.
                 alog("  PARENT_FNCTYPE = " . $tmpSql["PARENT_FNCTYPE"]);                    
