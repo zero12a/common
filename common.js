@@ -233,6 +233,19 @@ function apiCodeDropDown(tGrpId, tColId, tJsonParam, tDefaultValue){
 							tags: true
 						});
 
+					}else if(colObj != null && colObj.OBJTYPE == "ANYSELECT"){
+
+						tarr = [];
+						for(var i=0;i<data.RTN_DATA.rows.length;i++){
+							id = data.RTN_DATA.rows[i].data[0];
+							text = data.RTN_DATA.rows[i].data[1];
+							tarr[i] = {"cd": id, "nm": text};
+						}
+						//alog(tarr);
+
+						//var obj = eval("select2_" + this.privateGrpId + "_" + this.privateColId);
+						eval("anyselect_" + this.privateGrpId + "_" + this.privateColId).loadData(tarr);
+
 					}else{
 						alert(this.privateColId + "정보를 찾을수 없습니다.");
 					}
