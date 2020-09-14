@@ -1578,6 +1578,42 @@ function getStmtArrayNum(&$stmt){
     }
 
 
+    //배열 데이터를 transWebixLoad 데이터 타입으로 변경하기
+    function transWebixLoad($rows,$colNms,$colCrypt,$keyColIdx){
+        global $CFG;
+
+        $RtnVal = array();
+
+        //컬럼이 암호화 컬럼이 하나라도 있는지 검사하기
+        $targetColNms = array();
+        for($t = 0; $t < sizeof($colNms); $t++){
+            if($colCrypt[$colNms[$t]] != null) array_push($targetColNms,$colNms[$t]);
+        }
+
+        //암호화 컬럼이 1개라도 있으면 변환, 아니면 바로 리턴
+        if(sizeof($targetColNms) == 0){
+            return $rows;
+        }else{
+            for($r=0;$r<count($rows);$r++){
+                $j = 0;
+                $cols = $rows[$r];
+
+                //변환할 컬럼만 루프 돌려 변환시키기
+                for($m=0;$m<count($targetColNms);$m++){
+                    $colNm = $targetColNms[$m];
+                    $oldValue = $cols[$colNm];
+    
+                    $newValue = makeParamDec($colNm,$oldValue,$colCrypt); //복호화 등 처리
+                    $cols[$colNm] = $newValue;
+                }
+    
+                $RtnVal[$r] = $cols;
+            }
+            return $RtnVal;
+        }
+    }
+
+
 
 	function makeGridSearchJsonArray($map,&$db){
 		global $REQ, $CFG, $PGM_CFG;
@@ -1647,7 +1683,8 @@ function getStmtArrayNum(&$stmt){
                 }else if($map["GRPTYPE"] == "GRID_WEBIX"){
                     $arr = getStmtArray($stmt);
                     closeStmt($stmt);     
-                    $RtnVal->RTN_DATA->rows = $arr;                    
+                    //OLD : $RtnVal->RTN_DATA->rows = $arr;            
+                    $RtnVal->RTN_DATA->rows = transWebixLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
                 }else if($map["GRPTYPE"] == "GRID_JQXWIDGETS"){
                     $arr = getStmtArray($stmt);
                     closeStmt($stmt);     
