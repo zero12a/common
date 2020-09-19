@@ -12,8 +12,12 @@ CFG_FILESTORE : {
         ,"CRE_SECRET" : "..."
         ,"REGION" : "ap-northeast-2"
         ,"BUCKET" : "code-gen-mdm"
+        ,"ACL" : 
     }
 }
+
+S3 ACL : https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/acl-overview.html
+ - private [default], public-read, public-read-write, aws-exec-read, authenticated-read, bucket-owner-read, bucket-owner-full-control
 
 */
 
@@ -47,9 +51,10 @@ function uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName){
 
         try{
             $result = $client->putObject(array(
-                'Bucket'     => $fileStoreCfg["BUCKET"],
-                'SourceFile' => $localTempFileFullName,
-                'Key'        => $remoteFileName
+                'Bucket'        => $fileStoreCfg["BUCKET"],
+                'SourceFile'    => $localTempFileFullName,
+                'Key'           => $remoteFileName,
+                'ACL'           => $fileStoreCfg["ACL"]
             ));
         
             //echo 333;
@@ -75,43 +80,52 @@ function readS3($fileStoreCfg, $remoteFileName){
     global $log;
 
     $rtnVal = false;
-    try {
-        $client = Aws\S3\S3Client::factory(
-            array(
-            'credentials' => array('key' => $fileStoreCfg["CRE_KEY"],'secret' => $fileStoreCfg["CRE_SECRET"]),
-            'region' => $fileStoreCfg["REGION"],
-            'version' => 'latest'
-            )
-        );   
-        //echo 222;
-        $rtnVal = true;
-    }catch (Aws\S3\Exception\S3Exception $e) {
-        //echo $e->getMessage() . "\n";
-        if($log)$log->info("readS3() S3Client::factory S3Exception : " . $e->getMessage()); 
-        $rtnVal = false;
-    }catch (Aws\Exception\AwsException $e) {
-        //echo $e->getMessage() . "\n";
-        if($log)$log->info("readS3() S3Client::factory AwsException : " . $e->getMessage()); 
-        $rtnVal = false;
-    }
 
-    try{
-        $result = $client->getObject(array(
-            'Bucket'     => $fileStoreCfg["BUCKET"],
-            'Key'        => $remoteFileName
-        ));
-    
-        // Display the object in the browser.
-        header("Content-Type: {$result['ContentType']}");
-        echo $result['Body'];
-    }catch (Aws\S3\Exception\S3Exception $e) {
-        //echo $e->getMessage() . "\n";
-        if($log)$log->info("readS3() getObject S3Exception : " . $e->getMessage()); 
-        $rtnVal = false;
-    }catch (Aws\Exception\AwsException $e) {
-        //echo $e->getMessage() . "\n";
-        if($log)$log->info("readS3() getObject AwsException : " . $e->getMessage()); 
-        $rtnVal = false;
+    //퍼블릭 오픈 이면 해당 객체 바로 접근
+    if( strtolower($fileStoreCfg["ACL"]) == "public-read" || strtolower($fileStoreCfg["ACL"]) == "public-read-write" ){
+        //형식 : https://codegen-test-bucket.s3.ap-northeast-2.amazonaws.com/img_bomb.jpg
+        header('Location: https://' . $fileStoreCfg["BUCKET"] . '.s3.' . $fileStoreCfg["REGION"] . '.amazonaws.com/' . $remoteFileName);
+        exit;
+    }else{
+        //S3에서 내려받기
+        try {
+            $client = Aws\S3\S3Client::factory(
+                array(
+                'credentials' => array('key' => $fileStoreCfg["CRE_KEY"],'secret' => $fileStoreCfg["CRE_SECRET"]),
+                'region' => $fileStoreCfg["REGION"],
+                'version' => 'latest'
+                )
+            );   
+            //echo 222;
+            $rtnVal = true;
+        }catch (Aws\S3\Exception\S3Exception $e) {
+            //echo $e->getMessage() . "\n";
+            if($log)$log->info("readS3() S3Client::factory S3Exception : " . $e->getMessage()); 
+            $rtnVal = false;
+        }catch (Aws\Exception\AwsException $e) {
+            //echo $e->getMessage() . "\n";
+            if($log)$log->info("readS3() S3Client::factory AwsException : " . $e->getMessage()); 
+            $rtnVal = false;
+        }
+
+        try{
+            $result = $client->getObject(array(
+                'Bucket'     => $fileStoreCfg["BUCKET"],
+                'Key'        => $remoteFileName
+            ));
+        
+            // Display the object in the browser.
+            header("Content-Type: {$result['ContentType']}");
+            echo $result['Body'];
+        }catch (Aws\S3\Exception\S3Exception $e) {
+            //echo $e->getMessage() . "\n";
+            if($log)$log->info("readS3() getObject S3Exception : " . $e->getMessage()); 
+            $rtnVal = false;
+        }catch (Aws\Exception\AwsException $e) {
+            //echo $e->getMessage() . "\n";
+            if($log)$log->info("readS3() getObject AwsException : " . $e->getMessage()); 
+            $rtnVal = false;
+        }
     }
 }
 ?>
