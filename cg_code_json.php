@@ -123,6 +123,10 @@
         $to_coltype = "ii";
         $sql = " select SQLSEQ as CD,SQLID as NM from CG_PGMSQL where PJTSEQ = #{PJTSEQ} and PGMSEQ = #{PGMSEQ} and (PSQLSEQ is null or PSQLSEQ = 0) ORDER BY SQLORD ASC   ";
 
+    }else if($REQ["PCD"] =="FILESTORE" ){
+        //SQLR에서 사용할 SQL목록 가져오기
+        $to_coltype = "";
+        $sql = " select STOREID as CD, STORENM as NM from CG_FILESTORE where USEYN = 'Y' and DELYN = 'N'  ";
     }else if($REQ["CD"] != "" ){
         //일반 코드가져오기
         $to_coltype = "ss";

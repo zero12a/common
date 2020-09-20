@@ -21,15 +21,33 @@ S3 ACL : https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/acl-overview.html
 
 */
 
+function moveFileStore($fileStoreCfg, $localTempFileFullName, $remoteFileName){
+    alog("moveFileStore().............................start");
+    if($fileStoreCfg["STORETYPE"] == "S3"){
+        return uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName);
+    }else if($fileStoreCfg["STORETYPE"] == "LOCAL"){
+        return move_uploaded_file($localTempFileFullName, $remoteFileName);
+    }else{
+        return false;
+    }
+}
+
 
 function uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName){
-    global $log;
+    global $log, $CFG;
+    alog("uploadS3().............................start");
+    //alog(" CREKEY = " . aes_decrypt($fileStoreCfg["CREKEY"],$CFG["CFG_SEC_KEY"]));
+    //alog(" CRESECRET = " . aes_decrypt($fileStoreCfg["CRESECRET"],$CFG["CFG_SEC_KEY"]));
+    //alog(" BUCKET = " .$fileStoreCfg["BUCKET"]);
+    //alog(" ACL = " .$fileStoreCfg["ACL"]);
+    //alog(" localTempFileFullName = " . $localTempFileFullName);
+    //alog(" remoteFileName = " . $remoteFileName);
 
     $rtnVal = false;
     try {
         $client = Aws\S3\S3Client::factory(
             array(
-            'credentials' => array('key' => $fileStoreCfg["CRE_KEY"],'secret' => $fileStoreCfg["CRE_SECRET"]),
+            'credentials' => array('key' => aes_decrypt($fileStoreCfg["CREKEY"],$CFG["CFG_SEC_KEY"]),'secret' => aes_decrypt($fileStoreCfg["CRESECRET"],$CFG["CFG_SEC_KEY"]) ),
             'region' => $fileStoreCfg["REGION"],
             'version' => 'latest'
             )
@@ -37,11 +55,11 @@ function uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName){
         //echo 222;
         $rtnVal = true;
     }catch (Aws\S3\Exception\S3Exception $e) {
-        //echo $e->getMessage() . "\n";
+        alog("uploadS3() S3Client::factory S3Exception : " . $e->getMessage());
         if($log)$log->info("uploadS3() S3Client::factory S3Exception : " . $e->getMessage()); 
         $rtnVal = false;
     }catch (Aws\Exception\AwsException $e) {
-        //echo $e->getMessage() . "\n";
+        alog("uploadS3() S3Client::factory AwsException : " . $e->getMessage());
         if($log)$log->info("uploadS3() S3Client::factory AwsException : " . $e->getMessage()); 
         $rtnVal = false;
     }
@@ -60,12 +78,12 @@ function uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName){
             //echo 333;
             $rtnVal = true;
         }catch (Aws\S3\Exception\S3Exception $e) {
-            //echo $e->getMessage() . "\n";
+            alog("uploadS3() putObject S3Exception : " . $e->getMessage());   
             if($log)$log->info("uploadS3() putObject S3Exception : " . $e->getMessage());         
             $rtnVal = false;
         }catch (Aws\Exception\AwsException $e) {
-            //echo $e->getMessage() . "\n";
-            if($log)$log->info("uploadS3() putObject S3Exception : " . $e->getMessage());     
+            alog("uploadS3() putObject AwsException : " . $e->getMessage());
+            if($log)$log->info("uploadS3() putObject AwsException : " . $e->getMessage());     
             $rtnVal = false;
         }
 
@@ -77,8 +95,9 @@ function uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName){
 }
 
 function readS3($fileStoreCfg, $remoteFileName){
-    global $log;
-
+    global $log, $CFG;
+    alog("readS3().............................start");
+    
     $rtnVal = false;
 
     //퍼블릭 오픈 이면 해당 객체 바로 접근
@@ -91,7 +110,7 @@ function readS3($fileStoreCfg, $remoteFileName){
         try {
             $client = Aws\S3\S3Client::factory(
                 array(
-                'credentials' => array('key' => $fileStoreCfg["CRE_KEY"],'secret' => $fileStoreCfg["CRE_SECRET"]),
+                'credentials' => array('key' => aes_decrypt($fileStoreCfg["CREKEY"],$CFG["CFG_SEC_KEY"]),'secret' => aes_decrypt($fileStoreCfg["CRESECRET"],$CFG["CFG_SEC_KEY"]) ),
                 'region' => $fileStoreCfg["REGION"],
                 'version' => 'latest'
                 )

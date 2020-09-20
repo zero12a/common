@@ -151,11 +151,11 @@ function fileStoreSaveRedisFromDB(){
         , BUCKET
         , ACL
     from CG_FILESTORE
-    where DENYN = 'N' and USEYN = 'Y' ";
+    where DELYN = 'N' and USEYN = 'Y' ";
     
     $stmt = makeStmt($db,$sql,$coltype,$REQ);
     if(!$stmt)JsonMsg("500","300","SQL makeStmt 생성 실패 했습니다.");
-    $svrArray = getStmtArray($stmt);
+    $filestoreArray = getStmtArray($stmt);
     closeStmt($stmt);
     closeDb($db);
     if($db)unset($db);
@@ -181,12 +181,12 @@ CFG_FILESTORE : {
 
     */
     $rtnArr = array();
-    for($t=0;$t<sizeof($svrArray);$t++){
-        $rtnArr[$svrArray[$t]["STOREID"]] = $svrArray[$t];
+    for($t=0;$t<sizeof($filestoreArray);$t++){
+        $rtnArr[$filestoreArray[$t]["STOREID"]] = $filestoreArray[$t];
     }
-    $newDataSourceJson = json_encode($rtnArr);
+    $newFileStoreJson = json_encode($rtnArr);
 
-
+    //echo "newFileStoreJson = " . json_encode($rtnArr,JSON_PRETTY_PRINT);
     //Save to redis
     //$cfgNm = "CONFIG_CG";
     $redisClient = new Predis\Client(
@@ -211,6 +211,7 @@ CFG_FILESTORE : {
         $newConfigArray = $oldConfigArray;
         $newConfigArray["CFG_FILESTORE"] = json_decode($newFileStoreJson,true);
         $newConfigJson = json_encode($newConfigArray);
+        //echo json_encode($newConfigArray,JSON_PRETTY_PRINT);
         alog("Save new json..........\n". json_encode($newConfigArray,JSON_PRETTY_PRINT));
         $redisClient->set($cfgNm,$newConfigJson);
         $REQ["NEW_CFG"] = aes_encrypt($newConfigJson,$CFG["CFG_SEC_KEY"]);
