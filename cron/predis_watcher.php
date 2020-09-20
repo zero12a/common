@@ -16,6 +16,10 @@ $watcherTarget = array(
 	array(
 		"SEARCH_NM"=>"predis_datasourceCG.php"
 		,"EXECUTE_SH"=> $CFG["CFG_COMMON_DIR"] . "cron/predis_datasourceCG.sh"
+	),
+	array(
+		"SEARCH_NM"=>"predis_filestoreCG.php"
+		,"EXECUTE_SH"=> $CFG["CFG_COMMON_DIR"] . "cron/predis_filestoreCG.sh"
 	)
 );
 
