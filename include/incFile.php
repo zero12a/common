@@ -26,7 +26,7 @@ function moveFileStore($fileStoreCfg, $localTempFileFullName, $remoteFileName){
     if($fileStoreCfg["STORETYPE"] == "S3"){
         return uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName);
     }else if($fileStoreCfg["STORETYPE"] == "LOCAL"){
-        return move_uploaded_file($localTempFileFullName, $remoteFileName);
+        return move_uploaded_file($localTempFileFullName, $fileStoreCfg["UPLOADDIR"] . $remoteFileName);
     }else{
         return false;
     }
