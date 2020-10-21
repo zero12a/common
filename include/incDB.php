@@ -1443,6 +1443,7 @@ function getStmtArrayNum(&$stmt){
             //$stmt = makeStmt($db[$map["SQL"]["R"]["SVRID"]],$map["SQL"]["R"]["SQLTXT"], $map["SQL"]["R"]["BINDTYPE"], $REQ);
 
             $sqlMap = getSqlParam($map["SQL"]["R"]["SQLTXT"],$map["SQL"]["R"]["BINDTYPE"],$REQ);
+            alog(print_r($sqlMap, true));
             $stmt = getStmt($db[$map["SQL"]["R"]["SVRID"]],$sqlMap);
 
             if(!$stmt)   JsonMsg("500","100","(makeGridSearchJson) stmt 생성 실패 " . $db->errno . " -> " . $db->error);
