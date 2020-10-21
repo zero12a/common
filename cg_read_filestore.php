@@ -25,6 +25,13 @@ $acl = $CFG["CFG_FILESTORE"][$REQ["storeid"]]["ACL"]; //private, public-read, pu
 //프라이빗이면 로그인 검사하기.
 if( ($acl == "" || strtolower($acl) == "private") && !isLogin())MsgExit("로그인 후 파일 접근이 가능합니다. (ACL private)");
 
+//입력값 검증
+if( $REQ["storeid"] == "" )MsgExit("storeid 정보가 입력되지 않았습니다.");
+if( $CFG["CFG_FILESTORE"][$REQ["storeid"]]["STORETYPE"] == "" )MsgExit("storeid의 STORETYPE 정보를 찾을수 없습니다.");
+
+if( $REQ["svrfilenm"] == "" )MsgExit("svrfilenm 정보가 입력되지 않았습니다.");
+if( $REQ["orgfilenm"] == "" )MsgExit("orgfilenm 정보가 입력되지 않았습니다.");
+
 //조회하기
 switch ($storeType){
     case "S3" :

@@ -44,11 +44,15 @@ function getValidNumber($tParam,$tLength){
     if($tParam == ""){
         return "";
     }else if(strlen($tParam) > $tLength){
-        JsonMsg("500","500","[reqPostNumber] " . $tParam . " is over length (" . strlen($tParam) . " > " . $tLength . ").");
+
+        $printParam = $tParam;
+        if(strlen($tParam) > 50)$printParam = substr($printParam,0,48) . "..";
+
+        JsonMsg("500","500","[reqPostNumber] " . $printParam . " is over length (" . strlen($tParam) . " > " . $tLength . ").");
     }else if(is_numeric($tParam)){
         return $tParam;
     }else{
-        JsonMsg("500","500","[reqPostNumber] " . $tParam . " is not number.");
+        JsonMsg("500","500","[reqPostNumber] " . $printParam . " is not number.");
     }
 
 }
@@ -59,7 +63,10 @@ function getValidString($tParam,$tLength){
     if( $tParam == ""){
         return "";
     }else if( strlen($tParam) > $tLength ){
-        JsonMsg("500","500","[reqPostString] " . $tParam . " is over length (" . strlen($tParam)  . " > " . $tLength .  ").");
+        $printParam = $tParam;
+        if(strlen($tParam) > 50)$printParam = substr($printParam,0,48) . "..";
+
+        JsonMsg("500","500","[reqPostString] " . $printParam . " is over length (" . strlen($tParam)  . " > " . $tLength .  ").");
 	}else{
 		return $tParam;
 	}
@@ -71,11 +78,17 @@ function getValidDate($tParam,$tLength){
     if( $_GET[$tParam] == ""){
         return "";
     }else if(strlen($tParam) > $tLength){
-        JsonMsg("500","500","[reqPostDate] " . $tParam . " is over length (" . strlen($tParam)  . " > " . $tLength .  ").");
+        $printParam = $tParam;
+        if(strlen($tParam) > 50)$printParam = substr($printParam,0,48) . "..";
+
+        JsonMsg("500","500","[reqPostDate] " . $printParam . " is over length (" . strlen($tParam)  . " > " . $tLength .  ").");
     }else if(preg_match("/^([0-9]{2,4})([.\-\/]{0,1})([0-9]{2})([.\-\/]{0,1})([0-9]{2})$/",$tParam,$mat)){        
         return $mat[0];
     }else{
-        JsonMsg("500","500","[reqPostDate] " . $tParam . " is not date (yyyymmdd, yyyy/mm/dd, yyyy-mm-dd, yyyy.mm.dd).");
+        $printParam = $tParam;
+        if(strlen($tParam) > 50)$printParam = substr($printParam,0,48) . "..";
+
+        JsonMsg("500","500","[reqPostDate] " . $printParam . " is not date (yyyymmdd, yyyy/mm/dd, yyyy-mm-dd, yyyy.mm.dd).");
     }
 }
 

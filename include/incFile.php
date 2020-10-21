@@ -92,6 +92,8 @@ function uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName){
                 ));
             }
 
+            //로컬 임시 파일 삭제하기
+            unlink($localTempFileFullName);
         
             //echo 333;
             $rtnVal = true;
