@@ -1103,14 +1103,12 @@ function ServerText(){
     return $RtnValue;
 }
 
-
-
 function Msg($tmp){
 	?>
 	<script language=javascript>
 		alert("<?=$tmp?>");
 	</script>
-	<?
+	<?php
 	//exit;
 }
 
@@ -1122,8 +1120,6 @@ function MsgExit($tmp){
 	<?php
 	exit;
 }
-
-
 
 function MsgBack($tmp){
 	?>

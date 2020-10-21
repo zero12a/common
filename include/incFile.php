@@ -75,6 +75,7 @@ function uploadS3($fileStoreCfg, $localTempFileFullName, $remoteFileName){
 
             if($objSize){
                 alog("objSize[mime] = ". $objSize["mime"]);
+                // https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html 내용의 붉은색 글씨가 파라미터임.
                 $result = $client->putObject(array(
                     'Bucket'        => $fileStoreCfg["BUCKET"],
                     'SourceFile'    => $localTempFileFullName,
