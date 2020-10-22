@@ -8,6 +8,17 @@ dhtmlx 디펄트 : content-box
     box-sizing: content-box;
 }
 
+/* 콤보 팝업레이어 목록의 left/right여백 슬립 :
+ 2px 9pt 2px 9pt ->  2px 2pt 2px 3pt  
+ 2px 9pt 2px 9pt ->  2px 2pt 2px 4pt  
+ */
+.webix_list_item{
+    padding:2px 2pt 2px 3pt;
+}
+.webix_list .webix_list_item.webix_selected{
+    padding:2px 2pt 2px 4pt;
+}
+
 /* 헤더 여백 슬림 */
 .webix_hcell{
     padding:0 2px 0 2px;
