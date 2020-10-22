@@ -19,6 +19,14 @@ dhtmlx 디펄트 : content-box
     padding:2px 2pt 2px 4pt;
 }
 
+/*
+input 필드 편집모드 전환시 좌/우 여백이 너무 커서 슬립
+0px 11px 0px 11px -> 0px 4px 0px 4px
+*/
+.webix_dt_editor input{
+    padding: 0px 4px 0px 4px;
+}
+
 /* 헤더 여백 슬림 */
 .webix_hcell{
     padding:0 2px 0 2px;
