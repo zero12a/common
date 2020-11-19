@@ -6,7 +6,7 @@ bootstrapv4 호환
  body {margin:3px;padding:0}
 */
 html {font-family: "Nanum Gothic", sans-serif;margin:0;padding:0;height:100%;}
-body {background-color:rgb(237, 237, 238); font-family: "Nanum Gothic", sans-serif;margin:0;padding:3px;}
+body {background-color:rgb(237, 237, 238); font-family: "Nanum Gothic", sans-serif;margin:0;padding:5px;height:100%;}
 
 .HTML_BODY {margin:0px;padding:5px;}
 
@@ -298,4 +298,40 @@ input.btn-sm:hover {
 */ 
 .select2-results__option {
     font-size: 11px;
+}
+
+
+ /*
+******************************************** 
+** split.js
+******************************************** 
+*/ 
+.split {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.gutter {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+}
+
+.gutter.gutter-vertical {
+    cursor: row-resize;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+
+.split.split-horizontal,
+.gutter.gutter-horizontal {
+    height: 100%;
+    float: left;
 }
