@@ -63,8 +63,8 @@ if(isAllowExtension($fileNm,$CFG["CFG_IMG_EXT"])){
     if(moveFileStore($CFG["CFG_FILESTORE"][$REQ["storeid"]], $tmpPath, $saveFileNm)){
         //echo "/up/" . $saveFileNm;      
         $RtnVal["success"] = true;
-        $RtnVal["data"]["files"] = array($saveFileNm);
-        $RtnVal["data"]["baseurl"] = "/common/cg_read_filestore.php?fileinfo=0|" . $REQ["storeid"] . "|" . $saveFileNm . "|" . $saveFileNm;   ////timestamp yymmddhhmiss|storeid|sever file name|origin file name
+        $RtnVal["data"]["files"] = array($fileNm);
+        $RtnVal["data"]["baseurl"] = "/common/cg_read_filestore.php?fileinfo=0|" . $REQ["storeid"] . "|" . $saveFileNm . "|";   ////timestamp yymmddhhmiss|storeid|sever file name|origin file name
 
         $RtnVal["data"]["messages"] = array("(msg)Upload success.");
         $RtnVal["data"]["isImages"] = array(true);

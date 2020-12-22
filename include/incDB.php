@@ -1634,6 +1634,9 @@ function getStmtArrayNum(&$stmt){
             //$stmt = makeStmt($db[$tmpSql["SVRID"]], $tmpSql["SQLTXT"], $tmpSql["BINDTYPE"], $REQ);
 
             $sqlMap = getSqlParam($tmpSql["SQLTXT"],$tmpSql["BINDTYPE"],$REQ);
+
+            alog("      DEBUG_SQL = " . $sqlMap["DEBUG_SQL"]);
+
             $stmt = getStmt($db[$tmpSql["SVRID"]],$sqlMap);
 
             if(!$stmt)   JsonMsg("500","112","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " stmt create fail - " . $db->errno . " -> " . $db->error);
