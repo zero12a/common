@@ -34,12 +34,15 @@ if(!isLogin()){
 
         $resJsonStr = "";
         try{
-            $res = $client->request('GET', 'http://' . $CFG["CFG_OAUTH_HOST"] . ':' .  $CFG["CFG_OAUTH_PORT"] . '/getResource/', [
+            $fullUrl = "http://" . $CFG["CFG_OAUTH_HOST"] . ":" .  $CFG["CFG_OAUTH_PORT"] . "/o.s/os2ctl.php";
+
+            $res = $client->request('GET', $fullUrl, [
                 'timeout' => 1,
                 'connect_timeout' => 1,
                 'read_timeout' => 2,
                 'query' => [
-                    'access_token' => $REQ["access_token"]
+                    'CTL' => "getResource"
+                    ,'access_token' => $REQ["access_token"]
                 ]
             ]);
             
