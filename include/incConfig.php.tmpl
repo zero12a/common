@@ -58,10 +58,13 @@ if($localCache == "" || $_GET["reload"] == "YES"){
 	}
 
 
+	$rtnArray["CONFIG_NM"] = $cfgNm;
 	$rtnArray["CONFIG_DATA_LOAD_FROM"] = "FIRST_REDIS";
 }else{
 
 	$rtnArray = json_decode($localCache,true);
+
+	$rtnArray["CONFIG_NM"] = $cfgNm;
 	$rtnArray["CONFIG_DATA_LOAD_FROM"] = "LOCAL_CACHE";
 }
 
