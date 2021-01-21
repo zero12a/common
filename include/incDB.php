@@ -371,6 +371,83 @@ function getDbConn($tOBJ_SERVER){
     return $db;
 }
 
+
+
+function getDbConnPlain($tOBJ_SERVER){
+    global $CFG;
+    alog("getDbConnPlain().................................start:" . $tOBJ_SERVER["DRIVER"]);
+
+
+    if($tOBJ_SERVER["PORT"] == "")$tOBJ_SERVER["PORT"] = "3306";
+    if($tOBJ_SERVER["DRIVER"] == "")$tOBJ_SERVER["DRIVER"] = "MYSQLI";
+    
+    if($tOBJ_SERVER["DRIVER"] == "MYSQLI"){
+        $db = mysqli_init();
+        if (!$db) {
+            alog("getDbConnPlain() mysqli_init failed");
+            throw new Exception("getDbConnPlain() mysqli_init failed");
+            exit();
+        }
+        if (!$db->options(MYSQLI_OPT_CONNECT_TIMEOUT, 1)) {
+            alog("getDbConnPlain() Setting MYSQLI_OPT_CONNECT_TIMEOUT failed");
+            throw new Exception("getDbConnPlain() Setting MYSQLI_OPT_CONNECT_TIMEOUT failed");
+        }        
+        if(
+            !$db->real_connect(
+                $tOBJ_SERVER["HOST"]
+                , $tOBJ_SERVER["ID"]
+                , $tOBJ_SERVER["PW"] //비밀번호 복호화
+                , $tOBJ_SERVER["DBNM"]
+                , $tOBJ_SERVER["PORT"])
+        ){
+            alog("getDbConnPlain() MYSQL_DRIVER="    . $tOBJ_SERVER["DRIVER"] );
+            alog("getDbConnPlain() MYSQL_HOST="    . $tOBJ_SERVER["HOST"] );
+            alog("getDbConnPlain() MYSQL_ID="      . $tOBJ_SERVER["ID"] );
+            alog("getDbConnPlain() MYSQL_PW="      . $tOBJ_SERVER["PW"]  );                      
+            alog("getDbConnPlain() MYSQL_DBNM="      . $tOBJ_SERVER["DBNM"] );
+            alog("getDbConnPlain() MYSQL_PORT="    . $tOBJ_SERVER["PORT"] );
+            //alog("db_obj_open() MYSQL_PW="    . $tOBJ_SERVER->MYSQL_PW);
+            alog("mysqli error : " . $db->connect_errno . "/" . $db->connect_error);
+            throw new Exception("getDbConnPlain() mysqli error : " . $db->connect_errno . "/" . $db->connect_error);
+            JsonMsg("500","999","getDbConnPlain() host(" . $tOBJ_SERVER["HOST"] . ") Connect failed : " .  $db->connect_error);
+            //printf("Connect failed: %s\n", mysqli_connect_error());
+            exit();
+        }
+    }else if($tOBJ_SERVER["DRIVER"] == "PDO_MYSQL" || $tOBJ_SERVER["DRIVER"] == "PDO_PGSQL"){
+        if($tOBJ_SERVER["DRIVER"] == "PDO_MYSQL")$driverNm = "mysql";
+        if($tOBJ_SERVER["DRIVER"] == "PDO_PGSQL")$driverNm = "pgsql";
+        $dsn = $driverNm . ":host=" . $tOBJ_SERVER["HOST"] . ";port=" . $tOBJ_SERVER["PORT"] . ";dbname=" . $tOBJ_SERVER["DBNM"] . ";charset=utf8";
+        try {
+            $db = new PDO(
+                $dsn
+                , $tOBJ_SERVER["ID"]
+                , $tOBJ_SERVER["PW"]
+                , array(
+                PDO::ATTR_TIMEOUT => 1
+            ));
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        } catch(PDOException $e) {
+            //echo $e->getMessage();
+
+            alog("getDbConnPlain() MYSQL_DRIVER="    . $tOBJ_SERVER["DRIVER"] );
+            alog("getDbConnPlain() MYSQL_HOST="    . $tOBJ_SERVER["HOST"] );
+            alog("getDbConnPlain() MYSQL_ID="      . $tOBJ_SERVER["ID"] );    
+            alog("getDbConnPlain() MYSQL_PW="      . $tOBJ_SERVER["PW"] );        
+            alog("getDbConnPlain() MYSQL_DBNM="      . $tOBJ_SERVER["DBNM"] );
+            alog("getDbConnPlain() MYSQL_PORT="    . $tOBJ_SERVER["PORT"] );
+            //alog("db_obj_open() MYSQL_PW="    . $tOBJ_SERVER->MYSQL_PW);
+            alog("getDbConnPlain() pdo_mysql error : " . $e->getMessage());
+
+            throw new Exception("getDbConnPlain() pdo_mysql error : " . $e->getMessage());
+            exit();
+        }
+    }
+
+    //echo "<br>db 연결 성공";
+    return $db;
+}
+
  
 function db_obj_open($tOBJ_SERVER){
     $db = mysqli_init();
