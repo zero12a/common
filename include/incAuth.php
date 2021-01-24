@@ -1,7 +1,7 @@
 <?php
 
 //redis에 모두 넣기
-require_once($CFG["CFG_LIBS_PATH_REDIS"]);
+//require_once($CFG["CFG_LIBS_PATH_REDIS"]);
 
 class authObject
 {

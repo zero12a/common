@@ -47,7 +47,7 @@ if($localCache == "" || $_GET["reload"] == "YES"){
 	$redisClient->quit();
 
 	if($jsonString == null || $jsonString == "" || !is_array(json_decode($jsonString,true)) ){
-		$rtnArray = json_encode($miniConfig);
+		$rtnArray = $miniConfig;
 	}else{
 		$rtnArray = array_merge(json_decode($jsonString,true),$miniConfig);
 
