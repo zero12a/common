@@ -76,7 +76,7 @@ function aesEncrypt($tencrypt,$tkey,$tiv) {
 	//echo "\n<br> aes_decrypt.iv = " . $CFG_SEC_IV;	
 	//echo "\n<br> tkey = " . $tkey;	
 
-    return base64_encode(openssl_encrypt(pkcs5_pad($tencrypt), $cipher, $tkey, OPENSSL_RAW_DATA, $tiv));
+    return base64_encode(openssl_encrypt($tencrypt, $cipher, $tkey, OPENSSL_RAW_DATA, base64_decode($tiv)));
     //store $cipher, $iv, and $tag for decryption later
     //$original_plaintext = openssl_decrypt($ciphertext, $cipher, $key, $options=0, $iv, $tag);
 	//echo $original_plaintext."\n";
@@ -173,7 +173,7 @@ function aesDecrypt($decrypt,$tkey,$iv) {
 	//echo "\n<br> decrypt = " . $decrypt;	
 	//echo "\n<br> tkey = " . $tkey;		
 	//echo "\n<br> plaintext = " . pkcs5_unpad(openssl_decrypt(base64_decode($decrypt), $cipher, $tkey, OPENSSL_RAW_DATA, $iv));
-	return pkcs5_unpad(openssl_decrypt(base64_decode($decrypt), $cipher, $tkey, OPENSSL_RAW_DATA, $tiv));
+	return openssl_decrypt(base64_decode($decrypt), $cipher, $tkey, OPENSSL_RAW_DATA, base64_decode($iv));
 }
 
 
