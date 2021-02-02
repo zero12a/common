@@ -318,8 +318,8 @@ function apiCodeCombo(tGrpId, tColId, tJsonParam, tDefaultValue){
 						for(var i=0;i<data.RTN_DATA.rows.length;i++){
 							//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 							tArr[i] = {
-								"id": data.RTN_DATA.rows[i].data[0]
-								,"value": data.RTN_DATA.rows[i].data[1]
+								"id": data.RTN_DATA.rows[i].CD
+								,"value": data.RTN_DATA.rows[i].NM
 							};
 						}	
 						$$("wixdt" + this.privateGrpId).getColumnConfig(this.privateColId).options = tArr;
