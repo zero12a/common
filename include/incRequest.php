@@ -41,7 +41,8 @@ function reqPostDate($tParam,$tLength){
 function getValidNumber($tParam,$tLength){
     //alog("getValidNumber()................................start : tParam = " . $tParam . ", tLength = " . $tLength);  
 
-    if($tParam == ""){
+    $tParam .= "";// 0을 ""와 비교하면 true가 되서, 0입력값이 사라지는 버그 존재하여 0 . ""로 처리함.
+    if($tParam  == ""){
         return "";
     }else if(strlen($tParam) > $tLength){
 
@@ -97,11 +98,13 @@ function getFilter($tInput,$tValidType,$tValidRule){
     global $purifier;
     $RtnVal = "";
 
-    if($tInput == ""){
+    $tInput .= "";
+
+    if($tInput . "" == ""){
         return "";
     }else if($tValidType == "REGEXMAT"){
         $RtnVal = filter_var($tInput, FILTER_VALIDATE_REGEXP,array("options" => array("regexp" => $tValidRule ))); 
-        if($RtnVal == false)$RtnVal = ""; //filter_var는 정규식 실패시 false를 리턴한다.
+        if(is_bool($RtnVal) == true && $RtnVal == false)$RtnVal = ""; //filter_var는 정규식 실패시 false를 리턴한다. 0이면 == false가 트루가 됨.
         //alog("getFilter() REGEXMAT " . $tInput . " ---> ". $RtnVal);
     }else if($tValidType == "CLEARTEXT"){
         $RtnVal = strip_tags($tInput);
@@ -300,7 +303,7 @@ function filterGridJson($map){
             }else{
                 $colAfter1 = $colBefore ;
             }
-            //alog("      valid " . trim($colord_array[$j]) . " : " . $colBefore . " ===> " . $colAfter1);  
+            alog("      valid " . trim($colord_array[$j]) . " : " . $colBefore . " ===> " . $colAfter1);  
 
             //FILTER
             if(is_array($map["FILTER"][trim($colord_array[$j])]) && !is_array($colAfter1) && strlen($colAfter1) > 0){
@@ -308,7 +311,7 @@ function filterGridJson($map){
             }else{
                 $colAfter2 = $colAfter1;
             }
-            //alog("      filter " . trim($colord_array[$j]) . " : " . $colAfter1 . " ===> " . $colAfter2);              
+            alog("      filter " . trim($colord_array[$j]) . " : " . $colAfter1 . " ===> " . $colAfter2);              
             
 
             $RtnVal[$i][$colord_array[$j]] = $colAfter2;

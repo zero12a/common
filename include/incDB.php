@@ -3052,6 +3052,7 @@ function getStmtArrayNum(&$stmt){
 
 	function makeGridwixSaveJsonArray($map,&$db){
         global $REQ,$CFG, $PGM_CFG;
+        alog("makeGridwixSaveJsonArray().................................start");
         
         //alog("^^^ COLORD : " . $map["COLORD"]);
         $colord_array = explode(",",$map["COLORD"]);
