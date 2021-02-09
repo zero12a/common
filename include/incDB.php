@@ -3175,10 +3175,10 @@ function getStmtArrayNum(&$stmt){
                                 closeStmt($stmtSeq);
 
                             }else if($stmt instanceof PDOStatement){
-                                alog("SEQYN Y : " . $db[$svrid]->lastInsertId());
+                                alog("[PDO]SEQYN Y : " . $db[$svrid]->lastInsertId());
                                 $to_row["COLID"]=$db[$svrid]->lastInsertId(); //insert문인 경우 insert id받기                            
                             }else{
-                                alog("SEQYN Y : " . $db[$svrid]->insert_id);
+                                alog("[MysqlI]SEQYN Y : " . $db[$svrid]->insert_id);
                                 $to_row["COLID"]=$db[$svrid]->insert_id; //insert문인 경우 insert id받기
                             }
 
