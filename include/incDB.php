@@ -3135,6 +3135,7 @@ function getStmtArrayNum(&$stmt){
                 //$stmt = makeStmt($db[$svrid], $sql, $to_coltype, array_merge($REQ,$to_row));
                 
                 $sqlMap = getSqlParam($sql,$to_coltype,array_merge($REQ,$to_row));
+                alog($sqlMap["DEBUG_SQL"]);
                 //echo "<pre>" . jsonView($sqlMap);
                 $stmt = getStmt($db[$svrid],$sqlMap);
 
