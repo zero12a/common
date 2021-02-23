@@ -91,12 +91,11 @@
         $sql = " select VALIDSEQ as CD, concat(SUBSTRING(DATATYPE,1,1),' ', VALIDNM) as NM from CG_VALID where PJTSEQ = #{PJTSEQ} order by DATATYPE, VALIDORD asc";
 
     }else if($REQ["PCD"] =="SVRSEQ" ){
-        $to_coltype = "i";
+        $to_coltype = "";
         $sql = sprintf("
-             select SVRSEQ as CD, SVRNM as NM from CG_SVR where USERSEQ = %d order by SVRSEQ asc
-             "
-             , addSqlSlashes($userSeq)
-            );
+             select SVRSEQ as CD, SVRNM as NM from CG_SVR  order by SVRSEQ asc
+             ");
+            // /addSqlSlashes($userSeq)
         //alog($sql);
     }else if($REQ["PCD"] =="PGMSEQ_POPUP" ){
         $to_coltype = "";
