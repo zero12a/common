@@ -293,6 +293,16 @@ input.btn-sm:hover {
     background-color: rgb(72, 74, 88);
 }
 
+/* 파일 개별 스타일 따르기 for webix */
+.file_input_textbox{height:30px;vertical-align: middle;}
+.file_input_div{position:relative;width:100px;height:30px;overflow:hidden;display:inline;}
+.file_input_hidden{font-size:45px; position:absolute; right:0px; top:0px; opacity:0; 
+    filter:alpha(opacity=0); 
+    -ms-filter:"alpha(opacity=0)"; 
+    -khtml-opacity:0; 
+    -moz-opacity:0;
+}
+
 
  /*
 ******************************************** 
