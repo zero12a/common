@@ -33,6 +33,26 @@ function getTeamSeq(){
 	global $_SESSION, $CFG;
 	return $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_TEAM_SEQ"];
 }
+function setTeamCd($tSeq){
+	global $_SESSION, $CFG;
+    $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_TEAMCD"] = $tSeq;
+}
+
+function getTeamCd(){
+	global $_SESSION, $CFG;
+	return $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_TEAMCD"];
+}
+
+function setTeamNm($tSeq){
+	global $_SESSION, $CFG;
+    $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_TEAMNM"] = $tSeq;
+}
+
+function getTeamNm(){
+	global $_SESSION, $CFG;
+	return $_SESSION[ $CFG["CFG_SID_PREFIX"] . "_TEAMNM"];
+}
+
 
 function getUserId(){
 	global $_SESSION, $CFG;
