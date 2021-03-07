@@ -92,6 +92,31 @@ function getLoggerSwoole($arrLog){
     return $log;
 }
 
+
+function getLoggerStdout($arr){
+
+    $log2 = new Monolog\Logger($arr["LIST_NM"]);
+    $stream2 = new Monolog\Handler\StreamHandler('php://stdout', $arr["LOG_LEVEL"]);
+    $stream2->setFormatter(new Monolog\Formatter\LineFormatter("\n%channel%.%level_name% : %message% %context% %extra%"));
+    $log2->pushHandler($stream2);
+
+    $UID = $arr["UID"];
+    $PGMID = $arr["PGM_ID"];
+    $REQTOKEN = $arr["REQTOKEN"];
+    $RESTOKEN = $arr["RESTOKEN"];
+
+    $log2->pushProcessor( function($record) use($UID,$PGMID,$REQTOKEN,$RESTOKEN){
+        $record['extra']['UID'] = $UID;
+        $record['extra']['PGMID'] = $PGMID;
+        $record['extra']['REQTOKEN'] = $REQTOKEN;
+        $record['extra']['RESTOKEN'] = $RESTOKEN;
+        return $record;
+    });
+
+    return $log2;
+}
+
+
 function getLogger($arrLog){
     alog("getLogger()...........................start");
     global $CFG;

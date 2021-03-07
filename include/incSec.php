@@ -14,7 +14,8 @@ function PKCS5Pad($text, $blocksize)
 
 function PKCS5Unpad($text)
 {
- $pad = ord($text{strlen($text)-1});
+ //$pad = ord($text{strlen($text)-1}); //php 7.4
+ $pad = ord($text[strlen($text)-1]); //php 8
  if ($pad > strlen($text)) return $text;
  if (!strspn($text, chr($pad), strlen($text) - $pad)) return $text;
  return substr($text, 0, -1 * $pad);
@@ -36,7 +37,8 @@ function pkcs5_pad($text, $blocksize = 16) {
 }
 
 function pkcs5_unpad($text) {
-	$pad = ord($text{strlen($text)-1});
+	//$pad = ord($text{strlen($text)-1}); // php 7.4
+	$pad = ord($text[strlen($text)-1]); // php 8
 	if ($pad > strlen($text)) {
 	  return $text;
 	}

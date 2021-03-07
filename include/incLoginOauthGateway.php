@@ -33,6 +33,7 @@ if(!isLogin()){
         try{
 
             $fullUrl = "http://" . $CFG["CFG_OAUTH_HOST"] . ":" .  $CFG["CFG_OAUTH_PORT"] . "/o.s/os2ctl.php";
+            alog("OAUTH URL = " . $fullUrl);
 
             $res = $client->request('GET', $fullUrl, [
                 'timeout' => 1,
@@ -50,6 +51,7 @@ if(!isLogin()){
             // 'application/json; charset=utf8'
             //echo "<hr>" . $res->getBody();
             //exit;
+            alog("res code = " . $res->getStatusCode());
 
             //상태 코드 확인하기
             if(trim($res->getStatusCode()) != "200"){
@@ -57,6 +59,7 @@ if(!isLogin()){
             }
 
             $resJsonStr = $res->getBody();
+            alog("res body = " . $res->getBody());
             $resArr = json_decode($resJsonStr,true);//true : stdclass가 아닌 그냥 배열로
             //var_dump($resArr);
 

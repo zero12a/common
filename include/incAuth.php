@@ -91,7 +91,12 @@ class authObject
     
     function isAuth($tPgmid, $tAuthid){
         global $_SESSION;
-        return in_array($tAuthid,$_SESSION['CG_AUTH'][$tPgmid]);
+        if($_SESSION['CG_AUTH'][$tPgmid] == null){
+            return false;
+        }else{
+            return in_array($tAuthid,$_SESSION['CG_AUTH'][$tPgmid]);
+        }
+
     }
 
     
