@@ -352,8 +352,15 @@ function getXml2Array($tXml){
 	return $xml_array;
 }
 
-//alog 기본 함수 활용
+//
 function alog($tStr){
+    global $log;
+    if($log instanceof Monolog\Logger)$log->debug($tStr);
+}
+
+
+//alog 기본 함수 활용
+function alogOld($tStr){
     global $CFG;
 
     $s = session_id();
