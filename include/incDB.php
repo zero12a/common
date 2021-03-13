@@ -628,6 +628,9 @@ function getSqlParam($sql,$coltype,$map){
         //alog( sprintf("%3s %1s - %20s = [%s]", $k, substr($to_coltype,$k,1), $mat[2] , $map[$mat[2]]) );
 
         $tColtype = substr($to_coltype,$d,1) ;
+
+        //print_r($map);
+
         if(is_array($map[$mat[2]])){
             //멀티 값 처리
             if(sizeof($map[$mat[2]]) >= 1){
@@ -3732,8 +3735,9 @@ function getStmtArrayNum(&$stmt){
         //$to_affected_rows = $db->affected_rows;
         alog("  to_affected_rows = ". $to_affected_rows);
 
-        $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;
+        //$PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;
 
+        $RtnVal = new stdclass();
         if($map["FNCTYPE"] == "C" && $map["SEQYN"] == "Y"){
             if($stmt instanceof PDOStatement){
                 alog("SEQYN Y : " . $db->lastInsertId());
