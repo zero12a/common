@@ -1360,7 +1360,8 @@ function getStmtArray(&$stmt){
     $RtnVal = array();
 
     //var_dump($stmt);
-    if($stmt->queryString){
+    if($stmt instanceOf PDOStatement){
+    //if($stmt->queryString){
         //pdo
         //var_dump($param);
         //exit;

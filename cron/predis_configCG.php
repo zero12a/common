@@ -133,6 +133,7 @@ function configReload(){
             ,date_format(sysdate(),'%Y%m%d%H%i%s')
         )
         ";
+
     $stmt = makeStmt($db,$sql,$coltype,$REQ);
     if(!$stmt)alog("500/300/SQL makeStmt create fail 실패");
     if(!$stmt->execute())alog("500/100/stmt execute fail 실패" . $db->errno . " -> " . $db->error);
@@ -173,6 +174,9 @@ function getConfig($REQ){
     //json
     $jsonStrNew = $redisClient->get($cfgNm);
     $jsonStrOld = $redisClient->get($cfgNm . "." . date("Ymd", time()));
+
+    $jsonStrNew = json_encode(json_decode($jsonStrNew,true),JSON_PRETTY_PRINT);
+    $jsonStrOld = json_encode(json_decode($jsonStrOld,true),JSON_PRETTY_PRINT);
 
     $redisClient->quit();
 
