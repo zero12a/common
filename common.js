@@ -50,6 +50,45 @@ function xmlCdataRemove(tmp){
 	return returnValue;
 }
 
+function goFullScreen(){
+	alog("goFullScreen()...............................start");
+	//alert(1)
+	var b = $(document.body);	
+	var elem = document.body;
+	var isFullScreen = b.prop( "fullscreen" );
+
+	if(typeof isFullScreen === 'undefined' || isFullScreen  == "N"){
+		//var elem = $("#vmain");
+		if (elem.requestFullscreen) {
+		alog("requestFullscreen");
+		elem.requestFullscreen();
+		} else if (elem.mozRequestFullScreen) { /* Firefox */
+		alog("mozRequestFullScreen");
+		elem.mozRequestFullScreen();
+		} else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+		alog("webkitRequestFullscreen");
+		elem.webkitRequestFullscreen();
+		} else if (elem.msRequestFullscreen) { /* IE/Edge */
+		alog("msRequestFullscreen");
+		elem.msRequestFullscreen();
+		}
+
+		b.prop( "fullscreen","Y");
+	}else{
+		if (document.exitFullscreen) {
+		document.exitFullscreen();
+		} else if (document.mozCancelFullScreen) { /* Firefox */
+		document.mozCancelFullScreen();
+		} else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+		document.webkitExitFullscreen();
+		} else if (document.msExitFullscreen) { /* IE/Edge */
+		document.msExitFullscreen();
+		}
+
+		b.prop( "fullscreen","N");
+	}
+	alog("goFullScreen()...............................end");	
+}
 
 function msgNotice(tMsg,tSecond){
 	alog("(common) msgNotice : " + tMsg + ", tSecond=" + tSecond);

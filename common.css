@@ -350,3 +350,12 @@ input.btn-sm:hover {
     height: 100%;
     float: left;
 }
+
+ /*
+******************************************** 
+** common image btn (reload, fullscreen)
+******************************************** 
+*/ 
+.common-img-btn {
+    opacity: 0.4;
+}
