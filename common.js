@@ -323,18 +323,18 @@ function apiCodeCombo(tGrpId, tColId, tJsonParam, tDefaultValue){
 		privateDefaultValue : tDefaultValue,
 		dataType: "json",
 		async: true,
-		success: function(data){
-			alog("   apiCodeCombo json return----------------------");
+		success: function(res){
+			alog("   apiCodeCombo json return----------------------" + JSON.stringify(this.data));
 			//alog("   json data : " + JSON.stringify(data.RTN_DATA));
 			//alog("   json RTN_CD : " + data.RTN_CD);
 			//alog("   json ERR_CD : " + data.ERR_CD);
 			//alog("   json RTN_MSG length : " + data.RTN_MSG.length);
 
 			//그리드에 데이터 반영
-			if(data.RTN_CD == "200"){
+			if(res.RTN_CD == "200"){
 				if(grpInfo.get(this.privateGrpId).GRPTYPE == "GRID"){
-					if(!data.RTN_DATA)return;
-					//alog("	코드수 : " + data.RTN_DATA.rows.length);
+					if(!res.RTN_DATA)return;
+					//alog("	코드수 : " + res.RTN_DATA.rows.length);
 					
 					this.tGrid = eval("mygrid"+this.privateGrpId); //그리드 오브젝트 얻기
 					this.privateCombo = this.tGrid.getCombo(this.tGrid.getColIndexById(this.privateColId)); //콤보 얻기
@@ -342,63 +342,64 @@ function apiCodeCombo(tGrpId, tColId, tJsonParam, tDefaultValue){
 					this.privateCombo.clear(); //비우기
 					this.privateCombo.put("","");
 
-					for(var i=0;i<data.RTN_DATA.rows.length;i++){
-						//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
-						cd = data.RTN_DATA.rows[i].data[0];
-						nm = data.RTN_DATA.rows[i].data[1];
+					for(var i=0;i<res.RTN_DATA.rows.length;i++){
+						//alog(res.RTN_DATA.rows[i][0] + "=" + res.RTN_DATA.rows[i][1]);
+						cd = res.RTN_DATA.rows[i].data[0];
+						nm = res.RTN_DATA.rows[i].data[1];
 						this.privateCombo.put(cd,nm);
 					}
 				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "GRIDWIX"){
-						alog("	GRIDWIX - 코드수 : " + data.RTN_DATA.rows.length);
-						if(!data.RTN_DATA)return;
+						alog("	GRIDWIX - 코드수 : " + res.RTN_DATA.rows.length);
+						if(!res.RTN_DATA)return;
 
 						var tArr = [];
 
-						for(var i=0;i<data.RTN_DATA.rows.length;i++){
+						for(var i=0;i<res.RTN_DATA.rows.length;i++){
 							//alog(data.RTN_DATA.rows[i][0] + "=" + data.RTN_DATA.rows[i][1]);
 							tArr[i] = {
-								"id": data.RTN_DATA.rows[i].CD
-								,"value": data.RTN_DATA.rows[i].NM
+								"id": res.RTN_DATA.rows[i].CD
+								,"value": res.RTN_DATA.rows[i].NM
 							};
 						}	
 						$$("wixdt" + this.privateGrpId).getColumnConfig(this.privateColId).options = tArr;
 						$$("wixdt" + this.privateGrpId).refreshColumns(); //필수호출해야함.
 
 				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "CONDITION"){
-					if(!data.RTN_DATA)return;
+					if(!res.RTN_DATA)return;
 					//alog("	코드수 : " + data.RTN_DATA.rows.length);
 					
-					this.privateCombo = $("#" + this.privateGrpId + "-" + this.privateColId); //오브젝트 얻기
+					var privateCombo = $("#" + this.privateGrpId + "-" + this.privateColId); //오브젝트 얻기
+					alog(privateCombo);
 
-					this.privateCombo.empty(); //비우기
-					this.privateCombo.append("<option value=''></option>"); //빈라인 추가
+					privateCombo.empty(); //비우기
+					privateCombo.append("<option value=''></option>"); //빈라인 추가
 
-					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+					for(var i=0;i<res.RTN_DATA.rows.length;i++){
 						//alog(data.RTN_DATA.rows[i][1] + "=" + data.RTN_DATA.rows[i][2]);
-						cd = data.RTN_DATA.rows[i].data[0];
-						nm = data.RTN_DATA.rows[i].data[1];
+						cd = res.RTN_DATA.rows[i].CD;
+						nm = res.RTN_DATA.rows[i].NM;
 
 						chkText ="";
 						if(this.privateDefaultValue == cd)chkText = " selected";
 
-						this.privateCombo.append("<option value='" + cd + "'" + chkText + ">" + nm + "</option>");
+						privateCombo.append("<option value='" + cd + "'" + chkText + ">" + nm + "</option>");
 					}
 					//선택하기
 					//$("#" + this.privateGrpId + "-" + this.privateColId + " > option[@value=" + this.privateDefaultValue + "]").attr("selected","true"); //선택하기
 
 				}else if(grpInfo.get(this.privateGrpId).GRPTYPE == "FORMVIEW"){
-					if(!data.RTN_DATA)return;
-					//alog("	코드수 : " + data.RTN_DATA.rows.length);
+					if(!res.RTN_DATA)return;
+					//alog("	코드수 : " + res.RTN_DATA.rows.length);
 					
 					this.privateCombo = $("#" + this.privateGrpId + "-" + this.privateColId); //오브젝트 얻기
 
 					this.privateCombo.empty(); //비우기
 					this.privateCombo.append("<option value=''></option>"); //빈라인 추가
 
-					for(var i=0;i<data.RTN_DATA.rows.length;i++){
+					for(var i=0;i<res.RTN_DATA.rows.length;i++){
 						//alog(data.RTN_DATA.rows[i][1] + "=" + data.RTN_DATA.rows[i][2]);
-						cd = data.RTN_DATA.rows[i].data[0];
-						nm = data.RTN_DATA.rows[i].data[1];
+						cd = res.RTN_DATA.rows[i].CD;
+						nm = res.RTN_DATA.rows[i].NM;
 
 						chkText ="";
 						if(this.privateDefaultValue == cd)chkText = " selected";
@@ -413,8 +414,9 @@ function apiCodeCombo(tGrpId, tColId, tJsonParam, tDefaultValue){
 				}
 
 			}else{
-				alert("서버 조회중 에러가 발생했습니다.\nRTN_CD : " + data.RTN_CD + "\nERR_CD : " + data.ERR_CD + "\nRTN_MSG :" + data.RTN_MSG);
+				alert("서버 조회중 에러가 발생했습니다.\nRTN_CD : " + res.RTN_CD + "\nERR_CD : " + res.ERR_CD + "\nRTN_MSG :" + data.RTN_MSG);
 			}
+			alog("combo add end");
 		},
 		error: function(error){
 			alert("Error:" + error);
