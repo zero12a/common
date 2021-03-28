@@ -10,8 +10,8 @@ function CustMail2($t_to_email,$t_to_name,$t_subject,$t_message){
 	$mail->isSMTP();                                      // Set mailer to use SMTP
 	$mail->Host = 'smtp.gmail.com';  // Specify main and backup server
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = 'zero12a';                            // SMTP username
-	$mail->Password = '0one2777';                           // SMTP password
+	$mail->Username = '';                            // SMTP username
+	$mail->Password = '';                           // SMTP password
 	$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 	
 	$mail->From = 'zero2a@gmail.com';
