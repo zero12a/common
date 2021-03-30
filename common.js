@@ -1359,6 +1359,12 @@ function saveToGridwix(tGrpId,data){
 				//렌더링 비용을 줄이기 위에 배열 한번에 담아놨다가, 일괄 update 렌더링
 
 				$$("wixdt"+data.GRPID).removeRowCss(rowId, "fontStateUpdate");
+
+				//fncDataUpdate 이 함수가 호출되지 않기 때문에 수동처리
+				rowItem = $$("wixdt"+data.GRPID).data.getItem(rowId);
+				rowItem.changeCud = null;
+				rowItem.changeState = null;
+				alog(rowItem);
 				
 				alog("	rid [" + rowId + "], rid [" + rid + "]  is [updated]");
 			}
