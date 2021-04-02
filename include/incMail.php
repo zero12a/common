@@ -43,7 +43,7 @@ class mailObject
 		$mail->From = $this->username . '@gmail.com';
 		$mail->FromName = "보안 관리자"; 
 		//$mail->addAddress('zero12a@naver.com', 'Josh Adams');  // Add a recipient
-		$mail->addAddress($t_to_email,"받는이");               // Name is optional
+		$mail->addAddress($t_to_email,$t_to_name);               // Name is optional
 		//$mail->addAddress('zero12a@dreamwiz.com');               // Name is optional
 		//$mail->addReplyTo('info@example.com', 'Information');
 		//$mail->addCC('cc@example.com');
@@ -96,7 +96,7 @@ class mailObject
 		$mail->From = $this->username . '@naver.com';
 		$mail->FromName = "보안 관리자"; 
 		//$mail->addAddress('zero12a@naver.com', 'Josh Adams');  // Add a recipient
-		$mail->addAddress($t_to_email,"받는이");               // Name is optional
+		$mail->addAddress($t_to_email,$t_to_name);               // Name is optional
 		//$mail->addAddress('zero12a@dreamwiz.com');               // Name is optional
 		//$mail->addReplyTo('info@example.com', 'Information');
 		//$mail->addCC('cc@example.com');
@@ -151,7 +151,7 @@ class mailObject
 		$mail->From = $this->username . '@daum.net';
 		$mail->FromName = "보안 관리자"; 
 		//$mail->addAddress('zero12a@naver.com', 'Josh Adams');  // Add a recipient
-		$mail->addAddress($t_to_email,"받는이");               // Name is optional
+		$mail->addAddress($t_to_email,$t_to_name);               // Name is optional
 		//$mail->addAddress('zero12a@dreamwiz.com');               // Name is optional
 		//$mail->addReplyTo('info@example.com', 'Information');
 		//$mail->addCC('cc@example.com');
@@ -220,7 +220,7 @@ class mailObject
 
 
 	function sendExchange($t_to_email,$t_to_name,$t_subject,$t_message){
-		echo "sendDaum()...........................................start" . PHP_EOL;
+		echo "sendExchange()...........................................start" . PHP_EOL;
 		$mail = new PHPMailer\PHPMailer\PHPMailer;
 		//$mail->SMTPDebug  = 4;
 
@@ -243,7 +243,7 @@ class mailObject
 		$mail->From = 'info@test.com';
 		$mail->FromName = "보안 관리자"; 
 		//$mail->addAddress('zero12a@naver.com', 'Josh Adams');  // Add a recipient
-		$mail->addAddress($t_to_email,"받는이");               // Name is optional
+		$mail->addAddress($t_to_email,$t_to_name);               // Name is optional
 		//$mail->addAddress('zero12a@dreamwiz.com');               // Name is optional
 		//$mail->addReplyTo('info@example.com', 'Information');
 		//$mail->addCC('cc@example.com');
