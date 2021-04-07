@@ -357,8 +357,8 @@ function getDbConn($tOBJ_SERVER){
             alog("getDbConn() MYSQL_HOST="    . $tOBJ_SERVER["HOST"] );
             alog("getDbConn() MYSQL_ID="      . $tOBJ_SERVER["ID"] );
             alog("getDbConn() MYSQL_PW="      . $tOBJ_SERVER["PW"]  );              
-            alog("getDbConn() KEY="      . $CFG["CFG_SEC_KEY"] );           
-            alog("getDbConn() MYSQL_PW(decrypt)="      . aes_decrypt($tOBJ_SERVER["PW"],$CFG["CFG_SEC_KEY"]) );        
+            echo("getDbConn() KEY="      . $CFG["CFG_SEC_KEY"] );           
+            echo("getDbConn() MYSQL_PW(decrypt)="      . aes_decrypt($tOBJ_SERVER["PW"],$CFG["CFG_SEC_KEY"]) );        
             alog("getDbConn() MYSQL_DBNM="      . $tOBJ_SERVER["DBNM"] );
             alog("getDbConn() MYSQL_PORT="    . $tOBJ_SERVER["PORT"] );
             //alog("db_obj_open() MYSQL_PW="    . $tOBJ_SERVER->MYSQL_PW);

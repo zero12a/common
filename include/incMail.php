@@ -61,12 +61,14 @@ class mailObject
 		try {		
 			if(!$mail->send()) {
 				echo "Message could not be sent.(Error : " . $mail->ErrorInfo . ")";
-				return false;
+				return array(false, "Send fail - 1: " . $mail->ErrorInfo);
 			}else{
-				return true;
+				return array(true,"Send success");
 			}
 		}catch(Exception $e){
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+			return array(false,"Send fail - 2: " . $mail->ErrorInfo);
 		}
 	}
 
@@ -114,12 +116,14 @@ class mailObject
 		try {		
 			if(!$mail->send()) {
 				echo "Message could not be sent.(Error : " . $mail->ErrorInfo . ")";
-				return false;
+				return array(false, "Send fail - 1: " . $mail->ErrorInfo);
 			}else{
-				return true;
+				return array(true,"Send success");
 			}
 		}catch(Exception $e){
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+			return array(false,"Send fail - 2: " . $mail->ErrorInfo);
 		}
 	}
 
@@ -169,12 +173,14 @@ class mailObject
 		try {		
 			if(!$mail->send()) {
 				echo "Message could not be sent.(Error : " . $mail->ErrorInfo . ")";
-				return false;
+				return array(false, "Send fail - 1: " . $mail->ErrorInfo);
 			}else{
-				return true;
+				return array(true,"Send success");
 			}
 		}catch(Exception $e){
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+			return array(false,"Send fail - 2: " . $mail->ErrorInfo);
 		}
 	}
 
@@ -261,12 +267,14 @@ class mailObject
 		try {		
 			if(!$mail->send()) {
 				echo "Message could not be sent.(Error : " . $mail->ErrorInfo . ")";
-				return false;
+				return array(false, "Send fail - 1: " . $mail->ErrorInfo);
 			}else{
-				return true;
+				return array(true,"Send success");
 			}
 		}catch(Exception $e){
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+			return array(false,"Send fail - 2: " . $mail->ErrorInfo);
 		}
 	}
 

@@ -1036,7 +1036,7 @@ function JsonMsgCallback($rtn_cd, $err_cd,  $rtn_msg, $call_back)
 }
 
 function ServerMsg($cd1,$cd2,$msg){
-	echo $cd1 . ":" . $cd2 . ":" . $_SERVER["SCRIPT_NAME"] . ":" . $msg; 
+	echo $cd1 . ":" . $cd2 . ":" . $_SERVER["SCRIPT_NAME"] . ":" . $msg . PHP_EOL; 
 	exit;
 }
 
