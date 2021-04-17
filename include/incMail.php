@@ -16,6 +16,22 @@ class mailObject
 		$this->port = $CFG["CFG_SMTP_PORT"];
 	}
 
+	function sendMail($sender, $t_to_email,$t_to_name,$t_subject,$t_message){
+		switch ($sender){
+			case "GMAIL" :
+				return $this->sendGmail($t_to_email,$t_to_name,$t_subject,$t_message); 
+			case "NAVER" :
+				return $this->sendNaver($t_to_email,$t_to_name,$t_subject,$t_message); 
+			case "DAUM" :
+				return $this->sendDaum($t_to_email,$t_to_name,$t_subject,$t_message); 
+			case "EXCHANGE" :
+				return $this->sendExchange($t_to_email,$t_to_name,$t_subject,$t_message); 
+			default:
+				JsonMsg("500","110","sendMail sender 명령을 찾을 수 없습니다. (sendMail no sender)");
+				break;
+		}
+	}
+
 	//구글 > 보안 > "보안 수준이 낮은 앱의 액세스"를 허용해 줘야함.
 	//위 설정 안하면 아래와 같이 에러 발생함.
 	//SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. Learn more at
@@ -23,7 +39,7 @@ class mailObject
 	//550건 발송이 넘어 서자 아래와 같이 오류 발생 (https://support.google.com/a/answer/166852#zippy=%2Cfree-trial-account-limits)
 	//454 4.7.0 Too many login attempts, please try again later.
 	//보낸 편지함에 smtp발송 기록이 남음 (daum, naver 는 안 남음)
-	function sendGmail($t_to_email,$t_to_name,$t_subject,$t_message){
+	private function sendGmail($t_to_email,$t_to_name,$t_subject,$t_message){
 		echo "sendGmail()...........................................start" . PHP_EOL;
 		$mail = new PHPMailer\PHPMailer\PHPMailer;
 		$mail->SMTPDebug  = 4;
@@ -77,7 +93,7 @@ class mailObject
 	//(to daum) 1000건중 1건 실패 
 	//essage could not be sent.Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting948
 	//(to gmail) 1000건 모두 성공 386초
-	function sendNaver($t_to_email,$t_to_name,$t_subject,$t_message){
+	private function sendNaver($t_to_email,$t_to_name,$t_subject,$t_message){
 		echo "sendNaver()...........................................start" . PHP_EOL;
 		$mail = new PHPMailer\PHPMailer\PHPMailer;
 		//$mail->SMTPDebug  = 4;
@@ -134,7 +150,7 @@ class mailObject
 	//다음에서 다음 발송시 본인 메일 발송은 "no search user or 휴면 고객" 에러 발생
 	// 1000건 중 500건 발송시 아래와 같이 에러남.
 	// Message could not be sent.Mailer Error: SMTP Error: data not accepted.SMTP server error: DATA command failed502 sendDaum()...........................................start
-	function sendDaum($t_to_email,$t_to_name,$t_subject,$t_message){
+	private function sendDaum($t_to_email,$t_to_name,$t_subject,$t_message){
 		echo "sendDaum()...........................................start" . PHP_EOL;
 		$mail = new PHPMailer\PHPMailer\PHPMailer;
 		//$mail->SMTPDebug  = 4;
@@ -185,7 +201,7 @@ class mailObject
 	}
 
 
-	function CustMail2($t_to_email,$t_to_name,$t_subject,$t_message){
+	private function CustMail2($t_to_email,$t_to_name,$t_subject,$t_message){
 		$mail = new PHPMailer;
 		
 		$mail->CharSet = "euc-kr"; //한글문제
@@ -225,7 +241,7 @@ class mailObject
 	}
 
 
-	function sendExchange($t_to_email,$t_to_name,$t_subject,$t_message){
+	private function sendExchange($t_to_email,$t_to_name,$t_subject,$t_message){
 		echo "sendExchange()...........................................start" . PHP_EOL;
 		$mail = new PHPMailer\PHPMailer\PHPMailer;
 		//$mail->SMTPDebug  = 4;
