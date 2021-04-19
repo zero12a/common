@@ -34,10 +34,12 @@ var fncDataUpdate = function(id, newObj, oldObj){
     var oldStr = JSON.stringify(oldObj);
     var newStr = JSON.stringify(newObj)
     alog("  oldObj = " + oldStr);
+    //alog("  oldObj(new line) = " + oldStr.replace(/\\r\\n/gi,"\\n"));
     alog("  newObj1 = " + newStr);
-    if(oldStr == newStr)return false; //바뀐거 없으면 그냥 리턴
+    //alog("  newObj1(new line) = " + oldStr.replace(/\\n/gi,"\\n"));
+    if(oldStr == newStr || oldStr.replace(/\\r\\n/gi,"\\n") == newStr)return false; //바뀐거 없으면 그냥 리턴
 
-
+    //return;
     //체크박스는 fncAfterEditStop없이 바로 fncDataUpdate만 이벤트 발생함.
 
     //수정하기 했을때 처리
