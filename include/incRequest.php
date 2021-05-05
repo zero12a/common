@@ -130,7 +130,7 @@ function filterFormviewChk($tStr,$tDataType,$tDataSize,$tValidType,$tValidRule){
     //alog("filterGridChk()................................start : tStr = " . $tStr . ", tDataType = " . $tDataType);
     $RtnVal = "";
     $tArr = explode(",",$tStr);
-    for($i=0;$i<sizeof($tArr);$i++){
+    for($i=0;$tArr != null && $i<sizeof($tArr);$i++){
         $colBefore = $tArr[$i];
 
         //valid
@@ -161,7 +161,7 @@ function filterGridChk($tStr,$tDataType,$tDataSize,$tValidType,$tValidRule){
     //alog("filterGridChk()................................start : tStr = " . $tStr . ", tDataType = " . $tDataType);
     $RtnVal = array();
     $tArr = explode(",",$tStr);
-    for($i=0;$i<sizeof($tArr);$i++){
+    for($i=0;$tArr != null && $i<sizeof($tArr);$i++){
         $colBefore = $tArr[$i];
 
         //valid
@@ -209,7 +209,7 @@ function filterGridXml($map){
     $RtnVal = $map["XML"];
     $RtnCnt = 0;
     //alog("xml sizeof : " . sizeof($xml_array_last));
-    for($i=0;$i<sizeof($xml_array_last);$i++){
+    for($i=0;xml_array_last != null && $i<sizeof($xml_array_last);$i++){
         $row = $xml_array_last[$i];
         //alog("        i : " . $i);
 
@@ -275,7 +275,7 @@ function filterGridJson($map){
     $RtnVal = $map["XML"];
     $RtnCnt = 0;
     //alog("xml sizeof : " . sizeof($json_array_last));
-    for($i=0;$i<sizeof($json_array_last);$i++){
+    for($i=0;$json_array_last != null && $i<sizeof($json_array_last);$i++){
         $row = $json_array_last[$i];
         //alog("        i : " . $i);
 
