@@ -1238,7 +1238,7 @@ function make_detail_read_json2($stmt){
     //$RtnVal["rows"] = null;
     //$RtnVal->sql = $sql;
     //$RtnVal->cnt = $result->num_rows;
-    $rtnVal = new stdclass();
+    $RtnVal = new stdclass();
 
     if($row = $result->fetch_assoc()){
         //LogMaster::log(" row sizeof : " . sizeof($row));
@@ -1818,7 +1818,7 @@ function getStmtArrayNum(&$stmt){
         alog("makeGridChkJson ----------------------------------------------------- count : " . count($map["CHK"]) );
 		//var_dump($xml_array_last);
 
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
 		$RtnCnt = 0;
 		for($i=0;$i<count($map["CHK"]);$i++){
 
@@ -1895,7 +1895,7 @@ function getStmtArrayNum(&$stmt){
         alog("makeGridChkJsonArray ----------------------------------------------------- count : " . count($map["CHK"]) );
 		//var_dump($xml_array_last);
 
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
 		$RtnCnt = 0;
 		for($i=0;$i<count($map["CHK"]);$i++){
 
@@ -1963,7 +1963,7 @@ function getStmtArrayNum(&$stmt){
         
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "GRID";
         if(!(
               ( is_array($sql["C"]["REQUIRE"]) && sizeof($sql["C"]["REQUIRE"]) > 0 )
@@ -2088,7 +2088,7 @@ function getStmtArrayNum(&$stmt){
         
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "GRID";
 
         //관련 모든 SQL에 REQUIRE이 하나도 없으면 검사 패스
@@ -2233,7 +2233,7 @@ function getStmtArrayNum(&$stmt){
         
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "GRID";
 
         //관련 모든 SQL에 REQUIRE이 하나도 없으면 검사 패스
@@ -2378,7 +2378,7 @@ function getStmtArrayNum(&$stmt){
         
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "GRID";
 
         //관련 모든 SQL에 REQUIRE이 하나도 없으면 검사 패스
@@ -2496,7 +2496,7 @@ function getStmtArrayNum(&$stmt){
         alog("requireGridSearch ");
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "GRID";
         if(!( is_array($sql["R"]["REQUIRE"]) && sizeof($sql["R"]["REQUIRE"]) > 0 ) ){
             $RtnVal->RTN_CD = "200";
@@ -2599,7 +2599,7 @@ function getStmtArrayNum(&$stmt){
 		}
 		//var_dump($xml_array_last);
 
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
 		$RtnCnt = 0;
 		alog("xml sizeof : " . sizeof($xml_array_last));
 		for($i=0;$i<sizeof($xml_array_last);$i++){
@@ -2742,7 +2742,7 @@ function getStmtArrayNum(&$stmt){
 		}
 		//var_dump($xml_array_last);
 
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
 		$RtnCnt = 0;
 		alog("xml sizeof : " . sizeof($xml_array_last));
 		for($i=0;$i<sizeof($xml_array_last);$i++){
@@ -2909,7 +2909,7 @@ function getStmtArrayNum(&$stmt){
 
 		$json_array_last = $map["JSON"];
 
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
 		$RtnCnt = 0;
 		alog("json sizeof : " . sizeof($json_array_last));
 		for($i=0;$i<sizeof($json_array_last);$i++){
@@ -3069,7 +3069,7 @@ function getStmtArrayNum(&$stmt){
 
 		$json_array_last = $map["JSON"];
 
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
 		$RtnCnt = 0;
 		alog("json sizeof : " . sizeof($json_array_last));
 		for($i=0;$i<sizeof($json_array_last);$i++){
@@ -3333,7 +3333,7 @@ function getStmtArrayNum(&$stmt){
         alog("requireFormviewSearch ");
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "FORMVIEW";
         if(!( is_array($sql["R"]["REQUIRE"]) && sizeof($sql["R"]["REQUIRE"]) > 0 ) ){
             $RtnVal->RTN_CD = "200";
@@ -3374,7 +3374,7 @@ function getStmtArrayNum(&$stmt){
         alog("requireFormviewSearchArray...............................start");
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "FORMVIEW";
 
         $isRequireResult = true;
@@ -3419,7 +3419,7 @@ function getStmtArrayNum(&$stmt){
         alog("requireFormviewSave ");
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "FORMVIEW";
         if($fnctype == "C" && (!is_array($sql["C"]["REQUIRE"]) || sizeof($sql["C"]["REQUIRE"]) < 1) ){
             $RtnVal->RTN_CD = "200";
@@ -3489,7 +3489,7 @@ function getStmtArrayNum(&$stmt){
         alog("requireFormviewSaveArray ..................................start");
         //ar_dump($sql["U"]);
         //exit;
-        $rtnVal = new stdclass();
+        $RtnVal = new stdclass();
         $RtnVal->GRP_TYPE = "FORMVIEW";
 
 
@@ -3609,7 +3609,8 @@ function getStmtArrayNum(&$stmt){
         //암호화컬럼
         $colcrypt_array = $map["COLCRYPT"];   
 
-
+        $RtnVal = new stdclass();
+        
         //main/sub sql 갯수 만큼 루프돌면서 처리하기
         alog("  sql sizeof : " . sizeof($map["SQL"]));
         for($s=0;$s<sizeof($map["SQL"]);$s++){
