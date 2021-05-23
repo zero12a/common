@@ -97,7 +97,8 @@ function getLoggerStdout($arr){
 
     $log2 = new Monolog\Logger($arr["LIST_NM"]);
     $stream2 = new Monolog\Handler\StreamHandler('php://stdout', $arr["LOG_LEVEL"]);
-    $stream2->setFormatter(new Monolog\Formatter\LineFormatter("\n%channel%.%level_name% : %message% %context% %extra%"));
+    //$stream2->setFormatter(new Monolog\Formatter\LineFormatter("\n%channel%.%level_name% : %message% %context% %extra%"));
+    $stream2->setFormatter(new Monolog\Formatter\JsonFormatter());
     $log2->pushHandler($stream2);
 
     $UID = $arr["UID"];
