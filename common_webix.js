@@ -37,7 +37,7 @@ var fncDataUpdate = function(id, newObj, oldObj){
     //alog("  oldObj(new line) = " + oldStr.replace(/\\r\\n/gi,"\\n"));
     alog("  newObj1 = " + newStr);
     //alog("  newObj1(new line) = " + oldStr.replace(/\\n/gi,"\\n"));
-    if(oldStr == newStr || oldStr.replace(/\\r\\n/gi,"\\n") == newStr)return false; //바뀐거 없으면 그냥 리턴
+    if(oldStr == newStr || oldStr.replace(/\\r\\n/gi,"\\n") == newStr || oldStr.replace(/\\r/gi,"\\n") == newStr)return false; //바뀐거 없으면 그냥 리턴
 
     //return;
     //체크박스는 fncAfterEditStop없이 바로 fncDataUpdate만 이벤트 발생함.
@@ -69,7 +69,7 @@ var fncAfterEditStop = function(state, editor, ignoreUpdate){
     var rowId = editor.row;
     //this.addRowCss(rowId, "fontStateUpdate");
     var rowItem = this.data.getItem(rowId);
-    alog("  rowItem1=" + JSON.stringify(rowItem));
+    //alog("  rowItem1=" + JSON.stringify(rowItem));
     if(
         typeof rowItem != "undefined" 
         && typeof rowItem.changeState != "undefined" 
@@ -79,11 +79,14 @@ var fncAfterEditStop = function(state, editor, ignoreUpdate){
         //this.addRowCss(rowId, "fontStateUpdate");
 
     }
-    alog("  rowItem2=" + JSON.stringify(rowItem));
-    if(state.value != state.old){
+    //alog("  rowItem2=" + JSON.stringify(rowItem));
+    if(state.value + "" != state.old + ""){
         webix.message("Cell value " + editor.row + " was changed");
-
-    }  
+        alog("state.value(" + state.value + ")와 state.old(" + state.old + ")가 같지 않습니다.");
+    } else{
+        alog("state.value(" + state.value + ")와 state.old(" + state.old + ")가 같습니다.");
+    }
+    alog("onAfterEditStop()...............................end");
 };
 
 
