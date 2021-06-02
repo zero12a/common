@@ -42,6 +42,8 @@ function getValidNumber($tParam,$tLength){
     //alog("getValidNumber()................................start : tParam = " . $tParam . ", tLength = " . $tLength);  
 
     $tParam .= "";// 0을 ""와 비교하면 true가 되서, 0입력값이 사라지는 버그 존재하여 0 . ""로 처리함.
+
+    $tParam = str_replace(",","",$tParam); //콤마(,)는 제거
     if($tParam  == ""){
         return "";
     }else if(strlen($tParam) > $tLength){
