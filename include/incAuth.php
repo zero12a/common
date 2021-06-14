@@ -23,7 +23,30 @@ class authObject
             $this->DB = db_obj_open(getDbSvrInfo("DATING"));
         }else if($CFG["CFG_AUTH_LOG"] == "REDIS"){
             Predis\Autoloader::register();
-            $this->REDIS = new Predis\Client($CFG["CFG_AUTH_REDIS"]);    
+            
+            //OLD
+            //$this->REDIS = new Predis\Client($CFG["CFG_AUTH_REDIS"]);    
+
+            //NEW
+            if($CFG["REDIS_PASSWD"] != ""){
+                $this->REDIS = new Predis\Client(
+                    array(
+                        'scheme' => 'tcp',
+                        'host'   => $CFG["REDIS_HOST"],
+                        'port'   => $CFG["REDIS_PORT"],
+                        'password'   => $CFG["REDIS_PASSWD"],
+                        'timeout' => 1
+                    ));
+            }else{
+                $this->REDIS = new Predis\Client(
+                    array(
+                        'scheme' => 'tcp',
+                        'host'   => $CFG["REDIS_HOST"],
+                        'port'   => $CFG["REDIS_PORT"],
+                        'timeout' => 1
+                    ));
+            }
+
         }else{
             JsonMsg("500","100","[authLog] __construct() .......................CFG_AUTH_LOG 정의가 잘못되었습니다.");
         }
