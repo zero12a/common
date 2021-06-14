@@ -299,6 +299,7 @@ input.btn-sm:hover {
 .file_input_textbox{height:30px;vertical-align: middle;}
 .file_input_div{position:relative;width:100px;height:30px;overflow:hidden;display:inline;}
 .file_input_hidden{font-size:45px; position:absolute; right:0px; top:0px; opacity:0; 
+    width:0px;height:0px; /*다른 버튼 가리는 버그 수정*/
     filter:alpha(opacity=0); 
     -ms-filter:"alpha(opacity=0)"; 
     -khtml-opacity:0; 
