@@ -296,10 +296,11 @@ input.btn-sm:hover {
 }
 
 /* 파일 개별 스타일 따르기 for webix */
-.file_input_textbox{height:30px;vertical-align: middle;}
+.file_input_textbox{height:30px;width:150px;vertical-align: middle;}/*다른 버튼 가리는 버그 수정*/
 .file_input_div{position:relative;width:100px;height:30px;overflow:hidden;display:inline;}
-.file_input_hidden{font-size:45px; position:absolute; right:0px; top:0px; opacity:0; 
-    width:0px;height:0px; /*다른 버튼 가리는 버그 수정*/
+.file_input_hidden{
+    font-size:45px; position:absolute; right:5px; top:-5px; opacity:0; 
+    width:230px;height:30px; /*다른 버튼 가리는 버그 수정*/
     filter:alpha(opacity=0); 
     -ms-filter:"alpha(opacity=0)"; 
     -khtml-opacity:0; 
