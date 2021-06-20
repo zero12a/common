@@ -74,3 +74,11 @@ input 필드 편집모드 전환시 좌/우 여백이 너무 커서 슬립
 .highlight{
     background-color:#FFAAAA;
 }
+
+/* 체크박스 사이즈업*/
+input[type="checkbox"]{
+    width: 16px; /*Desired width*/
+    height: 16px; /*Desired height*/
+    border: 1px solid #bcbcbc;
+    cursor: pointer;
+}
