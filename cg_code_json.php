@@ -18,7 +18,7 @@
     $resToken = uniqid();
 
 
-    $log = getLogger(
+    $log = getLoggerStdout(
         array(
         "LIST_NM"=>"log_CG"
         , "PGM_ID"=>"CODE_JSON"
