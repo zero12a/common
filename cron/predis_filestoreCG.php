@@ -9,6 +9,18 @@ if(!require_once(__DIR__ . "/../include/incUtil.php"))die("require incUtil fail.
 if(!require_once(__DIR__ . "/../include/incSec.php"))die("require incSec fail.");
 if(!require_once(__DIR__ . "/../include/incDB.php"))die("require incDB fail.");
 
+$log = getLoggerStdout(
+    array(
+    "LIST_NM"=>"log_CG"
+    , "PGM_ID"=>"predis_filestoreCG"
+    , "REQTOKEN" => $reqToken
+    , "RESTOKEN" => uniqid()
+    , "LOG_LEVEL" => Monolog\Logger::DEBUG
+    )
+);
+
+
+
 alog("predis_datasourceCG.php__________________________go");
 
 alog("gethostname() =" . gethostname());
@@ -27,15 +39,29 @@ echo "###########" . $CFG["REDIS_HOST"] . "\n";
 //Predis\Autoloader::register();
 
 
-$pubsubClient = new Predis\Client(
-    array(
-        'scheme' => 'tcp',
-        'host'   => $CFG["REDIS_HOST"],
-        'port'   => $CFG["REDIS_PORT"],
-        'timeout' => 0,
-        'read_write_timeout' => 0
-    )
-);    
+
+if($CFG["REDIS_PASSWD"] != ""){
+    $pubsubClient = new Predis\Client(
+        array(
+            'scheme' => 'tcp',
+            'host'   => $CFG["REDIS_HOST"],
+            'port'   => $CFG["REDIS_PORT"],
+            'password'   => $CFG["REDIS_PASSWD"],
+            'timeout' => 0,
+            'read_write_timeout' => 0
+        )
+    );  
+}else{
+    $pubsubClient = new Predis\Client(
+        array(
+            'scheme' => 'tcp',
+            'host'   => $CFG["REDIS_HOST"],
+            'port'   => $CFG["REDIS_PORT"],
+            'timeout' => 0,
+            'read_write_timeout' => 0
+        )
+    );    
+}
 
 echo "###########" . $CFG["REDIS_PORT"] . "\n";
 
@@ -189,16 +215,31 @@ CFG_FILESTORE : {
     //echo "newFileStoreJson = " . json_encode($rtnArr,JSON_PRETTY_PRINT);
     //Save to redis
     //$cfgNm = "CONFIG_CG";
-    $redisClient = new Predis\Client(
-        array(
-            'scheme' => 'tcp',
-            'host'   => $CFG["REDIS_HOST"],
-            'port'   => $CFG["REDIS_PORT"],
-            'timeout' => 0
-        )
-    );   
+    if($CFG["REDIS_PASSWD"] != ""){
+        $redisClient = new Predis\Client(
+            array(
+                'scheme' => 'tcp',
+                'host'   => $CFG["REDIS_HOST"],
+                'port'   => $CFG["REDIS_PORT"],
+                'password' => $CFG["REDIS_PASSWD"],
+                'timeout' => 0
+            )
+        );   
+    }else{
+        $redisClient = new Predis\Client(
+            array(
+                'scheme' => 'tcp',
+                'host'   => $CFG["REDIS_HOST"],
+                'port'   => $CFG["REDIS_PORT"],
+                'timeout' => 0
+            )
+        );   
+    }
 
     $oldConfigJson = $redisClient->get($cfgNm);
+
+    $oldConfigJson = json_encode(json_decode($oldConfigJson,true),JSON_PRETTY_PRINT); //예쁘게 보이기
+
     $REQ["OLD_CFG"] = aes_encrypt($oldConfigJson,$CFG["CFG_SEC_KEY"]);
 
     $oldConfigArray = json_decode($oldConfigJson,true);
@@ -214,6 +255,8 @@ CFG_FILESTORE : {
         //echo json_encode($newConfigArray,JSON_PRETTY_PRINT);
         alog("Save new json..........\n". json_encode($newConfigArray,JSON_PRETTY_PRINT));
         $redisClient->set($cfgNm,$newConfigJson);
+
+        $newConfigJson = json_encode(json_decode($newConfigJson,true),JSON_PRETTY_PRINT); //예쁘게 보이기
         $REQ["NEW_CFG"] = aes_encrypt($newConfigJson,$CFG["CFG_SEC_KEY"]);
     }else{
         $REQ["NEW_CFG"] = aes_encrypt("",$CFG["CFG_SEC_KEY"]);

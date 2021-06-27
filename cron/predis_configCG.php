@@ -9,6 +9,17 @@ if(!require_once(__DIR__ . "/../include/incUtil.php"))die("require incUtil fail.
 if(!require_once(__DIR__ . "/../include/incSec.php"))die("require incSec fail.");
 if(!require_once(__DIR__ . "/../include/incDB.php"))die("require incDB fail.");
 
+$log = getLoggerStdout(
+    array(
+    "LIST_NM"=>"log_CG"
+    , "PGM_ID"=>"predis_configCG"
+    , "REQTOKEN" => $reqToken
+    , "RESTOKEN" => uniqid()
+    , "LOG_LEVEL" => Monolog\Logger::DEBUG
+    )
+);
+
+
 alog("predis_configCG.php__________________________go");
 
 alog("gethostname() =" . gethostname());
@@ -148,7 +159,6 @@ function getConfig($REQ){
     alog("getConfig()...............start");
 
     if($CFG["REDIS_PASSWD"] != ""){
-
         $redisClient = new Predis\Client(
             array(
                 'scheme' => 'tcp',
@@ -158,7 +168,6 @@ function getConfig($REQ){
                 'timeout' => 0
             )
         );    
-        
     }else{
         $redisClient = new Predis\Client(
             array(

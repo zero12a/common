@@ -11,14 +11,27 @@ require_once "./include/incRequest.php";
 if(trim($CFG["REDIS_HOST"]) == "")die("Config에 REDIS_HOST 값이 없습니다.");
 
 //echo "aaa";
-$redisClient = new Predis\Client(
-    array(
-        'scheme' => 'tcp',
-        'host'   => $CFG["REDIS_HOST"],
-        'port'   => $CFG["REDIS_PORT"],
-        'timeout' => 3
-    )
-);    
+if($CFG["REDIS_PASSWD"] != ""){
+    $redisClient = new Predis\Client(
+        array(
+            'scheme' => 'tcp',
+            'host'   => $CFG["REDIS_HOST"],
+            'port'   => $CFG["REDIS_PORT"],
+            'password' => $CFG["REDIS_PASSWD"],
+            'timeout' => 1
+        )
+    );    
+}else{
+    $redisClient = new Predis\Client(
+        array(
+            'scheme' => 'tcp',
+            'host'   => $CFG["REDIS_HOST"],
+            'port'   => $CFG["REDIS_PORT"],
+            'timeout' => 1
+        )
+    );    
+}
+
 
 //외부 입력값 받아오기
 $PUBSUB = reqGetString("PUBSUB",30);
