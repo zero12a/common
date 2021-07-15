@@ -361,3 +361,6 @@ input.btn-sm:hover {
 .common-img-btn {
     opacity: 0.4;
 }
+.common-img-btn:hover{
+    opacity: 0.9;
+}
