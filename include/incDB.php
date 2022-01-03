@@ -1282,6 +1282,10 @@ function getStmt(&$db,$sqlMap){
     //echo "<BR>server_info=" . $db->server_info;
     //echo "<BR>host_info=" . $db->host_info;
 
+    if($db == null){
+        if($log)$log->info("incDB.php getStmt() error : db is null");
+        return null;
+    }
     if($db->server_info == ""){
         //pdo
         //echo "<BR>pdo---"  . $sqlMap["TO_SQL"];
