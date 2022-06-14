@@ -805,19 +805,19 @@ function makeStmt($db,$sql,$coltype,$map){
     //$to_coltype = $coltype;
 
     $to_coltype = str_replace(" ","",$coltype,$count);
-    if($log)$log->info("to_coltype before : " . $to_coltype);    
+    alog("to_coltype before : " . $to_coltype);    
     //echo "\n to_coltype replace:" . $count;
     //LogMaster::log("        to_coltype : " . $to_coltype);
 
 
     //파라미터 분해 (정규식에서 .를 검색할때는 []안에 인수 값중에 맨뒤에 가면 동작안함)
     while(preg_match("/(#{)([\.a-zA-Z0-9_-]+)(})/",$to_sql,$mat)){
-        //echo "<br>org : " . HtmlEncode($org);
-        //echo "\n<br>매칭0 : " . $mat[0];
+        //alog("org : " . HtmlEncode($org));
+        //alog("매칭0 : " . $mat[0]);
         //alog("매칭1 : " . $mat[1]);
         //alog("매칭2 : " . $mat[2]);
-        //echo "\n<br>매칭3 : " . $mat[3];
-        //echo "<br>매칭4 : " . $mat[4];
+        //alog("매칭3 : " . $mat[3]);
+        //alog("매칭4 : " . $mat[4]);
         //alog( sprintf("%3s %1s - %20s = [%s]", $k, substr($to_coltype,$k,1), $mat[2] , $map[$mat[2]]) );
 
         $tColtype = substr($to_coltype,$d,1) ;
@@ -956,9 +956,9 @@ function makeStmt($db,$sql,$coltype,$map){
     }
 
     //최종
-    if($log)$log->info("to_coltype after : " . $to_coltype);    
-	if($log)$log->info("prepare sql : " . $to_sql);
-    if($log)$log->info("full sql : " . $debug_sql);
+    alog("to_coltype after : " . $to_coltype);    
+	alog("prepare sql : " . $to_sql);
+    alog("full sql : " . $debug_sql);
 
     //[로그저장용] 권한변경로그용 SQL더하기 
     if($PGM_CFG["SECTYPE"] == "POWER" || $PGM_CFG["SECTYPE"] == "PI") {
@@ -967,18 +967,20 @@ function makeStmt($db,$sql,$coltype,$map){
     }
     
     $stmt = $db->prepare($to_sql);
-    //echo "\n stmt is_object : " . is_object($stmt);
+    //alog("stmt is_object : " . is_object($stmt));
     //$stmt->bind_param($to_coltype, $to_map);
 
     if(!$stmt){
-        //echo "111";
-        if($log)$log->info("stmt error : stmt is " . $stmt->errno . " > " . $stmt->error . ", db is " . $db->errno . " > " . $db->error);
+        alog("stmt error : stmt is " . $stmt->errno . " > " . $stmt->error . ", db is " . $db->errno . " > " . $db->error);
         return false;
     }else if($k > 0 && !function_exists($stmt->getAttribute)){
         //mysqli
         //echo "222";
 		//sql문에 bind param이 하나라도 있으면 처리
-        //alog("        stmt ok");
+        //echo "<pre>";
+        //var_dump($db);
+        //alog("stmt ok");
+        alog("function_exists(stmt->bind_param) = " . function_exists($stmt->bind_param) );
 
         //다시한번
         $bind_names = null;
@@ -991,15 +993,20 @@ function makeStmt($db,$sql,$coltype,$map){
         }
 
 
+        //var_dump($stmt);
+        //var_dump($bind_names);
+
         //바인드 파람 처리
         if(!call_user_func_array(array(&$stmt, 'bind_param'), $bind_names)){
-            if($log)$log->info("        bind_param error : " . $stmt->errno . " > " . $stmt->error);
+            alog("bind_param error : " . $stmt->errno . " > " . $stmt->error);
             return false;
         }
+    }else{
+        alog("stmt else 처리가 없음");
     }
     /* Set our params */
 
-	//alog("makeStmt-----------------------------------end");
+	alog("makeStmt-----------------------------------end");
 
     return $stmt;
 }

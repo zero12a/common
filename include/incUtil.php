@@ -356,7 +356,13 @@ function getXml2Array($tXml){
 //
 function alog($tStr){
     global $log;
-    if($log instanceof Monolog\Logger)$log->debug($tStr);
+    if($log instanceof Monolog\Logger){
+        $log->debug($tStr);
+    }else{
+        $f=fopen('php://stdout',"w");
+        fputs($f,$tStr . "\n");
+        fclose($f);
+    }
 }
 
 
