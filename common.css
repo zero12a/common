@@ -90,10 +90,11 @@ input[type="radio"]:disabled, input[type="checkbox"]:disabled {
 /*pgminfo 용*/
 .GRID_LABELGRP_SLIM {overflow:hidden;background-color: white;position:relative;width:100%;height:25px;z-index:20;}
 
-.GRID_LABELGRP {overflow:hidden;background-color: white;position:relative;width:100%;height:37px;z-index:20;}
-.GRID_LABELGRP_GAP {padding:5px 5px 0px 5px;}
-.GRID_LABEL {overflow:hidden;overflow-y:hidden;white-space: nowrap;overflow:visible;position:relative;float:left;height:22px;line-height:22px;vertical-align:middle;z-index:30;}
-.GRID_LABELBTN {white-space: nowrap;overflow:visible;position: relative;float:right;height:22px;line-height:22px;vertical-align:middle;text-align:right;z-index:30;}
+.GRID_LABELGRP {overflow:hidden;background-color: white;position:relative;width:100%;height:37px;z-index:20;
+    padding: 5px 5px 0px 5px;
+}
+.GRID_LABEL {width: 30%;overflow:hidden;overflow-y:hidden;white-space: nowrap;overflow:visible;position:relative;float:left;height:22px;line-height:22px;vertical-align:middle;z-index:30;}
+.GRID_LABELBTN {width: 70%;white-space: nowrap;overflow:visible;position: relative;float:right;height:22px;line-height:22px;vertical-align:middle;text-align:right;z-index:30;}
 .GRID_OBJECT {overflow:hidden;background-color: white;position: relative;width:100%;z-index:20;}
 
 .CONDITION_LABELGRP {overflow:hidden;position:relative;width:100%;height:32px;z-index:20;}
