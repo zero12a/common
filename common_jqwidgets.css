@@ -1,0 +1,12 @@
+.fontBold, .fontBold span {
+    font-weight: bold;
+}
+
+.fontLineThrough, .fontLineThrough span {
+    text-decoration: line-through;
+    font-weight: bold;
+}
+
+.fontNormal, .fontNormal span {
+    font-weight: normal;
+}

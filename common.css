@@ -1,0 +1,367 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
+/*
+bootstrapv4 호환 
+ body {margin:3px;padding:0}
+*/
+html {font-family: "Nanum Gothic", sans-serif; margin:0;padding:0;height:100%;}
+body {background-color:rgb(237, 237, 238); margin:0;padding:5px;height:100%;
+    font-family: "Nanum Gothic", sans-serif;font-size: 11px;
+}
+
+
+.HTML_BODY {margin:0px;padding:5px;}
+
+/*
+bootstrapv4 호환 
+ b*,*::before,*::after {  box-sizing: border-box;}
+
+브라우저 디펄트 : content-box
+부트스트랩 디펄트 : border-box
+dhtmlx 디펄트 : content-box
+
+
+*/
+*,*::before,*::after {  
+    box-sizing: border-box;
+}
+
+
+/* 부트 스트랩4 LIB 안쓸때 대체
+
+.btn-sm {
+    border-radius: 5px;
+    height: 31px;
+    line-height: 24px;
+    font-size: 10pt;
+    text-decoration: none;
+    color: black;
+    background:silver;
+}
+
+*/
+
+/*
+div,input,textarea,select,span {font-family: "Nanum Gothic", sans-serif;font-size: 11px;}
+
+codemirror 폰트 사이즈 문제로 전체 오브젝트 적용은 없앴음.
+*/
+
+
+#F_START_DT, #F_END_DT {
+    border: 1px solid #909090;
+}
+
+textarea:-moz-read-only, input[type="radio"]:-moz-read-only, input[type="text"]:-moz-read-only { /* For Firefox */
+    background-color: rgb(255, 241, 220);
+}
+
+textarea:read-only, input[type="radio"]:read-only, input[type="text"]:read-only {
+    background-color: rgb(255, 241, 220);
+}
+
+select:disabled{
+    background-color: rgb(255, 228, 220);
+}
+
+input[type="radio"]:disabled, input[type="checkbox"]:disabled {
+    background: rgb(223, 255, 220);
+}
+
+.BODY_BOX {overflow:visible;width:100%;background-color:rgb(98, 166, 245);padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;z-index:1;
+    
+    }
+.BODY_BOX_TOP {height:48px;background-color:silver;padding:5px 5px 0px 5px;z-index:1}
+
+.OBJ_BR {position: relative;width:100%;overflow:auto;z-index:20;height:3px}
+
+.CON_LINE {position: relative;width:100%;overflow:auto;z-index:20;}
+.CON_OBJGRP {position: relative;float:left;background-color: #eeeeee;vertical-align:middle ;overflow:auto;z-index:25;}
+.CON_LABEL {overflow:hidden;overflow-y:hidden;position: relative;float:left;background-color: #eeeeee;vertical-align:middle ;padding:3px 5px 0px 5px;overflow:auto;z-index:30;}
+.CON_OBJECT {position: relative;float:left;background-color: #eeeeee;vertical-align:middle;overflow:auto;z-index:30;}
+.CON_LINEPADDING {position: relative;height:5px;overflow:auto;z-index:20;}
+
+/* 
+줄바꿈금지 = white-space: nowrap; 
+
+*/
+
+/*pgminfo 용*/
+.GRID_LABELGRP_SLIM {overflow:hidden;background-color: white;position:relative;width:100%;height:25px;z-index:20;}
+
+.GRID_LABELGRP {overflow:hidden;background-color: white;position:relative;width:100%;height:37px;z-index:20;
+    padding: 5px 5px 0px 5px;
+}
+.GRID_LABEL {width: 30%;overflow:hidden;overflow-y:hidden;white-space: nowrap;overflow:visible;position:relative;float:left;height:22px;line-height:22px;vertical-align:middle;z-index:30;}
+.GRID_LABELBTN {width: 70%;white-space: nowrap;overflow:visible;position: relative;float:right;height:22px;line-height:22px;vertical-align:middle;text-align:right;z-index:30;}
+.GRID_OBJECT {overflow:hidden;background-color: white;position: relative;width:100%;z-index:20;}
+
+.CONDITION_LABELGRP {overflow:hidden;position:relative;width:100%;height:32px;z-index:20;}
+.CONDITION_LABEL {white-space: nowrap;position:relative;float:left;width:30%;height:22px;line-height:22px;vertical-align:middle;z-index:30;}
+.CONDITION_LABELBTN {white-space: nowrap;position: relative;float:left;width:70%;height:22px;line-height:22px;vertical-align:middle;text-align:right;z-index:30;}
+.CONDITION_OBJECT {position: relative;background-color:rgb(247, 248, 255);padding:2px 2px 2px 2px;overflow:auto;}
+
+.FORMVIEW_LABELGRP {overflow:hidden;position:relative;width:100%;height:32px;z-index:20;}
+.FORMVIEW_LABEL {white-space: nowrap;position:relative;float:left;width:30%;height:22px;line-height:22px;vertical-align:middle;z-index:30;}
+.FORMVIEW_LABELBTN {white-space: nowrap;position: relative;float:left;width:70%;height:22px;line-height:22px;vertical-align:middle;text-align:right;z-index:30;}
+.FORMVIEW_OBJECT {position: relative;background-color:rgb(247, 248, 255);padding:2px 2px 2px 2px;overflow:auto;}
+
+.CHART_LABELGRP {overflow:hidden;position:relative;width:100%;height:32px;z-index:20;}
+.CHART_LABEL {white-space: nowrap;position:relative;float:left;width:30%;height:22px;line-height:22px;vertical-align:middle;z-index:30;}
+.CHART_LABELBTN {white-space: nowrap;position: relative;float:left;width:70%;height:22px;line-height:22px;vertical-align:middle;text-align:right;z-index:30;}
+.CHART_OBJECT {position: relative;background-color:rgb(247, 248, 255);padding:0px 0px 0px 0px;overflow:auto;}
+
+.GRP_LINE {background-color:#eeeeee;position: relative;width:100%;z-index:10;overflow:auto;}
+.GRP_OBJECT {position: relative;float:left;z-index:20;padding:0px 0px 0px 0px}
+.GRP_OBJECT_VBOX {position: relative;float:left;z-index:20;padding:0px 0px 0px 0px}
+.GRP_GAP {padding:3px 3px 3px 3px;height:100%;width:100%;} /*GRP 간의 여백*/
+.GRP_INNER {overflow: visible;background-color: white;border-radius:2px;padding:5px 5px 5px 5px;}/*폼뷰, 컨디션, BI뷰*/
+/*.GRP_INNER_GRID {overflow: visible;background-color: white;border-radius:2px;padding:0px 0px 0px 0px;}*/
+
+.FORMVIEW_IMGVIEWER {background-color:#e1e1e1;}
+.FORMVIEW_IMGVIEWER_IMG {
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 5px;    
+}
+
+.BI_OBJGRP {border:0px solid black;padding:0px 0px 0px 0px;position: relative;float:left;vertical-align:middle ;overflow:auto;z-index:25;}
+.BI_OBJINNER {background-color: white;border-radius:5px;padding:5px 5px 5px 5px;height:70px;}
+.BI_LABEL {height:22px;color:gray;text-align:left;font-size:11pt;height:22px;position: relative;vertical-align:middle ;overflow:auto;z-index:30;}
+.BI_ICON {overflow:hidden;overflow-y:hidden;position: relative;vertical-align:middle;overflow:auto;z-index:30;}
+.BI_VALUE {height:45px;font-weight:bold;text-align:left;font-size:22pt;position: relative;vertical-align:middle;overflow:auto;z-index:30;}
+.BI_VALUE2 {font-size:11pt;position: relative;vertical-align:middle;overflow:auto;z-index:30;}
+.BI_VALUE2_TYPE3 {color:gray;width:30%;padding-top:16px;text-align:right;}
+.BI_VALUE2_TYPE4 {color:white;border-radius:5px;float:left;text-align:left;margin-left:2pt;margin-top:8pt;background-color:gray;}
+
+.ui-datepicker{ font-size: 12px; width: 200px; }
+.ui-datepicker select.ui-datepicker-month{ width:60px; font-size: 10px; }
+.ui-datepicker select.ui-datepicker-year{ width:60px; font-size: 10px; }
+.ui-datepicker-trigger {
+	margin-left:2px;
+	vertical-align:top;
+    }
+    
+/*
+******************************************** 
+**  dhtmlx 
+******************************************** 
+*/
+/*dhtmlx div box*/
+div.gridbox {
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+}
+
+div.gridbox_dhx_skyblue.gridbox{
+    border: 1px solid rgb(211, 210, 210);
+}
+/* 헤더 좌측여백없애고, 가운데 정렬 */
+td div.hdrcell input{
+    margin-top:1px; /* 필터 input가 위로 너무 딱 붙어서 추가*/
+    height:21px;
+}
+td div.hdrcell select{
+    margin-top:1px; /* 필터 select가 위로 너무 딱 붙어서 추가*/
+    height:21px;
+}
+td div.hdrcell div.combo div.dhxcombo_dhx_skyblue{
+    display: inline-block; /* 필터 combo가 가운데정렬 안되서 추가 */
+}
+
+div.gridbox_dhx_skyblue.gridbox table.hdr td div.hdrcell{
+    text-align: center;
+    height: 23px;
+    line-height: 23px;
+    padding: 0px 0px 1px 0px;
+}
+div.gridbox table.hdr td{
+    padding: 0px 0px 0px 0px;
+}
+div.gridbox_dhx_skyblue.isModern table.obj.row20px tr td{
+    line-height: 23px;
+}
+div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td{
+    height: 23px;
+}
+/* 프로즌 했을때 행 밀림처리 */
+div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td img{
+    margin: 2px 0px 3px 0px
+}
+
+/* dropDown */
+.dropDownChkDiv{
+    background-color:white;
+    height:22px;
+    padding:2px 0px 0px 3px;
+}
+.dropDownChkDiv:hover{
+    background-color:silver;
+}
+label{
+    font-size: 11px;
+}
+
+textarea{
+    font-size: 12px;
+}
+
+/*
+******************************************** 
+** Chart.js 
+******************************************** 
+*/
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/*
+******************************************** 
+** CodeMirror 
+******************************************** 
+*/
+.CodeMirror {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    font-size: 12px;
+    font-family: "Nanum Gothic Coding", monospace;
+}
+.cm-tab {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+/*
+******************************************** 
+** signature pad & codemirror button
+******************************************** 
+*/
+.fnc_button {
+    border: 1px solid gray;
+   }
+
+/*
+******************************************** 
+** signature pad 
+******************************************** 
+*/
+
+   .signpad_div {
+    position: relative;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 0px solid blue;
+  }
+  
+  .signpad_canvas {
+    position: absolute;
+    left: 0;
+    background-color: white;
+    border: 1px solid silver;
+  }
+
+ /*
+******************************************** 
+** toastr.js
+******************************************** 
+*/ 
+.toast-message {
+    font-size: 10pt;
+}
+
+
+/*
+button style
+*/
+input.btn-sm {
+    vertical-align: middle;
+    height: 30px;
+    color: white;
+    font-size: 10pt;
+	border: 1px solid gray;
+	background-color: rgb(95, 95, 95);
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px; 
+	border-bottom-right-radius: 5px;
+}
+input.btn-sm:hover {
+    background-color: rgb(72, 74, 88);
+}
+
+/* 파일 개별 스타일 따르기 for webix */
+.file_input_textbox{height:30px;width:150px;vertical-align: middle;}/*다른 버튼 가리는 버그 수정*/
+.file_input_div{position:relative;width:100px;height:30px;overflow:hidden;display:inline;}
+.file_input_hidden{
+    font-size:45px; position:absolute; right:5px; top:-5px; opacity:0; 
+    width:230px;height:30px; /*다른 버튼 가리는 버그 수정*/
+    filter:alpha(opacity=0); 
+    -ms-filter:"alpha(opacity=0)"; 
+    -khtml-opacity:0; 
+    -moz-opacity:0;
+}
+
+
+ /*
+******************************************** 
+** select2.js
+******************************************** 
+*/ 
+.select2-results__option {
+    font-size: 11px;
+}
+
+
+ /*
+******************************************** 
+** split.js
+******************************************** 
+*/ 
+.split {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.gutter {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+}
+
+.gutter.gutter-vertical {
+    cursor: row-resize;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+
+.split.split-horizontal,
+.gutter.gutter-horizontal {
+    height: 100%;
+    float: left;
+}
+
+ /*
+******************************************** 
+** common image btn (reload, fullscreen)
+******************************************** 
+*/ 
+.common-img-btn {
+    opacity: 0.4;
+}
+.common-img-btn:hover{
+    opacity: 0.9;
+}

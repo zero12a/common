@@ -1,0 +1,84 @@
+/* bootstrap4 충돌 방지
+
+브라우저 디펄트 : content-box
+부트스트랩 디펄트 : border-box
+dhtmlx 디펄트 : content-box
+*/
+.webix_dtable div.webix_ss_vscroll_header {  
+    box-sizing: content-box;
+}
+
+/* 콤보 팝업레이어 목록의 left/right여백 슬립 :
+ 2px 9pt 2px 9pt ->  2px 2pt 2px 3pt  
+ 2px 9pt 2px 9pt ->  2px 2pt 2px 4pt  
+ */
+.webix_list_item{
+    padding:2px 2pt 2px 3pt;
+}
+.webix_list .webix_list_item.webix_selected{
+    padding:2px 2pt 2px 4pt;
+}
+
+/*
+input 필드 편집모드 전환시 좌/우 여백이 너무 커서 슬립
+0px 11px 0px 11px -> 0px 4px 0px 4px
+*/
+.webix_dt_editor input{
+    padding: 0px 4px 0px 4px;
+}
+
+/* 헤더 여백 슬림 */
+.webix_hcell{
+    padding:0 2px 0 2px;
+    text-align: center;
+}
+
+/* 데이터컬럼 여백 슬림 */
+.webix_column > div, .webix_table_cell{
+    padding:0 4px 0 4px;
+}
+
+/* 메시지 디펄트가 톱인데 하단으로 내리기*/
+.webix_message_area{
+    top:initial !important;
+    bottom: 1px;   
+}
+
+.myhover{
+    background: #F0DCB6;
+}
+
+.fontStateInsert{
+    text-decoration: none;
+    font-weight: bold;
+    color: darkblue;
+}
+
+.fontStateUpdate{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.fontStateDelete{
+    text-decoration: line-through;
+    font-weight: bold;
+    color: black;
+}
+
+.fontNormal{
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.highlight{
+    background-color:#FFAAAA;
+}
+
+/* 체크박스 사이즈업*/
+input[type="checkbox"]{
+    width: 16px; /*Desired width*/
+    height: 16px; /*Desired height*/
+    border: 1px solid #bcbcbc;
+    cursor: pointer;
+}
