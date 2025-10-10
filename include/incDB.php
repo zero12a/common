@@ -1602,6 +1602,8 @@ function getStmtArrayNum(&$stmt){
             }
             closeStmt($stmt);
 
+            $RtnVal = new stdClass();
+            $RtnVal->RTN_DATA = new stdClass();
 
             $RtnVal->RTN_CD = "200";
             $RtnVal->ERR_CD = "200";

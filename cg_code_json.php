@@ -164,11 +164,13 @@
 
     //var_dump($stmt);
     //$stmt2 = makeStmt($db2,$sql,$coltype="i",$REQ);
+    $RtnVal = new stdClass();
     $RtnVal->RTN_CD = "200";
     $RtnVal->ERR_CD = "200";
     if($REQ["CD"] != ""){
         $RtnVal->RTN_DATA = getStmtArray($stmt)[0];
     }else{
+        $RtnVal->RTN_DATA = new stdClass();
         $RtnVal->RTN_DATA->rows = getStmtArrayNum($stmt);
     }
     echo json_encode($RtnVal);
