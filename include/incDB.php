@@ -614,24 +614,30 @@ function getSqlParam($sql,$coltype,$map){
     //$to_coltype = $coltype;
 
     $to_coltype = str_replace(" ","",$coltype,$count);
-    if($log)$log->info("to_coltype before : " . $to_coltype);    
+    alog("to_coltype before : " . $to_coltype);    
     //echo "\n to_coltype replace:" . $count;
     //LogMaster::log("        to_coltype : " . $to_coltype);
 
 
     //파라미터 분해 (정규식에서 .를 검색할때는 []안에 인수 값중에 맨뒤에 가면 동작안함)
     while(preg_match("/(#{)([\.a-zA-Z0-9_-]+)(})/",$to_sql,$mat)){
-        //echo "<br>org : " . HtmlEncode($org);
-        //echo "\n<br>매칭0 : " . $mat[0];
-        //alog("매칭1 : " . $mat[1]);
-        //alog("매칭2 : " . $mat[2]);
-        //echo "\n<br>매칭3 : " . $mat[3];
-        //echo "<br>매칭4 : " . $mat[4];
-        //alog( sprintf("%3s %1s - %20s = [%s]", $k, substr($to_coltype,$k,1), $mat[2] , $map[$mat[2]]) );
+
+        alog( "\nsql : " . $sql);
+        alog( "\n매칭0 : " . $mat[0]);
+        alog( "\n매칭1 : " . $mat[1]);
+        alog( "\n매칭2 : " . $mat[2]);
+        alog( "\n매칭3 : " . $mat[3]);
+        alog( "\n매칭4 : " . $mat[4]);
+
+
+
+
+        //echo( sprintf("%3s %1s - %20s = [%s]", $k, substr($to_coltype,$k,1), $mat[2] , $map[$mat[2]]) );
 
         $tColtype = substr($to_coltype,$d,1) ;
-
-        //print_r($map);
+        
+        //var_dump($coltype);
+        //exit;
 
         if(is_array($map[$mat[2]])){
             //멀티 값 처리
