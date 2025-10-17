@@ -1572,6 +1572,9 @@ function getStmtArrayNum(&$stmt){
             //echo "<pre><BR>" . jsonView($arr);
 
             //결과 JSON 화면 출력
+            $RtnVal = new stdClass();
+            $RtnVal->RTN_DATA = new stdClass();
+            
             $RtnVal->RTN_CD = "200";
             $RtnVal->ERR_CD = "200";
             $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
