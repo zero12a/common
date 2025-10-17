@@ -1574,7 +1574,7 @@ function getStmtArrayNum(&$stmt){
             //결과 JSON 화면 출력
             $RtnVal = new stdClass();
             $RtnVal->RTN_DATA = new stdClass();
-            
+
             $RtnVal->RTN_CD = "200";
             $RtnVal->ERR_CD = "200";
             $RtnVal->RTN_DATA->rows = transDhtmlxLoad($arr,$colNms,$map["COLCRYPT"],$map["KEYCOLIDX"]);
@@ -2693,7 +2693,7 @@ function getStmtArrayNum(&$stmt){
                 }
             
                 //[로그 저장용]
-                $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"])-1]["ROW_CNT"] = $to_affected_rows;                
+                $PGM_CFG["SQLTXT"][sizeof($PGM_CFG["SQLTXT"] ?? [])-1]["ROW_CNT"] = $to_affected_rows;                
 			
 				$to_row["COLID"] = "";
 				if($row["userdata"] == "inserted"){
