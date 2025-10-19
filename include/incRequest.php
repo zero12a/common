@@ -211,7 +211,7 @@ function filterGridXml($map){
     $RtnVal = $map["XML"];
     $RtnCnt = 0;
     //alog("xml sizeof : " . sizeof($xml_array_last));
-    for($i=0;xml_array_last != null && $i<sizeof($xml_array_last);$i++){
+    for($i=0;$xml_array_last != null && $i<sizeof($xml_array_last);$i++){
         $row = $xml_array_last[$i];
         //alog("        i : " . $i);
 

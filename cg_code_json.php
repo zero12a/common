@@ -164,6 +164,9 @@
 
     //var_dump($stmt);
     //$stmt2 = makeStmt($db2,$sql,$coltype="i",$REQ);
+
+
+    
     $RtnVal = new stdClass();
     $RtnVal->RTN_CD = "200";
     $RtnVal->ERR_CD = "200";

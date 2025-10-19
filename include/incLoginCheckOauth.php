@@ -17,8 +17,8 @@ if(!isLogin()){
     if($REQ["access_token"] =="")$REQ["access_token"] = getAccessToken();
     if($REQ["refresh_token"] =="")$REQ["refresh_token"] = getRefreshToken();
 
-    alog("REQ.access_token = ". $REQ["access_token"]);
-    alog("REQ.refresh_token = ". $REQ["refresh_token"]);
+    alog("(incLoginCheckOauth) REQ.access_token = ". $REQ["access_token"]);
+    alog("(incLoginCheckOauth) REQ.refresh_token = ". $REQ["refresh_token"]);
 
     if($REQ["access_token"] == ""){
         JsonMsg("500","100","로그인 후 이용해 주세요.(check oauth)");
@@ -46,11 +46,9 @@ if(!isLogin()){
                 ]
             ]);
             
-            //echo "<hr>" . $res->getStatusCode();
-            // "200"
-            //echo "<hr>" . $res->getHeader('content-type')[0];
-            // 'application/json; charset=utf8'
-            //echo "<hr>" . $res->getBody();
+            alog("(incLoginCheckOauth) res code : " . $res->getStatusCode());
+            //alog("res header : " . $res->getHeader('content-type')[0]);
+            alog("(incLoginCheckOauth) res body : " . $res->getBody());
 
             //상태 코드 확인하기
             if(trim($res->getStatusCode()) != "200"){
@@ -62,11 +60,15 @@ if(!isLogin()){
             //var_dump($resArr);
 
         }catch(ClientException $e) {
-            alog("ClientException : " . $e->getMessage());
+            alog("(incLoginCheckOauth) ClientException : " . $e->getMessage());
             //echo $e->getMessage() . "\n";
             //echo $e->getRequest()->getMethod();
         }catch(GuzzleException $e) {
-            alog("GuzzleException : " . $e->getMessage());
+            alog("(incLoginCheckOauth) GuzzleException : " . $e->getMessage());
+            //echo $e->getMessage() . "\n";
+            //echo $e->getRequest()->getMethod();
+        }catch(Exception $e) {
+            alog("(incLoginCheckOauth) Exception : " . $e->getMessage());
             //echo $e->getMessage() . "\n";
             //echo $e->getRequest()->getMethod();
         }

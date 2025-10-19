@@ -622,13 +622,14 @@ function getSqlParam($sql,$coltype,$map){
     //파라미터 분해 (정규식에서 .를 검색할때는 []안에 인수 값중에 맨뒤에 가면 동작안함)
     while(preg_match("/(#{)([\.a-zA-Z0-9_-]+)(})/",$to_sql,$mat)){
 
+        /*
         alog( "\nsql : " . $sql);
         alog( "\n매칭0 : " . $mat[0]);
         alog( "\n매칭1 : " . $mat[1]);
         alog( "\n매칭2 : " . $mat[2]);
         alog( "\n매칭3 : " . $mat[3]);
         alog( "\n매칭4 : " . $mat[4]);
-
+        */
 
 
 
@@ -1300,6 +1301,7 @@ function getStmt(&$db,$sqlMap){
         return null;
     }
     if($db->server_info == ""){
+        alog("pdo 처리");
         //pdo
         //echo "<BR>pdo---"  . $sqlMap["TO_SQL"];
         try{
@@ -1326,6 +1328,7 @@ function getStmt(&$db,$sqlMap){
             $rtnStmt->bindValue($t+1,$value,$param);
         }
     }else{
+        alog("mysqli 처리");
         //mysqli
         //echo "<BR>mysqli---" . $sqlMap["TO_SQL"];
         //sql문에 bind param이 하나라도 있으면 처리
@@ -1541,6 +1544,7 @@ function getStmtArrayNum(&$stmt){
             alog("  mysqli dbdriver ok.");
             
             //$stmt = makeStmt($db[$map["SQL"]["R"]["SVRID"]],$map["SQL"]["R"]["SQLTXT"], $map["SQL"]["R"]["BINDTYPE"], $REQ);
+            if($db[$map["SQL"]["R"]["SVRID"]] == null)JsonMsg("500","991","(makeGridSearchJson) " . $tmpSql["SQLID"] . " db connection is null");
 
             $sqlMap = getSqlParam($map["SQL"]["R"]["SQLTXT"],$map["SQL"]["R"]["BINDTYPE"],$REQ);
             alog(print_r($sqlMap, true));
@@ -1593,7 +1597,8 @@ function getStmtArrayNum(&$stmt){
 
             //echo "<pre>" . json_encode( $sqlMap,JSON_PRETTY_PRINT );
             //echo "<br>222";
-        
+            if($db[$map["SQL"]["R"]["SVRID"]] == null)JsonMsg("500","992","(makeGridSearchJson) " . $tmpSql["SQLID"] . " db connection is null");
+
             $stmt = getStmt($db[$map["SQL"]["R"]["SVRID"]],$sqlMap);
             
             if(!$stmt)JsonMsg("500","102", "makeGridSearchJson (PDO) stmt null error : stmt is " . $stmt->errno . " > " . $stmt->error . ", db is " . $db->errno . " > " . $db->error);
@@ -1743,6 +1748,8 @@ function getStmtArrayNum(&$stmt){
             $sqlMap = getSqlParam($tmpSql["SQLTXT"],$tmpSql["BINDTYPE"],$REQ);
 
             alog("      DEBUG_SQL = " . $sqlMap["DEBUG_SQL"]);
+
+            if($db[$tmpSql["SVRID"]] == null)JsonMsg("500","999","(makeGridSearchJsonArray) " . $tmpSql["SQLID"] . " db connection is null");
 
             $stmt = getStmt($db[$tmpSql["SVRID"]],$sqlMap);
 
@@ -2689,7 +2696,15 @@ function getStmtArrayNum(&$stmt){
 				//$stmt = makeStmt($db[$svrid],$sql, $to_coltype, array_merge($REQ,$to_row));
 			   
 				if(!$stmt) JsonMsg("500","200","(makeGridSaveJson) stmt create fail - " . $db->errno . " -> " . $db->error);
-				if(!$stmt->execute())JsonMsg("500","210","(makeGridSaveJson) stmt execute fail " . $stmt->error);
+
+                try{
+                    if(!$stmt->execute())JsonMsg("500","210","(makeGridSaveJson) stmt execute fail " . $stmt->error);
+                }catch(mysqli_sql_exception $e){
+                    JsonMsg("500","211","(makeGridSaveJson) stmt execute exception fail " . $e->getMessage());
+                }catch(Exception $e){
+                    JsonMsg("500","212","(makeGridSaveJson) stmt execute exception fail " . $e->getMessage());
+                }
+				
 
                 //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
                 if($stmt instanceof PDOStatement){
@@ -3171,8 +3186,18 @@ function getStmtArrayNum(&$stmt){
                 $stmt = getStmt($db[$svrid],$sqlMap);
 
                 if(!$stmt) JsonMsg("500","211","(makeGridwixSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt create fail " . $db[$svrid]->errno . " -> " . $db[$svrid]->error);
-                
-                if(!$stmt->execute())JsonMsg("500","212","(makeGridwixSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt execute fail " . $stmt->error);
+
+                try {
+                    if(!$stmt->execute())JsonMsg("500","212","(makeGridwixSaveJsonArray) " . $tmpSql["SQLID"] . "  stmt execute fail " . $stmt->error);
+                } catch (mysqli_sql_exception $e) {
+                    closeStmt($stmt);
+                    closeDb($db[$svrid]);
+                    JsonMsg("500","213",$e->getMessage());
+                } catch(Exception $e) {
+                    closeStmt($stmt);                    
+                    closeDb($db[$svrid]);                    
+                    JsonMsg("500","214",$e->getMessage());
+                }
 
                 //SUB 쿼리는 리턴정보에 넣지 않음.
                 alog("  PARENT_FNCTYPE = " . $tmpSql["PARENT_FNCTYPE"]);                    
@@ -3752,7 +3777,16 @@ function getStmtArrayNum(&$stmt){
 		//$stmt = makeStmt($db[$svrid], $sqltxt, $bindtype, $tParamEnc);
 		if(!$stmt)  JsonMsg("500","400","stmt 생성 실패" . $db->errno . " -> " . $db->error);
 		
-		if(!$stmt->execute())JsonMsg("500","410","stmt 실행 실패" . $stmt->errno . " -> " . $stmt->error);
+        try{
+		    if(!$stmt->execute())JsonMsg("500","410","stmt 실행 실패" . $stmt->errno . " -> " . $stmt->error);
+        }catch(mysqli_sql_exception $e){
+            alog("########################################\n SQL : " . $sqltxt);
+            JsonMsg("500","405","stmt 실행 오류 :" . $e->getMessage());
+        }catch(Exception $e){
+            alog("########################################\n SQL : " . $sqltxt);
+            JsonMsg("500","406","stmt 실행 오류 :" . $e->getMessage());
+        }
+
 		
         //echo "\n db affected_rows : " .  $db->affected_rows; //stmt를 클로즈 하기 전에 해야
         if($stmt instanceof PDOStatement){

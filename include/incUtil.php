@@ -98,21 +98,33 @@ function getLoggerStdout($arr){
     $log2 = new Monolog\Logger($arr["LIST_NM"]);
     $stream2 = new Monolog\Handler\StreamHandler('php://stdout', $arr["LOG_LEVEL"]);
     //$stream2->setFormatter(new Monolog\Formatter\LineFormatter("\n%channel%.%level_name% : %message% %context% %extra%"));
-    $stream2->setFormatter(new Monolog\Formatter\JsonFormatter());
-    $log2->pushHandler($stream2);
 
-    $UID = $arr["UID"];
-    $PGMID = $arr["PGM_ID"];
-    $REQTOKEN = $arr["REQTOKEN"];
-    $RESTOKEN = $arr["RESTOKEN"];
+    if($arr["FORMAT"] == "JSON" || $arr["FORMAT"] == "" ){
+        $stream2->setFormatter(new Monolog\Formatter\JsonFormatter());
+        $log2->pushHandler($stream2);
 
-    $log2->pushProcessor( function($record) use($UID,$PGMID,$REQTOKEN,$RESTOKEN){
-        $record['extra']['UID'] = $UID;
-        $record['extra']['PGMID'] = $PGMID;
-        $record['extra']['REQTOKEN'] = $REQTOKEN;
-        $record['extra']['RESTOKEN'] = $RESTOKEN;
-        return $record;
-    });
+        $UID = $arr["UID"];
+        $PGMID = $arr["PGM_ID"];
+        $REQTOKEN = $arr["REQTOKEN"];
+        $RESTOKEN = $arr["RESTOKEN"];
+
+        $log2->pushProcessor( function($record) use($UID,$PGMID,$REQTOKEN,$RESTOKEN){
+            $record['extra']['UID'] = $UID;
+            $record['extra']['PGMID'] = $PGMID;
+            $record['extra']['REQTOKEN'] = $REQTOKEN;
+            $record['extra']['RESTOKEN'] = $RESTOKEN;
+            return $record;
+        });
+    }else{
+        // Create a custom LineFormatter
+        $formatter = new Monolog\Formatter\LineFormatter("[%datetime%] %level_name%: %message% \n");
+
+        // Set the formatter on the handler
+        $stream2->setFormatter($formatter);
+
+        // Add the handler to the logger
+        $log2->pushHandler($stream2);
+    }
 
     return $log2;
 }
@@ -517,6 +529,7 @@ function array2pistr($array,$spt){
 //배열을 구분자 문자열로
 function array2str($array,$spt){
     $T=null;
+    $array = $array ?? [];
     for($i=0;$i<sizeof($array);$i++){
         $T.= ($T==null)?$array[$i]:$spt . $array[$i];
     }
@@ -526,6 +539,7 @@ function array2str($array,$spt){
 //배열을 구분자 문자열로
 function array2ddstr($array,$spt){
     $T=null;
+    $array = $array ?? [];
     for($i=0;$i<sizeof($array);$i++){
         $T.= ($T!=null)?$spt:"";
         $T.= (strpos($array[$i],"-")>0)?explode("-",$array[$i])[1]:$array[$i];
@@ -536,6 +550,7 @@ function array2ddstr($array,$spt){
 //배열을 해쉬맵으로
 function array2hash($array){
     $T=null;
+    $array = $array ?? [];    
     for($i=0;$i<sizeof($array);$i++){
         $T[$array[$i]["NM"]] = $array[$i]["VAL"];
     }
